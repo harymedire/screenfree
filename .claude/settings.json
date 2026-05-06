@@ -24,7 +24,9 @@
       "Read(//c/Users/hmedi/Desktop/bezekrana/src/components/landing/**)",
       "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('src/messages/en.json','utf8'\\)\\); console.log\\('JSON OK'\\)\")",
       "Read(//c/Users/hmedi/Desktop/bezekrana/src/app/[locale]/**)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(git fetch *)",
+      "Bash(git commit *)"
     ]
   }
 }

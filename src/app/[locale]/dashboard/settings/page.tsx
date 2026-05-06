@@ -25,7 +25,15 @@ export default async function SettingsPage({
     .select("*")
     .eq("id", user!.id)
     .single();
-  const p = profile as Profile;
+  // Safety net: if the auth user exists but the profile row is missing
+  // (e.g. handle_new_user trigger didn't fire, or rows were wiped), don't
+  // crash — render with sensible defaults so the user can recover.
+  const p = (profile ?? {
+    full_name: null,
+    subscription_status: "none",
+    subscription_ends_at: null,
+    stripe_customer_id: null,
+  }) as Profile;
 
   return (
     <section className="max-w-2xl space-y-6">
