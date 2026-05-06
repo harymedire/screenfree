@@ -36,8 +36,8 @@ export default async function DashboardLayout({
 
   // TEMP DIAGNOSTIC — remove once paywall logic is confirmed working in prod.
   console.log("[DASHBOARD-LAYOUT-DEBUG]", JSON.stringify({
-    user_id: user.id,
-    user_email: user.email,
+    user_id: user!.id,
+    user_email: user!.email,
     profile_present: !!profile,
     profile_error: profileError?.message ?? null,
     profile_role: profile?.role ?? null,
