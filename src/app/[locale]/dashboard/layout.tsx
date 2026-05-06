@@ -22,7 +22,7 @@ export default async function DashboardLayout({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect({ href: "/login", locale });
 
-  const [{ data: profile }, { count: oneTimeCount }] = await Promise.all([
+  const [{ data: profile, error: profileError }, { count: oneTimeCount }] = await Promise.all([
     supabase
       .from("profiles")
       .select("role, full_name, subscription_status")
@@ -33,6 +33,18 @@ export default async function DashboardLayout({
       .select("id", { count: "exact", head: true })
       .eq("user_id", user!.id),
   ]);
+
+  // TEMP DIAGNOSTIC — remove once paywall logic is confirmed working in prod.
+  console.log("[DASHBOARD-LAYOUT-DEBUG]", JSON.stringify({
+    user_id: user.id,
+    user_email: user.email,
+    profile_present: !!profile,
+    profile_error: profileError?.message ?? null,
+    profile_role: profile?.role ?? null,
+    profile_status: profile?.subscription_status ?? null,
+    oneTimeCount,
+    nodeEnv: process.env.NODE_ENV,
+  }));
 
   // Paywall: anyone hitting /dashboard without any purchase is sent to /pricing.
   // Admins always bypass the paywall so they can QA the dashboard, manage
