@@ -35,7 +35,7 @@ export type ContentPack = {
   description: string | null;
   pdf_storage_path: string;
   /** Optional B&W / "ink-save" variant generated from the same template
-   *  with the "Bez pozadinskih boja" toggle on — useful for plain printers. */
+   *  with the "No background colors" toggle on — useful for plain printers. */
   pdf_storage_path_no_bg: string | null;
   thumbnail_url: string | null;
   one_time_available: boolean;

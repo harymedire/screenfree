@@ -51,7 +51,7 @@ export function StripeInline({ mode, packId, locale }: Props) {
     return (
       <div className="text-center py-8">
         <CheckCircle2 className="h-10 w-10 mx-auto text-teal-500 mb-3" />
-        <p className="text-plum-700 font-bold">Već imaš aktivnu pretplatu.</p>
+        <p className="text-plum-700 font-bold">You already have an active subscription.</p>
       </div>
     );
   }
@@ -59,13 +59,13 @@ export function StripeInline({ mode, packId, locale }: Props) {
   if (error) {
     return (
       <div className="text-sm text-coral-700 bg-coral-100 rounded-xl px-3 py-2">
-        Greška pri inicijalizaciji plaćanja. Osvježi stranicu ili pokušaj kasnije.
+        Error initializing payment. Refresh the page or try again later.
       </div>
     );
   }
 
   if (!clientSecret) {
-    return <div className="py-8 text-center text-plum-500 text-sm">Učitavanje…</div>;
+    return <div className="py-8 text-center text-plum-500 text-sm">Loading…</div>;
   }
 
   return (
@@ -113,7 +113,7 @@ function CheckoutForm({ mode }: { mode: Mode }) {
     });
 
     if (result.error) {
-      setErrMsg(result.error.message ?? "Plaćanje nije uspjelo.");
+      setErrMsg(result.error.message ?? "Payment failed.");
       setSubmitting(false);
       return;
     }
@@ -150,7 +150,7 @@ function CheckoutForm({ mode }: { mode: Mode }) {
       )}
 
       <Button type="submit" disabled={!stripe || submitting} className="w-full">
-        {submitting ? "Procesiram…" : "Pokreni"}
+        {submitting ? "Processing…" : "Pay"}
       </Button>
     </form>
   );

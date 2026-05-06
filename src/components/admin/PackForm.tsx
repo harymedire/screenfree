@@ -30,7 +30,7 @@ export function PackForm({
   const [error, setError] = useState<string | null>(null);
 
   const [sequence, setSequence] = useState<number>(initial?.sequence_number ?? defaultSequence);
-  const [locale, setLocale] = useState<Locale>((initial?.locale as Locale) ?? "bs");
+  const [locale, setLocale] = useState<Locale>((initial?.locale as Locale) ?? "en");
   const [title, setTitle] = useState(initial?.title ?? "");
   const [description, setDescription] = useState(initial?.description ?? "");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -41,7 +41,7 @@ export function PackForm({
     initial?.one_time_price_cents != null ? String(initial.one_time_price_cents) : "",
   );
   const [oneTimeCurrency, setOneTimeCurrency] = useState<Currency>(
-    (initial?.one_time_currency as Currency) ?? "BAM",
+    (initial?.one_time_currency as Currency) ?? "USD",
   );
 
   async function onSubmit(e: React.FormEvent) {
@@ -75,7 +75,7 @@ export function PackForm({
 
   async function onDelete() {
     if (!initial) return;
-    if (!confirm("Obrisati paket?")) return;
+    if (!confirm("Delete this pack?")) return;
     const res = await fetch(`/api/admin/packs?id=${initial.id}`, { method: "DELETE" });
     if (res.ok) {
       router.push("/admin");
@@ -127,7 +127,7 @@ export function PackForm({
 
       <div>
         <label className="label">
-          PDF (verzija sa bojama) {initial && <span className="text-plum-400 font-normal">(ostavi prazno da ne mijenjaš)</span>}
+          PDF (color version) {initial && <span className="text-plum-400 font-normal">(leave blank to keep current)</span>}
         </label>
         <input
           type="file"
@@ -136,17 +136,17 @@ export function PackForm({
           className="input"
           required={!initial}
         />
-        <p className="mt-1 text-xs text-plum-500">Glavna verzija sa živim bojama, gradijentima i ilustracijama.</p>
+        <p className="mt-1 text-xs text-plum-500">Main version with vivid colors, gradients, and illustrations.</p>
         {initial?.pdf_storage_path && !pdfFile && (
           <p className="mt-1 text-xs text-teal-700 font-bold break-all">
-            ✓ Trenutno: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.pdf_storage_path)}</span>
+            ✓ Current: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.pdf_storage_path)}</span>
           </p>
         )}
       </div>
 
       <div>
         <label className="label">
-          PDF (bez pozadinskih boja) <span className="text-plum-400 font-normal">— opcionalno</span>
+          PDF (no background colors) <span className="text-plum-400 font-normal">— optional</span>
         </label>
         <input
           type="file"
@@ -154,10 +154,10 @@ export function PackForm({
           onChange={(e) => setPdfNoBgFile(e.target.files?.[0] ?? null)}
           className="input"
         />
-        <p className="mt-1 text-xs text-plum-500">B&amp;W / štedljiva za štampu — generiši iz iste šablone sa „Bez pozadinskih boja“ uključenim.</p>
+        <p className="mt-1 text-xs text-plum-500">B&amp;W / printer-friendly — export from the same template with &quot;No background colors&quot; enabled.</p>
         {initial?.pdf_storage_path_no_bg && !pdfNoBgFile && (
           <p className="mt-1 text-xs text-teal-700 font-bold break-all">
-            ✓ Trenutno: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.pdf_storage_path_no_bg)}</span>
+            ✓ Current: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.pdf_storage_path_no_bg)}</span>
           </p>
         )}
       </div>
@@ -179,7 +179,7 @@ export function PackForm({
               className="h-16 w-12 object-cover rounded-lg border border-plum-200"
             />
             <p className="text-xs text-teal-700 font-bold break-all">
-              ✓ Trenutno: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.thumbnail_url)}</span>
+              ✓ Current: <span className="font-mono font-normal text-plum-700">{fileNameFromPath(initial.thumbnail_url)}</span>
             </p>
           </div>
         )}
@@ -210,7 +210,7 @@ export function PackForm({
               />
             </div>
             <div>
-              <label className="label">Valuta</label>
+              <label className="label">Currency</label>
               <select
                 value={oneTimeCurrency}
                 onChange={(e) => setOneTimeCurrency(e.target.value as Currency)}

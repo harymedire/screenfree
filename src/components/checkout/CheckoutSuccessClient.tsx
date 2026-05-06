@@ -11,8 +11,8 @@ type Props = { mode: "subscription" | "onetime"; locale: string };
 // recurring weekly fee; one-time uses the platform default. Server-side will
 // pass actual values once we wire up the real Stripe success path — this
 // constant is fine for the conversion-tracking starting point.
-const SUBSCRIPTION_VALUE_EUR = 2.49;
-const ONETIME_VALUE_EUR = 2.99;
+const SUBSCRIPTION_VALUE_USD = 4.99;
+const ONETIME_VALUE_USD = 5.99;
 
 declare global {
   interface Window {
@@ -26,8 +26,8 @@ export function CheckoutSuccessClient({ mode, locale }: Props) {
   void locale;
 
   useEffect(() => {
-    const value = mode === "subscription" ? SUBSCRIPTION_VALUE_EUR : ONETIME_VALUE_EUR;
-    const transactionId = `bz_${Date.now()}`;
+    const value = mode === "subscription" ? SUBSCRIPTION_VALUE_USD : ONETIME_VALUE_USD;
+    const transactionId = `sf_${Date.now()}`;
 
     // Google Analytics 4 / Google Ads — `purchase` event is the standard
     // recommended e-commerce conversion in GA4. In Google Ads dashboard set
@@ -37,11 +37,11 @@ export function CheckoutSuccessClient({ mode, locale }: Props) {
       window.gtag("event", "purchase", {
         transaction_id: transactionId,
         value,
-        currency: "EUR",
+        currency: "USD",
         items: [
           {
             item_id: mode === "subscription" ? "weekly-sub" : "onetime-pack",
-            item_name: mode === "subscription" ? "Sedmični sistem" : "Jednokratni paket",
+            item_name: mode === "subscription" ? "Weekly system" : "One-time pack",
             price: value,
             quantity: 1,
           },
@@ -51,7 +51,7 @@ export function CheckoutSuccessClient({ mode, locale }: Props) {
 
     // Meta Pixel (if installed later) — same event, different vendor.
     if (typeof window !== "undefined" && typeof window.fbq === "function") {
-      window.fbq("track", "Purchase", { value, currency: "EUR" });
+      window.fbq("track", "Purchase", { value, currency: "USD" });
     }
 
     // Auto-forward to dashboard after 6 seconds so the user doesn't camp
@@ -69,26 +69,26 @@ export function CheckoutSuccessClient({ mode, locale }: Props) {
       </div>
 
       <h1 className="font-display text-3xl md:text-4xl text-plum-900 mb-3">
-        Hvala — uplata je uspješna!
+        Thank you — payment successful!
       </h1>
 
       <p className="text-plum-700 text-lg mb-2">
         {mode === "subscription"
-          ? "Tvoja pretplata je aktivna. Prvi paket je već u tvom panelu."
-          : "Tvoj paket je već otključan u panelu."}
+          ? "Your subscription is active. Your first pack is already in your dashboard."
+          : "Your pack is already unlocked in your dashboard."}
       </p>
       <p className="text-plum-500 text-sm mb-10">
-        Račun ti stiže na email u par minuta.
+        Your receipt will arrive by email in a few minutes.
       </p>
 
       <Link href="/dashboard">
         <Button>
-          Idi na panel <ArrowRight className="h-4 w-4" />
+          Go to dashboard <ArrowRight className="h-4 w-4" />
         </Button>
       </Link>
 
       <p className="text-xs text-plum-400 mt-6">
-        Automatski preusmjeravanje za par sekundi…
+        Redirecting automatically in a few seconds…
       </p>
     </div>
   );

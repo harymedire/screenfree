@@ -7,10 +7,10 @@ import { CreditCard } from "lucide-react";
 type Mode = "subscription" | "onetime";
 
 // US-issued cards (Stripe test BINs + common live prefixes). For these the
-// Address Verification System (AVS) requires postal code; pravi Stripe
-// Element ga sam pokaže kad detektuje takav BIN. Ovaj mock simulira to —
-// polje za poštanski se pojavi tek nakon što korisnik unese karticu sa US
-// prefiksom.
+// Address Verification System (AVS) requires postal code; the real Stripe
+// Element shows the field automatically when it detects such a BIN. This
+// mock simulates that — the ZIP field appears only after the user enters a
+// card with a US prefix.
 const US_BIN_PREFIXES = ["4242", "4000", "4111", "5555", "5105", "5200", "2223"];
 
 function needsPostalCode(cardNumber: string): boolean {
@@ -45,7 +45,7 @@ export function StripeMock({ mode }: { mode: Mode }) {
     <form onSubmit={onSubmit} className="space-y-3">
       {/* Card number */}
       <label className="block">
-        <span className="text-xs font-bold text-plum-700 mb-1.5 block">Broj kartice</span>
+        <span className="text-xs font-bold text-plum-700 mb-1.5 block">Card number</span>
         <div className="relative">
           <input
             type="text"
@@ -59,14 +59,14 @@ export function StripeMock({ mode }: { mode: Mode }) {
         </div>
       </label>
 
-      {/* Exp + CVC default; postal se pridruži samo kad ga BIN traži */}
+      {/* Exp + CVC by default; postal joins only when the BIN requires it */}
       <div className="grid grid-cols-2 gap-3">
         <label className="block">
-          <span className="text-xs font-bold text-plum-700 mb-1.5 block">Mjesec / Godina</span>
+          <span className="text-xs font-bold text-plum-700 mb-1.5 block">Month / Year</span>
           <input
             type="text"
             inputMode="numeric"
-            placeholder="MM / GG"
+            placeholder="MM / YY"
             value={exp}
             onChange={(e) => setExp(e.target.value)}
             className="w-full rounded-xl border border-plum-200 bg-white px-3 py-3 text-base text-plum-900 placeholder:text-plum-300 focus:border-coral-500 focus:outline-none focus:ring-2 focus:ring-coral-100 transition"
@@ -89,7 +89,7 @@ export function StripeMock({ mode }: { mode: Mode }) {
       {showPostal && (
         <label className="block">
           <span className="text-xs font-bold text-plum-700 mb-1.5 block">
-            Poštanski broj <span className="text-plum-400 font-normal">— traži banka kartice</span>
+            ZIP code <span className="text-plum-400 font-normal">— required by your card&apos;s bank</span>
           </span>
           <input
             type="text"
@@ -103,7 +103,7 @@ export function StripeMock({ mode }: { mode: Mode }) {
       )}
 
       <Button type="submit" disabled={submitting} className="w-full !mt-5">
-        {submitting ? "Procesiram…" : "Pokreni"}
+        {submitting ? "Processing…" : "Pay"}
       </Button>
     </form>
   );

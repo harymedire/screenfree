@@ -18,7 +18,13 @@
       "Bash(git push *)",
       "Bash(git rm *)",
       "Bash(git commit -m ' *)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(awk '{print $9, $5}')",
+      "Read(//c/Users/hmedi/Desktop/bezekrana/src/messages/**)",
+      "Read(//c/Users/hmedi/Desktop/bezekrana/src/components/landing/**)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('src/messages/en.json','utf8'\\)\\); console.log\\('JSON OK'\\)\")",
+      "Read(//c/Users/hmedi/Desktop/bezekrana/src/app/[locale]/**)",
+      "Bash(git check-ignore *)"
     ]
   }
 }

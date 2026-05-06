@@ -9,9 +9,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = defaultLocale;
   }
 
-  // Locales without translations yet fall back to English bundle
-  // All BCS locales are fully translated; this guard is just defense-in-depth.
-  const messageLocale: Locale = fullyTranslatedLocales.includes(locale) ? locale : "bs";
+  const messageLocale: Locale = fullyTranslatedLocales.includes(locale) ? locale : "en";
 
   let messages;
   try {

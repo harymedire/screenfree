@@ -42,7 +42,7 @@ function extractIds(event: unknown): { subscriptionId?: string; paymentId?: stri
 // 2. DodoPayments.Initialize({ displayType: "inline", onEvent }) — once per mount
 // 3. DodoPayments.Checkout.open({ checkoutUrl, elementId, options.manualRedirect: true })
 // 4. onEvent fires success → POST /api/dodo/sync to update DB (webhook fallback),
-//    then render a TAČNO confirmation with a "Continue to dashboard" link. NO navigation.
+//    then render an inline confirmation with a "Continue to dashboard" link. NO navigation.
 export function DodoInline({ mode, packId, locale, dodoMode = "test" }: Props) {
   const t = useTranslations("checkout");
   const tErr = useTranslations("checkout.errors");
@@ -183,7 +183,7 @@ export function DodoInline({ mode, packId, locale, dodoMode = "test" }: Props) {
             onClick={() => window.location.reload()}
             className="ml-2"
           >
-            Pokušaj ponovo
+            Try again
           </Button>
         </div>
       )}

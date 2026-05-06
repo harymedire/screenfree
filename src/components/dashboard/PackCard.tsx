@@ -25,7 +25,7 @@ export function PackCard({
         "badge bg-plum-100 text-plum-700 absolute z-10",
         compact ? "top-2 right-2 text-[9px] px-2" : "top-3 right-3",
       )}>
-        Sedmica {pack.sequence_number}
+        Week {pack.sequence_number}
       </div>
 
       <div className={cn(
@@ -60,12 +60,12 @@ export function PackCard({
         <div className="mt-2">
           {unlocked ? (
             <div className="flex items-center justify-center rounded-full bg-coral-500 text-white px-2 py-1.5 text-[11px] font-bold">
-              Izaberi
+              Choose
             </div>
           ) : (
             <div className="flex items-center justify-center gap-1.5 rounded-full border-2 border-plum-100 px-2 py-1.5 text-[11px] font-bold text-plum-400">
               <Lock className="h-3.5 w-3.5" />
-              Otključavanje prema planu
+              Unlocking on schedule
             </div>
           )}
         </div>
@@ -77,21 +77,21 @@ export function PackCard({
                 href={`/api/content/download/${pack.id}`}
                 className="btn-primary w-full inline-flex"
               >
-                <Download className="h-4 w-4" /> Preuzmi PDF
+                <Download className="h-4 w-4" /> Download PDF
               </a>
               {pack.pdf_storage_path_no_bg && (
                 <a
                   href={`/api/content/download/${pack.id}?bw=1`}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-full border-2 border-plum-200 px-7 py-3.5 text-base font-bold text-plum-700 hover:border-plum-300 hover:bg-plum-50 transition"
-                  title="Verzija bez pozadinskih boja — pogodno za štampu"
+                  title="Print-friendly version — no background colors"
                 >
-                  <Download className="h-4 w-4" /> Bez pozadina (za štampu)
+                  <Download className="h-4 w-4" /> Print version (no backgrounds)
                 </a>
               )}
             </>
           ) : (
             <div className="flex items-center justify-center gap-2 rounded-full border-2 border-plum-100 px-4 py-2.5 text-sm font-bold text-plum-400">
-              <Lock className="h-4 w-4" /> Otključavanje prema planu
+              <Lock className="h-4 w-4" /> Unlocking on schedule
             </div>
           )}
         </div>

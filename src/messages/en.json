@@ -1,0 +1,548 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "pricing": "Pricing",
+    "login": "Sign in",
+    "register": "Sign up",
+    "dashboard": "Dashboard",
+    "logout": "Sign out",
+    "admin": "Admin"
+  },
+  "landing": {
+    "hero": {
+      "badge": "No screens. No stress. No shopping.",
+      "title": "Let's give them back the childhood that doesn't happen behind a screen",
+      "subtitle": "We know that pang of guilt when you hand them the iPad because you simply have nothing left. You're not alone. We've all been there. But a child's imagination is the most powerful thing in the world, and it only needs a small spark. ScreenFree isn't just a play plan, it's your ally to see that spark in their eyes again as they discover the world with an ordinary spoon and a little water.",
+      "ctaPrimary": "Start the Weekly System",
+      "ctaSecondary": "How it works",
+      "trust": "Designed with input from early-childhood educators and pediatric occupational therapists."
+    },
+    "mission": {
+      "eyebrow": "Our Mission",
+      "title": "More than play. Saving moments that don't come back.",
+      "items": [
+        {
+          "title": "Time flies",
+          "body": "Children ages 2–4 learn fastest through touch, smell, and movement. Every minute without a tablet or phone is a win for their focus and imagination."
+        },
+        {
+          "title": "Parenting without pressure",
+          "body": "You don't need expensive equipment or hours of prep. What you already have at home is enough."
+        },
+        {
+          "title": "A quiet conscience",
+          "body": "Our goal isn't to sell you another subscription. It's to give you that sense of peace as you watch your child play, learn, and grow on their own, the way we used to."
+        }
+      ]
+    },
+    "problem": {
+      "title": "Sound familiar?",
+      "differentScenario": "There's a different way.",
+      "items": [
+        {
+          "eyebrow": "The morning battle",
+          "title": "7:30 a.m. — first 'Give me the iPad,' then 'Good morning'",
+          "body": "Your eyes are barely open and you're already negotiating. Your child's first sentence isn't a hug — it's a screen request. You just want five minutes with your coffee, not a debate about why YouTube isn't an option right now."
+        },
+        {
+          "eyebrow": "Weekend stand-still",
+          "title": "Rainy Saturday — your creative tank is empty",
+          "body": "It's gray outside and chaos inside. You've burned through every idea, offered every toy, and the answer is always 'I'm bored.' You feel yourself caving toward the phone, even though you know it isn't the answer."
+        },
+        {
+          "eyebrow": "The toy paradox",
+          "title": "A room full of toys, but the only thing they want is a screen",
+          "body": "Hours spent in stores, hundreds of dollars on colorful boxes that now collect dust. The irony stings: with everything they own, the only thing that holds their attention is a tablet. Frustration grows; the guilt grows heavier."
+        }
+      ]
+    },
+    "solution": {
+      "title": "Your Plan B (and C, and D)",
+      "subtitle": "Your weekly system of adventures that turns household chaos into a focus zone. No shopping, no prep, no guilt. You open the instructions and the fun begins.",
+      "features": [
+        {
+          "eyebrow": "7 DAYS OF ACTIVITIES",
+          "title": "A ready-made plan, no thinking required",
+          "body": "Every week you get seven days of ready ideas with clear instructions. No more searching the internet, no complicated rules. Open the guide and play starts in five minutes."
+        },
+        {
+          "eyebrow": "NO SHOPPING",
+          "title": "Everything you need, you already have",
+          "body": "Don't spend money on more plastic sets and \"educational\" toys. We'll show you how the things you already have at home become the most fascinating tools for discovery. They just need to be seen with new eyes."
+        },
+        {
+          "eyebrow": "DEVELOPS YOUR CHILD",
+          "title": "Time that builds the brain",
+          "body": "Every activity is designed to spark fine motor skills, focus, and imagination. While they're having fun, you know they're actually building skills they'll need in school and in life."
+        },
+        {
+          "eyebrow": "SOS SECTION",
+          "title": "An ace up your sleeve for crisis moments",
+          "body": "When you're at a restaurant, the doctor's office, or you just need 20 quiet minutes to finish a call. The SOS section gives you tricks that work anywhere, without screens and without prep."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "steps": [
+        {
+          "title": "Sign up and pick a plan",
+          "body": "Create your account in a couple of minutes. Cancel whenever you want, no contracts and no hidden fees."
+        },
+        {
+          "title": "Unlock your first pack",
+          "body": "Pack #1 lands in your account immediately. Every 7 days you automatically get a new week of fresh ideas."
+        },
+        {
+          "title": "Start TONIGHT",
+          "body": "Open the Adventure Map, pick one of the challenges, and launch a phenomenal activity with ordinary household objects. The quiet you hear isn't bought with a screen. It's earned."
+        }
+      ],
+      "neuro": {
+        "title": "Brain in motion: more than ordinary play",
+        "body": "Behind every activity in our guide is developmental logic. As your child works through the challenges in our plan, they aren't killing time — they're calibrating the fine motor skills that will one day hold a pencil, building the cognitive endurance that's a prerequisite for reading, and laying down neural pathways that passive screen-watching can't activate. We don't fill the day. We turn an ordinary kitchen into a developmental playground and feed potential that money can't buy."
+      }
+    },
+    "testimonials": {
+      "title": "Parents who said \"NO\" to the screen",
+      "items": [
+        {
+          "quote": "I'll be honest, I was skeptical. I thought he'd play for two minutes and ask for YouTube. But one activity called 'Rescuing the Cars' kept him for 40 minutes. Not a single ask for a screen. I couldn't believe it.",
+          "author": "Mike T., dad of Tyler (4), Denver, CO"
+        },
+        {
+          "quote": "What I love most is that I don't have to buy anything. Everything I need is already in the kitchen. I save hours of Pinterest scrolling and, more importantly, I don't feel that pang of guilt when I hand over the iPad. Weekends really feel like childhood again.",
+          "author": "Maria L., mom of two, Chicago, IL"
+        },
+        {
+          "quote": "The SOS section saved us in the doctor's waiting room. Instead of a phone, I pulled out one little trick from the guide that needed nothing but a bit of imagination. Other moms looked at me like I had superpowers. Thank you for this!",
+          "author": "Ashley K., mom of Owen (3), Nashville, TN"
+        },
+        {
+          "quote": "I thought, 'great, another subscription, what do I need this for.' I tried the first week just to see. We didn't ditch the iPad overnight, but Lily doesn't reach for it the way she used to. That's all I wanted.",
+          "author": "David B., dad of Lily (2.5), Portland, OR"
+        },
+        {
+          "quote": "As an early childhood specialist, I can see these activities are carefully designed. Children at this age need to feel texture, resistance, and the weight of real objects. A screen can't give them that. ScreenFree is a great tool for families who want a return to the basics.",
+          "author": "Dr. Rachel M., early childhood specialist, Boston, MA"
+        },
+        {
+          "quote": "I noticed Mia talks and explains so much more while we play with your plan. Some activities have unlocked her vocabulary in ways I didn't expect, words I wasn't even expecting at this age. The best $5 I've ever spent.",
+          "author": "Emily P., mom of Mia (2.5), Seattle, WA"
+        }
+      ]
+    },
+    "moment": {
+      "body": "Because at the end of the day, there's nothing more priceless than sitting back and watching your child solve their 'big' challenges with an ordinary wooden spoon. That sound of focus and childhood — it's the one you gave them."
+    },
+    "faq": {
+      "title": "Everything you want to know (before your first peaceful coffee)",
+      "items": [
+        {
+          "q": "Will I get packs other parents already have?",
+          "a": "Of course. Your adventure starts at Week 1, no matter when you join. We want you to experience the full developmental journey in order, the way it was designed — so you don't miss a thing."
+        },
+        {
+          "q": "What if I want to pause?",
+          "a": "We get it — parenting is unpredictable. You can cancel any time with one click. No hidden charges, no questions. We're here to make life easier, not add another obligation."
+        },
+        {
+          "q": "Can I just buy one week?",
+          "a": "Right now we operate as a community that grows weekly, because continuity in screen-free play is essential for your child's focus. Our weekly price is set lower than a single coffee, and gives you a calm, fully planned week."
+        },
+        {
+          "q": "Do I need a printer?",
+          "a": "Nope. Every activity is designed to be readable on your phone. Just glance at the instructions, grab a spoon or a blanket, and go."
+        },
+        {
+          "q": "How much prep time do I need?",
+          "a": "Less time than it takes to explain why they can't have the iPad. Most activities set up in under 3 minutes using things from a drawer or your pantry."
+        },
+        {
+          "q": "Is it safe to pay by card?",
+          "a": "Absolutely. We use bank-grade encryption and PCI-compliant payment processors (Stripe), so your payment is fully protected. We see your sigh of relief — not your card details."
+        }
+      ]
+    },
+    "cta": {
+      "title": "They deserve a childhood they'll remember… not a screen, but your hand and your play.",
+      "subtitle": "Start your first week of adventure. No contracts, no obligations, with the option to pause any time. Your first Adventure Plan lands in your account the moment you sign up.",
+      "button": "Start our first adventure",
+      "footer": "Because the best memories begin where the screens go off."
+    }
+  },
+  "about": {
+    "eyebrow": "A letter to parents",
+    "title": "Dear parents — you're not failing.",
+    "intro": "No one is perfect. We've all handed over the iPad because we were exhausted, because we needed 10 minutes of quiet, because they wouldn't eat unless Cocomelon was on. We get it. We've been there.",
+    "missionTitle": "Who we are and why we exist",
+    "missionBody": "We're a group of parents, educators, and child-development professionals — all rallied around one idea: that screen-free time should be easier for parents and richer for children. We don't build apps. We don't sell expensive toys. We build plans that use what you already have in your kitchen.",
+    "scienceTitle": "Why this approach?",
+    "scienceBody": "Because a 2- to 4-year-old's brain doesn't grow in front of a tablet or phone. It grows through touching textures, pouring water from one cup to another, sorting spoons by size, lining up pasta by shape. The strongest development happens in moments that look 'unimportant.' We package those moments into a 7-day plan and deliver them ready-made — tested, no prep required.",
+    "valuesTitle": "What guides us",
+    "values": [
+      {
+        "title": "Parents aren't the problem — the system is.",
+        "body": "We give you a tool, not a lecture. No guilt, no moralizing, no 'good parents do it this way.'"
+      },
+      {
+        "title": "The best activity is a low-tech one.",
+        "body": "A wooden spoon will always beat a $25 app. We prove it every week."
+      },
+      {
+        "title": "Your time is more valuable than your money.",
+        "body": "Our plan saves you hours of Googling, shopping, and guilt. We cost less than a single coffee."
+      }
+    ],
+    "ctaTitle": "Join us",
+    "ctaBody": "You don't need to buy anything. You don't need to print anything. Open the PDF and go.",
+    "ctaButton": "Start now"
+  },
+  "pricing": {
+    "title": "Choose how you want to start",
+    "subtitle": "",
+    "tabs": {
+      "subscribe": "Weekly system",
+      "oneTime": "One-time"
+    },
+    "subscribe": {
+      "label": "Best value",
+      "title": "Weekly system (save {percent}%)",
+      "tagline": "Less screen. More play. More connection. Every week.",
+      "perWeek": "/ plan",
+      "value": "{price} value per plan",
+      "description": "Every week you get a fresh plan of ready-made activities for kids ages 2 to 4.",
+      "features": [
+        "New activity plan every week",
+        "Activities for all 7 days",
+        "Low-prep games using what you already have at home",
+        "SOS ideas for moments when they ask for a screen",
+        "Plan available instantly for download"
+      ],
+      "cta": "Start the weekly system",
+      "fineprint": "Renews automatically every week at {price}. Cancel any time."
+    },
+    "oneTime": {
+      "title": "One-time",
+      "tagline": "Buy one plan and use it whenever you want.",
+      "perPack": "/ plan",
+      "description": "Perfect if you want to try a single weekly plan first, without auto-renewal.",
+      "features": [
+        "One activity plan",
+        "Activities for 7 days",
+        "PDF available instantly",
+        "No auto-renewal"
+      ],
+      "cta": "Buy a single plan",
+      "fineprint": "One-time payment. No renewal."
+    },
+    "trust": {
+      "secure": "Secure payment",
+      "instant": "Plan available instantly",
+      "age": "For ages 2–4",
+      "home": "Activities from things you already have at home"
+    },
+    "note": "ScreenFree isn't just a list of ideas — it's the ally helping you protect childhood from the digital noise, turning an ordinary kitchen spoon into a tool that builds focus, motor skills, and imagination in your child.",
+    "currencyNote": "Price in {currency}"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "google": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "forgot": "Forgot password?"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "30 seconds and you're in",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Jane Smith",
+      "email": "Email",
+      "password": "Password (min 8 characters)",
+      "submit": "Create account",
+      "google": "Sign up with Google",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "agreement": "I agree to the <terms>Terms of Service</terms>, <privacy>Privacy Policy</privacy>, and <refund>Refund Policy</refund>. I understand the content is digital and available immediately.",
+      "agreementRequired": "You must accept the terms to continue.",
+      "confirmEmailTitle": "Check your email",
+      "confirmEmailBody": "We sent a confirmation link to {email}. Click it to verify your account, and we'll take you straight to pricing.",
+      "confirmEmailHint": "Don't see it? Check your spam folder."
+    },
+    "errors": {
+      "invalidCredentials": "Wrong email or password",
+      "emailInUse": "This email is already in use",
+      "emailNotConfirmed": "Please confirm your email first. Check your inbox for the confirmation link.",
+      "weakPassword": "Password must be at least 8 characters",
+      "generic": "Something went wrong. Try again."
+    },
+    "forgot": {
+      "title": "Forgot your password?",
+      "subtitle": "We'll send you a reset link by email.",
+      "email": "Email",
+      "submit": "Send link",
+      "submitting": "Sending…",
+      "successTitle": "Check your email",
+      "successBody": "If an account exists with that address, a reset link is on the way. Check your spam folder too.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "title": "Set a new password",
+      "subtitle": "Enter a new password for your account.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "submit": "Set password",
+      "submitting": "Setting…",
+      "success": "Password set. Redirecting…",
+      "errorMismatch": "Passwords don't match",
+      "errorTooShort": "Password must be at least 8 characters",
+      "errorInvalidLink": "This link is invalid or has expired. Request a new one.",
+      "errorGeneric": "Error, try again"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subscribe": "Subscribe",
+    "oneTime": "Buy plan",
+    "selectMethod": "Choose payment method",
+    "stripe": "Card (Stripe)",
+    "dodo": "Card (Dodo)",
+    "summary": "Order summary",
+    "subscriptionItem": "Weekly system",
+    "oneTimeItem": "{title}",
+    "total": "Total",
+    "submit": "Pay securely",
+    "submitting": "Processing…",
+    "success": "Success!",
+    "successSubtitle": "Thank you. Your first Weekly System is waiting in your dashboard.",
+    "goToDashboard": "Go to dashboard",
+    "errors": {
+      "generic": "Payment failed. Try again or use a different card."
+    }
+  },
+  "dashboard": {
+    "welcome": "Hi, {name}!",
+    "currentWeek": "Your current week",
+    "weekN": "Week {n}",
+    "noPackYet": "Your first Weekly System will arrive in a few minutes…",
+    "download": "Download PDF",
+    "view": "View",
+    "archive": "Archive",
+    "archiveSubtitle": "All the weeks you've unlocked",
+    "archiveLockedNote": "Unlocking on schedule — subscribe to keep going in order",
+    "collection": "Your collection",
+    "collectionSubtitle": "Weeks that are yours",
+    "upgradeTitle": "Want to keep going?",
+    "upgradeBody": "Start the weekly system and continue with new activities — fresh plans arrive every week.",
+    "upgradeCta": "Start the weekly system",
+    "sos": "SOS — quick ideas",
+    "sosSubtitle": "For those moments when you need it right now",
+    "settings": "Settings",
+    "profile": {
+      "title": "Profile",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Jane Smith",
+      "email": "Email",
+      "emailNote": "Email can't be changed from the dashboard. To update it, contact support.",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "errorTooShort": "Name must be at least 2 characters",
+      "errorGeneric": "Error saving, try again"
+    },
+    "password": {
+      "title": "Change password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "submit": "Change password",
+      "submitting": "Changing…",
+      "success": "Password changed",
+      "errorMismatch": "Passwords don't match",
+      "errorTooShort": "Password must be at least 8 characters",
+      "errorGeneric": "Error, try again"
+    },
+    "subscriptionStatus": "Subscription status",
+    "active": "Active",
+    "canceled": "Canceled",
+    "paused": "Paused",
+    "manageSubscription": "Manage subscription",
+    "nextBilling": "Next billing: {date}",
+    "noSubscription": "You don't have an active subscription",
+    "subscribeCta": "Subscribe"
+  },
+  "admin": {
+    "title": "Admin panel",
+    "tabs": {
+      "packs": "Packs",
+      "users": "Users",
+      "settings": "Settings"
+    },
+    "packs": {
+      "title": "Content packs",
+      "newPack": "New pack",
+      "sequence": "Order",
+      "locale": "Language",
+      "packTitle": "Title",
+      "description": "Description",
+      "pdfFile": "PDF file",
+      "thumbnail": "Cover image",
+      "oneTimeAvailable": "Available as one-time purchase",
+      "oneTimePriceOverride": "Price (override, leave empty for default)",
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete",
+      "noPacks": "No packs yet. Create the first one."
+    },
+    "users": {
+      "title": "Users",
+      "email": "Email",
+      "status": "Status",
+      "weeksConsumed": "Weeks consumed",
+      "subscribed": "Subscribed since",
+      "actions": "Actions"
+    }
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Error",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "footer": {
+    "tagline": "Weekly system — less screen, more laughter.",
+    "rights": "© {year} ScreenFree. All rights reserved.",
+    "links": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "refund": "Refund Policy"
+    }
+  },
+  "legal": {
+    "lastUpdated": "Last updated: {date}",
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "Welcome to ScreenFree. By using this platform, you agree to the following Terms of Service. Please read them carefully before subscribing.",
+      "sections": [
+        {
+          "heading": "1. About the service",
+          "body": "ScreenFree is a digital subscription platform that delivers weekly PDF activity plans for parents of children ages 2–4. All content is digital and delivered electronically — no physical goods are shipped."
+        },
+        {
+          "heading": "2. Subscription and billing",
+          "body": "Your subscription renews automatically every week at the price shown at checkout. Payments are processed by Stripe (or Dodo Payments where applicable). You may cancel any time from your account dashboard — billing stops immediately, and any plans you've already unlocked remain permanently in your archive."
+        },
+        {
+          "heading": "3. Access to content",
+          "body": "Every new subscriber starts at Pack #1 and progressively unlocks one pack per week. If your subscription is canceled or paused, the counter holds — when you reactivate, you continue from the last paid week."
+        },
+        {
+          "heading": "4. Use of content",
+          "body": "PDFs are intended for personal, family use only. Commercial distribution, resale, or sharing content with third parties without our explicit written consent is not permitted."
+        },
+        {
+          "heading": "5. Your account",
+          "body": "You are responsible for safeguarding your login credentials. All activity under your account is considered yours. If you notice unauthorized access, change your password immediately or contact us."
+        },
+        {
+          "heading": "6. Suspension and termination",
+          "body": "ScreenFree reserves the right to suspend or permanently terminate accounts in cases of misuse (resale of content, baseless chargebacks, security violations)."
+        },
+        {
+          "heading": "7. Liability and child safety",
+          "body": "Activities in our packs are educational. The parent or guardian is at all times responsible for the child's safety during play. ScreenFree is not liable for any incidents that occur during the use of our activities. Always supervise your child, particularly during activities involving small objects, water, or food items."
+        },
+        {
+          "heading": "8. Changes to these Terms",
+          "body": "We may update these Terms periodically. We'll notify active users of material changes by email at least 14 days in advance."
+        },
+        {
+          "heading": "9. Governing law",
+          "body": "These Terms are governed by the laws of the United States and the state in which ScreenFree is registered. Any disputes will be resolved in the state or federal courts of that jurisdiction."
+        },
+        {
+          "heading": "10. Contact",
+          "body": "For any questions or concerns: support@getscreenfree.com"
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "Your privacy matters to us. Below we explain what data we collect and how we use it.",
+      "sections": [
+        {
+          "heading": "1. Data we collect",
+          "body": "At signup: email and password (your password is stored encrypted — we never see it). At checkout: we do NOT store card details — they go directly to Stripe/Dodo, both PCI-DSS certified. We only receive a customer ID and subscription status."
+        },
+        {
+          "heading": "2. Marketing data",
+          "body": "If you arrived via an ad, we store UTM parameters (source, campaign) in an httpOnly cookie for 30 days to measure ad effectiveness. The cookie does not contain personal information."
+        },
+        {
+          "heading": "3. How we use your data",
+          "body": "• To provide your subscription and deliver content.\n• To contact you about your account (e.g., failed payment, new pack).\n• To analyze aggregate platform metrics (without identifying individuals).\n• To meet legal obligations (e.g., retaining invoices for tax purposes)."
+        },
+        {
+          "heading": "4. Sharing with third parties",
+          "body": "We don't sell your data. We share only with processors required to operate the platform: Supabase (database hosting), Stripe and Dodo Payments (billing), Railway (app hosting), Brevo (transactional email). All operate under data protection agreements."
+        },
+        {
+          "heading": "5. Your rights",
+          "body": "You may: see all data we hold about you, request corrections, request deletion (except records we are legally required to retain — e.g., invoices). California residents have additional rights under the CCPA, including the right to know, delete, and opt out of any sale of personal information (we do not sell). Email support@getscreenfree.com to exercise any right."
+        },
+        {
+          "heading": "6. Security",
+          "body": "All communication is TLS-encrypted. Database access is restricted and logged. Passwords are hashed with bcrypt. We periodically conduct security reviews."
+        },
+        {
+          "heading": "7. Cookies",
+          "body": "We use only essential cookies for site operation (session, language, UTM). We do not use third-party advertising cookies without your consent."
+        },
+        {
+          "heading": "8. Children's data",
+          "body": "ScreenFree is intended for parents and guardians, not children. We do not knowingly collect data from children under 13. Account holders must be 18 or older. We comply with COPPA."
+        },
+        {
+          "heading": "9. Contact",
+          "body": "For privacy questions: support@getscreenfree.com"
+        }
+      ]
+    },
+    "refund": {
+      "title": "Refund Policy",
+      "intro": "ScreenFree delivers digital content that becomes available immediately upon payment. For this reason, refunds are not available — see details below.",
+      "sections": [
+        {
+          "heading": "Why no refunds?",
+          "body": "All content on the ScreenFree platform is digital: PDFs and archive access. The moment you pay, content is unlocked and downloadable. By clicking 'Pay' at checkout, you explicitly acknowledge that the digital content is delivered immediately and you waive any right to return it."
+        },
+        {
+          "heading": "What this means",
+          "body": "• Subscription: once a week is billed and the pack is unlocked, that charge is non-refundable. But you can cancel any time — future charges stop, and packs already received remain in your archive.\n• One-time purchase: once a pack is unlocked and downloadable, no refund is available."
+        },
+        {
+          "heading": "Exceptions when we issue refunds",
+          "body": "While the policy is strictly no-refund, we will refund in the following cases:\n• Technical failure that permanently prevented access to a pack (and our support team could not resolve it within 7 days).\n• Duplicate charge (the same pack billed twice in error).\n• Unauthorized transaction (send us proof of bank/Stripe dispute — refund issued without question).\n• Mistake on our end (wrong price, wrong pack delivered)."
+        },
+        {
+          "heading": "How to request a refund (if you fall under the exceptions)",
+          "body": "Email support@getscreenfree.com with: your account email, payment date, amount, and reason. We respond within 3 business days. Approved refunds are processed in 5–10 business days back to the original card."
+        },
+        {
+          "heading": "Cancellation ≠ refund",
+          "body": "Canceling stops FUTURE charges but does not refund what's already been paid. You can cancel any time from Settings — no explanation, no email, no follow-up calls."
+        }
+      ]
+    }
+  }
+}

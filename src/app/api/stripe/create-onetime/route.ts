@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
   const body = (await request.json().catch(() => ({}))) as { packId?: string; locale?: Locale };
   if (!body.packId) return NextResponse.json({ error: "missing-pack" }, { status: 400 });
-  const locale = body.locale ?? "bs";
+  const locale = body.locale ?? "en";
   const fallbackCurrency = currencyByLocale[locale];
 
   const service = createSupabaseServiceClient();

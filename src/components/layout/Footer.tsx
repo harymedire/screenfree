@@ -16,7 +16,7 @@ export function Footer() {
           <div className="flex items-center gap-2.5">
             <Logo className="h-8 w-8" />
             <div>
-              <div className="font-display text-lg text-plum-800 leading-none">BezEkrana</div>
+              <div className="font-display text-lg text-plum-800 leading-none">ScreenFree</div>
               <div className="text-sm text-plum-500 mt-1">{t("tagline")}</div>
             </div>
           </div>

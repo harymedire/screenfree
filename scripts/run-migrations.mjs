@@ -28,12 +28,13 @@ if (fs.existsSync(envPath)) {
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const password = process.env.SUPABASE_DB_PASSWORD;
-if (!url || !password) {
-  console.error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_DB_PASSWORD in .env.local");
+const dbUrl = process.env.SUPABASE_DB_URL;
+if (!dbUrl && (!url || !password)) {
+  console.error("Missing SUPABASE_DB_URL (or NEXT_PUBLIC_SUPABASE_URL + SUPABASE_DB_PASSWORD) in .env.local");
   process.exit(1);
 }
 
-const ref = new URL(url).hostname.split(".")[0];
+const ref = url ? new URL(url).hostname.split(".")[0] : null;
 
 // Try direct DB first; if that fails, sweep common AWS regions on the pooler.
 const REGIONS = [
@@ -56,6 +57,18 @@ async function tryConnect(host, port, user) {
 }
 
 async function findClient() {
+  // 0) If user provided a full connection string, use it directly.
+  if (dbUrl) {
+    const c = new pg.Client({
+      connectionString: dbUrl,
+      ssl: { rejectUnauthorized: false },
+      connectionTimeoutMillis: 8000,
+    });
+    await c.connect();
+    console.log(`✓ Connected via SUPABASE_DB_URL`);
+    return c;
+  }
+
   // 1) Direct DB (legacy/paid)
   try {
     await dns.lookup(`db.${ref}.supabase.co`);

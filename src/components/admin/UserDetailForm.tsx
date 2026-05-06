@@ -46,7 +46,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "request-failed");
-      setMsg({ kind: "ok", text: "Spremljeno" });
+      setMsg({ kind: "ok", text: "Saved" });
       router.refresh();
     } catch (err) {
       setMsg({ kind: "err", text: (err as Error).message });
@@ -61,10 +61,10 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
       <div className="space-y-5">
         {/* Profile info */}
         <div className="card space-y-4">
-          <h2 className="font-display text-xl text-plum-900">Profil</h2>
+          <h2 className="font-display text-xl text-plum-900">Profile</h2>
 
           <div>
-            <label className="label">Ime i prezime</label>
+            <label className="label">Full name</label>
             <div className="relative">
               <User className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-plum-400" />
               <input
@@ -80,7 +80,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "set_name"}
               onClick={() => call("set_name", { full_name: fullName.trim() })}
             >
-              <Save className="h-4 w-4" /> Spasi ime
+              <Save className="h-4 w-4" /> Save name
             </Button>
           </div>
 
@@ -102,20 +102,20 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "set_email"}
               onClick={() => call("set_email", { email: email.trim() })}
             >
-              <Save className="h-4 w-4" /> Promijeni email
+              <Save className="h-4 w-4" /> Change email
             </Button>
           </div>
         </div>
 
         {/* Subscription actions */}
         <div className="card space-y-4">
-          <h2 className="font-display text-xl text-plum-900">Pretplata</h2>
+          <h2 className="font-display text-xl text-plum-900">Subscription</h2>
           <div className="text-sm text-plum-700">
             Status: <strong className="capitalize">{profile.subscription_status}</strong>
-            {" · "}Sedmica iskorišteno: <strong>{profile.weeks_consumed}</strong>
+            {" · "}Weeks consumed: <strong>{profile.weeks_consumed}</strong>
             {profile.subscription_id?.startsWith("manual:") && (
               <span className="ml-2 inline-flex items-center gap-1 text-xs font-bold text-teal-700">
-                <BadgeCheck className="h-3.5 w-3.5" /> Označen kao pretplatnik (manualno)
+                <BadgeCheck className="h-3.5 w-3.5" /> Marked as subscriber (manual)
               </span>
             )}
           </div>
@@ -126,7 +126,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "grant_week"}
               onClick={() => call("grant_week")}
             >
-              <PlusCircle className="h-4 w-4" /> Dodaj sedmicu
+              <PlusCircle className="h-4 w-4" /> Add week
             </Button>
             <Button
               variant="ghost"
@@ -134,7 +134,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "revoke_week" || profile.weeks_consumed <= 0}
               onClick={() => call("revoke_week")}
             >
-              <MinusCircle className="h-4 w-4" /> Smanji sedmicu
+              <MinusCircle className="h-4 w-4" /> Remove week
             </Button>
             <Button
               variant="ghost"
@@ -142,7 +142,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "mark_subscribed"}
               onClick={() => call("mark_subscribed")}
             >
-              <Play className="h-4 w-4" /> Aktiviraj
+              <Play className="h-4 w-4" /> Activate
             </Button>
             <Button
               variant="ghost"
@@ -150,7 +150,7 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               disabled={busy === "set_status_paused"}
               onClick={() => call("set_status", { status: "paused" })}
             >
-              <Pause className="h-4 w-4" /> Pauziraj
+              <Pause className="h-4 w-4" /> Pause
             </Button>
             {profile.subscription_id?.startsWith("manual:") && (
               <Button
@@ -158,13 +158,13 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
                 size="sm"
                 disabled={busy === "unmark_subscribed"}
                 onClick={() => {
-                  if (confirm("Ukloniti manualnu pretplatu? Korisnik će ponovo vidjeti upgrade poziv u dashboardu.")) {
+                  if (confirm("Remove manual subscription? The user will see the upgrade prompt in their dashboard again.")) {
                     call("unmark_subscribed");
                   }
                 }}
                 className="!text-coral-700"
               >
-                <BadgeX className="h-4 w-4" /> Ukloni pretplatu
+                <BadgeX className="h-4 w-4" /> Remove subscription
               </Button>
             )}
           </div>
@@ -172,17 +172,17 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
 
         {/* Block / unblock */}
         <div className="card space-y-3">
-          <h2 className="font-display text-xl text-plum-900">Pristup nalogu</h2>
+          <h2 className="font-display text-xl text-plum-900">Account access</h2>
           {isBlocked ? (
             <>
-              <p className="text-sm text-coral-700 font-bold">⚠ Nalog je blokiran.</p>
+              <p className="text-sm text-coral-700 font-bold">⚠ Account is blocked.</p>
               <Button
                 variant="ghost"
                 size="sm"
                 disabled={busy === "unblock"}
                 onClick={() => call("unblock")}
               >
-                <ShieldCheck className="h-4 w-4" /> Odblokiraj
+                <ShieldCheck className="h-4 w-4" /> Unblock
               </Button>
             </>
           ) : (
@@ -192,12 +192,12 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               className="!text-coral-700"
               disabled={busy === "block"}
               onClick={() => {
-                if (confirm("Sigurno blokirati ovaj nalog? Korisnik se neće moći prijaviti niti registrovati ovim email-om.")) {
+                if (confirm("Block this account? The user will not be able to sign in or register with this email.")) {
                   call("block");
                 }
               }}
             >
-              <ShieldOff className="h-4 w-4" /> Blokiraj nalog
+              <ShieldOff className="h-4 w-4" /> Block account
             </Button>
           )}
         </div>
@@ -221,31 +221,31 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
             <p className="font-mono text-xs text-plum-800 break-all">{profile.id}</p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Uloga</p>
+            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Role</p>
             <p className="font-bold text-plum-900 capitalize">{profile.role}</p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Pretplaćen od</p>
+            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Subscribed since</p>
             <p className="text-plum-800">
               {profile.subscription_started_at
-                ? new Date(profile.subscription_started_at).toLocaleString("bs-BA")
+                ? new Date(profile.subscription_started_at).toLocaleString("en-US")
                 : "—"}
             </p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Posljednja prijava</p>
+            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Last sign-in</p>
             <p className="text-plum-800">
-              {lastSignInAt ? new Date(lastSignInAt).toLocaleString("bs-BA") : "—"}
+              {lastSignInAt ? new Date(lastSignInAt).toLocaleString("en-US") : "—"}
             </p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Način plaćanja</p>
+            <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Payment method</p>
             <p className="text-plum-800 capitalize">{profile.subscription_provider ?? "—"}</p>
           </div>
         </div>
 
         <div className="card space-y-3 text-sm">
-          <h3 className="font-display text-base text-plum-900">Izvor (UTM)</h3>
+          <h3 className="font-display text-base text-plum-900">Source (UTM)</h3>
           {tracking ? (
             <>
               <TrackRow label="Source" value={tracking.utm_source} />
@@ -256,15 +256,15 @@ export function UserDetailForm({ profile, isBlocked, lastSignInAt, tracking }: P
               <TrackRow label="Referrer" value={tracking.referrer} mono />
               <TrackRow label="Landing" value={tracking.landing_page_url} mono />
               <div>
-                <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Zabilježeno</p>
+                <p className="text-xs uppercase tracking-wide text-plum-500 font-bold">Recorded</p>
                 <p className="text-plum-800 text-xs">
-                  {new Date(tracking.created_at).toLocaleString("bs-BA")}
+                  {new Date(tracking.created_at).toLocaleString("en-US")}
                 </p>
               </div>
             </>
           ) : (
             <p className="text-xs text-plum-500 italic">
-              Nema attribution podataka — korisnik je vjerovatno došao direktno (bez UTM-a).
+              No attribution data — user likely arrived directly (no UTM).
             </p>
           )}
         </div>

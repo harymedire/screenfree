@@ -1,5 +1,5 @@
 -- ============================================================================
--- BezEkrana — Storage buckets + storage RLS
+-- ScreenFree — Storage buckets + storage RLS
 -- ============================================================================
 -- Bucket: 'content-packs' (private). PDFs are NEVER served directly to clients;
 -- the API route /api/content/download/[packId] verifies access via

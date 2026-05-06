@@ -1,7 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 import { locales, type Locale } from "@/lib/i18n/config";
 
 export function generateStaticParams() {
@@ -24,33 +23,19 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        {/* Google Analytics 4 (gtag.js). External tag loads async; the inline
-            init runs after the external is parsed. Both use afterInteractive
-            so neither blocks the first paint. */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-1NJPZFXYPS"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-1NJPZFXYPS');
-          `}
-        </Script>
+        {/* Analytics scripts removed — the previous IDs belonged to the BCS
+            sister site. Add ScreenFree's own GA4 + Microsoft Clarity tags once
+            their accounts are created. Example shape:
 
-        {/* Microsoft Clarity — session replay + heatmaps. Loaded after page is
-            interactive so it doesn't block rendering. */}
-        <Script id="ms-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "wkf4exyyd2");
-          `}
-        </Script>
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXX"
+                    strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">{`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXX');
+            `}</Script>
+        */}
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>

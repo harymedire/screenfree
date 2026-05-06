@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     }
     if (willAddOne && currentlyActive >= MAX_PER_LOCALE) {
       return NextResponse.json(
-        { error: `Već imaš ${MAX_PER_LOCALE} aktivnih za ${locale}. Pauziraj jedan prije aktiviranja novog.` },
+        { error: `You already have ${MAX_PER_LOCALE} active for ${locale}. Pause one before activating a new one.` },
         { status: 400 },
       );
     }

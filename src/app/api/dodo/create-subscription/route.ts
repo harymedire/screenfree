@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-// Dodo Payments — privremeno isključen. Stripe je trenutno primarni
-// payment provider. Original implementacija sačuvana u komentaru ispod.
+// Dodo Payments — temporarily disabled. Stripe is the primary payment
+// provider. Original implementation preserved in the comment below.
 export async function POST() {
   return NextResponse.json(
     { error: "dodo-disabled", message: "Dodo Payments is currently disabled. Use /api/stripe/create-subscription instead." },

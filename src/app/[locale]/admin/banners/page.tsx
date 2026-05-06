@@ -24,7 +24,7 @@ export default async function AdminBannersPage({
   const banners = (rows ?? []) as Banner[];
 
   // Group by locale for the per-locale capacity counter.
-  const byLocale: Record<string, Banner[]> = { bs: [], sr: [], hr: [] };
+  const byLocale: Record<string, Banner[]> = { en: [] };
   for (const b of banners) {
     if (byLocale[b.locale]) byLocale[b.locale].push(b);
   }
@@ -33,21 +33,21 @@ export default async function AdminBannersPage({
     <section className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-display text-2xl text-plum-900">Reklame</h2>
+          <h2 className="font-display text-2xl text-plum-900">Banners</h2>
           <p className="text-sm text-plum-500">
-            336 × 288 px · Maksimalno {MAX_PER_LOCALE} aktivnih po jeziku · rotira se nasumično
+            336 × 288 px · Up to {MAX_PER_LOCALE} active per language · rotated randomly
           </p>
         </div>
         <Link href="/admin/banners/new">
           <Button variant="primary" size="sm">
-            <Plus className="h-4 w-4" /> Novi banner
+            <Plus className="h-4 w-4" /> New banner
           </Button>
         </Link>
       </div>
 
       {/* Per-locale capacity hint */}
-      <div className="grid grid-cols-3 gap-3">
-        {(["bs", "sr", "hr"] as const).map((loc) => {
+      <div className="grid grid-cols-1 gap-3">
+        {(["en"] as const).map((loc) => {
           const active = byLocale[loc].filter((b) => b.is_active).length;
           const total = byLocale[loc].length;
           return (
@@ -56,7 +56,7 @@ export default async function AdminBannersPage({
               <div className="font-display text-2xl text-plum-900">
                 {active}<span className="text-plum-300">/{MAX_PER_LOCALE}</span>
               </div>
-              <div className="text-xs text-plum-500">{total} ukupno</div>
+              <div className="text-xs text-plum-500">{total} total</div>
             </div>
           );
         })}
@@ -64,7 +64,7 @@ export default async function AdminBannersPage({
 
       {banners.length === 0 ? (
         <div className="card text-center py-12 text-plum-500">
-          Još nema banner reklama. Kreiraj prvu.
+          No banners yet. Create the first one.
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 gap-4">
@@ -81,13 +81,13 @@ export default async function AdminBannersPage({
                   <div className="flex items-center gap-2 mb-1">
                     <span className="badge bg-plum-100 text-plum-700 uppercase">{b.locale}</span>
                     {b.is_active ? (
-                      <span className="badge bg-teal-100 text-teal-700">Aktivan</span>
+                      <span className="badge bg-teal-100 text-teal-700">Active</span>
                     ) : (
-                      <span className="badge bg-coral-100 text-coral-700">Pauziran</span>
+                      <span className="badge bg-coral-100 text-coral-700">Paused</span>
                     )}
                   </div>
                   <h3 className="font-display text-lg text-plum-900 line-clamp-1">
-                    {b.title || "(bez naslova)"}
+                    {b.title || "(no title)"}
                   </h3>
                   <a
                     href={b.link_url}
@@ -103,7 +103,7 @@ export default async function AdminBannersPage({
                       href={`/admin/banners/${b.id}`}
                       className="inline-flex items-center gap-1 text-coral-600 font-bold hover:underline text-sm"
                     >
-                      <Pencil className="h-3.5 w-3.5" /> Uredi
+                      <Pencil className="h-3.5 w-3.5" /> Edit
                     </Link>
                   </div>
                 </div>

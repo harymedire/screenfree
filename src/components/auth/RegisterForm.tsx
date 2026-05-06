@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter, Link } from "@/lib/i18n/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
-import { User, Mail, Lock } from "lucide-react";
+import { User, Mail, Lock, MailCheck } from "lucide-react";
 
 export function RegisterForm() {
   const t = useTranslations("auth.register");
@@ -18,6 +18,7 @@ export function RegisterForm() {
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [confirmEmailFor, setConfirmEmailFor] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +33,7 @@ export function RegisterForm() {
     }
     setLoading(true);
     const supabase = createSupabaseBrowserClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -53,7 +54,7 @@ export function RegisterForm() {
     }
     // Hit the tracking endpoint to persist UTM data captured by middleware.
     fetch("/api/tracking/persist", { method: "POST" }).catch(() => {});
-    // Add to Brevo "bezekrana" free list (#29). Fire-and-forget: a Brevo
+    // Add to Brevo "ScreenFree free" list (#29). Fire-and-forget: a Brevo
     // failure must not block signup completion.
     fetch("/api/brevo/subscribe", {
       method: "POST",
@@ -64,8 +65,34 @@ export function RegisterForm() {
         locale,
       }),
     }).catch(() => {});
+    // If Supabase has email confirmation enabled, signUp succeeds but session
+    // is null until the user clicks the email link. Show an inline "check
+    // your inbox" view instead of pushing to /onboarding (which would just
+    // bounce them to /login because they're not authenticated yet).
+    if (!data.session) {
+      setConfirmEmailFor(email.trim().toLowerCase());
+      setLoading(false);
+      return;
+    }
     router.replace("/onboarding");
     router.refresh();
+  }
+
+  if (confirmEmailFor) {
+    return (
+      <div className="text-center py-4">
+        <div className="mx-auto h-16 w-16 rounded-full bg-teal-100 grid place-items-center mb-5">
+          <MailCheck className="h-8 w-8 text-teal-600" />
+        </div>
+        <h2 className="font-display text-2xl text-plum-900 mb-3">
+          {t("confirmEmailTitle")}
+        </h2>
+        <p className="text-plum-700 mb-3 leading-relaxed">
+          {t("confirmEmailBody", { email: confirmEmailFor })}
+        </p>
+        <p className="text-sm text-plum-500">{t("confirmEmailHint")}</p>
+      </div>
+    );
   }
 
   return (

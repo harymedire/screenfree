@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export default function NotFound() {
   return (
-    <html lang="bs">
+    <html lang="en">
       <body
         style={{
           margin: 0,
@@ -27,12 +27,12 @@ export default function NotFound() {
           }}
         >
           <h1 style={{ fontSize: 64, margin: 0 }}>404</h1>
-          <p>Stranica nije pronađena.</p>
+          <p>Page not found.</p>
           <a
             href="/"
             style={{ color: "#FF6B6B", fontWeight: 700, textDecoration: "none" }}
           >
-            Početna →
+            Home →
           </a>
         </main>
       </body>

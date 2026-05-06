@@ -7,10 +7,12 @@
 const BREVO_BASE = "https://api.brevo.com/v3";
 
 // List IDs from the Brevo dashboard (Brevo → Contacts → Lists). Update here
-// if the lists are renumbered — callers only reference these constants.
+// once the ScreenFree-specific lists are created — placeholders for now.
+// TODO: replace with real list IDs after creating "ScreenFree free" and
+// "ScreenFree paid" lists in the Brevo account that owns this app.
 export const BREVO_LISTS = {
-  freeSignup: 29, // "bezekrana" — registered, not paid
-  paid: 30,       // "bezekrana paid" — has an active recurring subscription
+  freeSignup: 29, // "ScreenFree free" — registered, not paid
+  paid: 30,       // "ScreenFree paid" — has an active recurring subscription
 } as const;
 
 function apiKey(): string | null {

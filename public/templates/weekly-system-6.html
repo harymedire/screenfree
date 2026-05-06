@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="bs">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BEZ EKRANA — Sedmični sistem #5</title>
+<title>SCREENFREE — Weekly System #6</title>
 
 <!--
   HOW TO USE THIS FILE
   ====================
   1. Open in a browser (Chrome / Edge / Firefox).
-  2. Click the floating "Download" button in the top-right corner.
+  2. Click the floating "Save as PDF" button in the top-right corner.
   3. In the print dialog: Destination → "Save as PDF" → A4, portrait,
      margins: None (or Default), Background graphics: ON. Save.
-  4. Upload the resulting PDF in /admin → Paketi → Novi paket.
+  4. Upload the resulting PDF in /admin → Packs → New pack.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,13 +130,15 @@
   body.ink-save .cover .logo-pill { background:transparent !important; border:1px solid var(--plum-200) !important; }
   body.ink-save .callout,
   body.ink-save .callout-plum,
-  body.ink-save .callout-teal {
+  body.ink-save .callout-teal,
+  body.ink-save .callout-warm {
     background:#fff !important; color:var(--ink) !important;
     border:1px solid var(--plum-100);
   }
   body.ink-save .callout strong,
   body.ink-save .callout-plum strong,
-  body.ink-save .callout-teal strong { color:var(--coral-700) !important; }
+  body.ink-save .callout-teal strong,
+  body.ink-save .callout-warm strong { color:var(--coral-700) !important; }
   body.ink-save .day-stamp { background:#fff !important; color:var(--plum-900) !important; border:2px solid var(--plum-300); }
   body.ink-save .week-list .day-num { background:#fff !important; color:var(--plum-900) !important; border:2px solid var(--plum-300); }
   body.ink-save .chip { background:transparent !important; border:1px solid currentColor; }
@@ -176,12 +178,12 @@
     opacity:.55; pointer-events:none; z-index:0; }
 
   /* ---------- COVER ----------
-     Week 5 mood: nature indoors. Leaf green → sun → forest → deep moss.
-     Distinct from week 2 (teal/ocean) by leaning into earthy yellow-green
-     rather than blue-teal. */
+     Week 6 mood: gentle conversation. Soft sky → soft coral → lavender → deep indigo.
+     Distinct from all prior weeks: blue-led but warm in the middle (coral),
+     ending in deep night-indigo for that intimate "bedtime story" feel. */
   .page.cover {
     color:#fff; position:relative;
-    background:linear-gradient(155deg, #8BC34A 0%, #FFE556 30%, #5D8A3F 65%, #1F3520 100%);
+    background:linear-gradient(155deg, #B8DCEB 0%, #FFE2E0 28%, #B591D2 62%, #2D1B5A 100%);
     display:flex; flex-direction:column;
     padding:24mm 20mm 20mm;
     overflow:hidden;
@@ -189,10 +191,10 @@
   .glow {
     position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none;
   }
-  .glow.g-1 { top:-30mm; left:-20mm; width:120mm; height:120mm; background:rgba(139,195,74,.55); }
-  .glow.g-2 { top:0; right:-20mm; width:100mm; height:100mm; background:rgba(255,217,61,.55); }
-  .glow.g-3 { bottom:-30mm; left:20mm; width:120mm; height:120mm; background:rgba(93,138,63,.55); }
-  .glow.g-4 { bottom:-10mm; right:-20mm; width:120mm; height:120mm; background:rgba(31,53,32,.6); }
+  .glow.g-1 { top:-30mm; left:-20mm; width:120mm; height:120mm; background:rgba(184,220,235,.65); }
+  .glow.g-2 { top:0; right:-20mm; width:100mm; height:100mm; background:rgba(255,163,158,.55); }
+  .glow.g-3 { bottom:-30mm; left:20mm; width:120mm; height:120mm; background:rgba(181,145,210,.55); }
+  .glow.g-4 { bottom:-10mm; right:-20mm; width:120mm; height:120mm; background:rgba(127,93,210,.55); }
 
   .confetti { position:absolute; pointer-events:none; }
   .confetti.c-1 { top:18mm; right:30mm; width:14mm; height:14mm; transform:rotate(20deg); }
@@ -226,7 +228,7 @@
     font-family:"Baloo 2",sans-serif; font-weight:800;
     font-size:96pt; line-height:.9; letter-spacing:-0.025em; margin:0;
     color:#fff;
-    text-shadow:0 2px 12px rgba(31,53,32,.45);
+    text-shadow:0 2px 12px rgba(45,27,90,.45);
   }
   .cover .week-number {
     margin-top:8mm;
@@ -347,12 +349,12 @@
     background:linear-gradient(135deg,var(--teal-100),var(--teal-300));
     color:var(--plum-900);
   }
-  /* Forest variant for week 5 — used on the parent walk-prep note */
-  .callout-forest {
-    background:linear-gradient(135deg, #DCF1B8, #8BC34A);
-    color:#1F3520;
+  /* Warm conversational variant — used on the parent "how to be" note */
+  .callout-warm {
+    background:linear-gradient(135deg, #FFE2E0, #B8DCEB);
+    color:var(--plum-900);
   }
-  .callout-forest strong { color:#1F3520; }
+  .callout-warm strong { color:var(--coral-700); }
 
   /* ---------- "How to use" steps ---------- */
   .steps { display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-top:6mm; }
@@ -404,13 +406,13 @@
     background:var(--plum-700); color:#fff; font-family:"Baloo 2",sans-serif;
     font-weight:800; font-size:13pt;
   }
-  .week-list .day:nth-child(7n+1) .day-num { background:#2D5C1F; }
-  .week-list .day:nth-child(7n+2) .day-num { background:#268B83; }
-  .week-list .day:nth-child(7n+3) .day-num { background:#5D5048; }
-  .week-list .day:nth-child(7n+4) .day-num { background:var(--sun-700); }
-  .week-list .day:nth-child(7n+5) .day-num { background:#8B6F47; }
+  .week-list .day:nth-child(7n+1) .day-num { background:var(--coral-500); }
+  .week-list .day:nth-child(7n+2) .day-num { background:var(--plum-700); }
+  .week-list .day:nth-child(7n+3) .day-num { background:var(--sun-700); }
+  .week-list .day:nth-child(7n+4) .day-num { background:#2C5F7A; }
+  .week-list .day:nth-child(7n+5) .day-num { background:#2D5C1F; }
   .week-list .day:nth-child(7n+6) .day-num { background:var(--coral-700); }
-  .week-list .day:nth-child(7n+7) .day-num { background:#2C5F7A; }
+  .week-list .day:nth-child(7n+7) .day-num { background:var(--plum-800); }
   .week-list .day-title { font-family:"Baloo 2",sans-serif; font-weight:700;
     font-size:14pt; color:var(--plum-900); }
 
@@ -429,20 +431,20 @@
   .story {
     position:relative;
     background:#E6D9F0;
-    background:linear-gradient(135deg, #DCF1B8 0%, #FFE556 100%);
+    background:linear-gradient(135deg, #E6D9F0 0%, #FFE2E0 100%);
     border-radius:18px; padding:7mm 9mm 7mm 14mm;
     margin:0 0 6mm;
-    border-left:4px solid #5D8A3F;
+    border-left:4px solid #B591D2;
   }
   .story::before {
     content:"\201C";
     position:absolute; top:-2mm; left:5mm;
     font-family:"Baloo 2",sans-serif; font-weight:800;
-    font-size:60pt; line-height:1; color:#8BC34A;
+    font-size:60pt; line-height:1; color:#B591D2;
   }
   .story p {
     font-family:"Baloo 2",sans-serif; font-style:italic;
-    font-size:14pt; line-height:1.4; color:#1F3520;
+    font-size:14pt; line-height:1.4; color:#291D3B;
     margin:0; font-weight:600;
   }
 
@@ -490,57 +492,56 @@
   .level.wow .needs strong { color:#fff !important; }
   .level.wow p { color:#fff !important; font-size:10.5pt; opacity:.95; }
 
-  /* ---------- Per-day theme — bound to the natural element of the day ---------- */
-  /* Day 1 — Forest (leaves, branches, twigs) */
-  .day-1 .day-stamp { background:#2D5C1F; color:#fff; }
+  /* ---------- Per-day theme — bound to the language focus of the day ---------- */
+  /* Day 1 — Coral (warm intimate naming) */
+  .day-1 .day-stamp { background:#C73838; color:#fff; }
   .day-1 .level.wow {
+    background:linear-gradient(135deg, #FF837C 0%, #C73838 100%) !important;
+    box-shadow:0 6px 16px rgba(199,56,56,.3);
+  }
+
+  /* Day 2 — Plum (book / dialogic reading) */
+  .day-2 .day-stamp { background:#553C7A; color:#fff; }
+  .day-2 .level.wow {
+    background:linear-gradient(135deg, #B591D2 0%, #553C7A 100%) !important;
+    box-shadow:0 6px 16px rgba(85,60,122,.32);
+  }
+
+  /* Day 3 — Sun gold (rhythm & joy) */
+  .day-3 .day-stamp { background:#8C6F08; color:#fff; }
+  .day-3 .level.wow {
+    background:linear-gradient(135deg, #E5BD1F 0%, #8C6F08 100%) !important;
+    box-shadow:0 6px 16px rgba(140,111,8,.3);
+  }
+  .day-3 .level.wow .level-tag { background:#CFF3EE !important; color:#268B83 !important; }
+  .day-3 .level.wow h4 { color:#FFF6BF !important; }
+
+  /* Day 4 — Sky (telephone / communication) */
+  .day-4 .day-stamp { background:#2C5F7A; color:#fff; }
+  .day-4 .level.wow {
+    background:linear-gradient(135deg, #5BB3D6 0%, #2C5F7A 100%) !important;
+    box-shadow:0 6px 16px rgba(44,95,122,.32);
+  }
+
+  /* Day 5 — Forest (animals, laughter at mistakes) */
+  .day-5 .day-stamp { background:#2D5C1F; color:#fff; }
+  .day-5 .level.wow {
     background:linear-gradient(135deg, #6BBF59 0%, #2D5C1F 100%) !important;
     box-shadow:0 6px 16px rgba(45,92,31,.32);
   }
 
-  /* Day 2 — Water (aqua-teal) */
-  .day-2 .day-stamp { background:#268B83; color:#fff; }
-  .day-2 .level.wow {
-    background:linear-gradient(135deg, #4ECDC4 0%, #1B6660 100%) !important;
-    box-shadow:0 6px 16px rgba(38,139,131,.32);
-  }
-
-  /* Day 3 — Stone (warm gray-brown) */
-  .day-3 .day-stamp { background:#5D5048; color:#fff; }
-  .day-3 .level.wow {
-    background:linear-gradient(135deg, #B8A99A 0%, #5D5048 100%) !important;
-    box-shadow:0 6px 16px rgba(93,80,72,.32);
-  }
-  .day-3 .level.wow .level-tag { background:#FFF6BF !important; color:#5D5048 !important; }
-
-  /* Day 4 — Seed / sun (germination) */
-  .day-4 .day-stamp { background:#8C6F08; color:#fff; }
-  .day-4 .level.wow {
-    background:linear-gradient(135deg, #E5BD1F 0%, #8C6F08 100%) !important;
-    box-shadow:0 6px 16px rgba(140,111,8,.3);
-  }
-  .day-4 .level.wow .level-tag { background:#DCF1B8 !important; color:#2D5C1F !important; }
-  .day-4 .level.wow h4 { color:#FFF6BF !important; }
-
-  /* Day 5 — Earth (warm brown) */
-  .day-5 .day-stamp { background:#8B6F47; color:#fff; }
-  .day-5 .level.wow {
-    background:linear-gradient(135deg, #B88A5C 0%, #5C4530 100%) !important;
-    box-shadow:0 6px 16px rgba(92,69,48,.32);
-  }
-
-  /* Day 6 — Autumn leaves (crimson) */
+  /* Day 6 — Crimson (sensory adjectives) */
   .day-6 .day-stamp { background:#7A1D1D; color:#fff; }
   .day-6 .level.wow {
     background:linear-gradient(135deg, #C73838 0%, #7A1D1D 100%) !important;
     box-shadow:0 6px 16px rgba(122,29,29,.32);
   }
 
-  /* Day 7 — Sky (clear day walk) */
-  .day-7 .day-stamp { background:#2C5F7A; color:#fff; }
+  /* Day 7 — Royal Plum (narrative, deep close) */
+  .day-7 .day-stamp { background:#3F2C5A; color:#fff; }
   .day-7 .level.wow {
-    background:linear-gradient(135deg, #5BB3D6 0%, #2C5F7A 100%) !important;
-    box-shadow:0 6px 16px rgba(44,95,122,.32);
+    background:linear-gradient(135deg, #6B4E9B 0%, #291D3B 100%) !important;
+    box-shadow:0 6px 16px rgba(41,29,59,.35);
   }
 
   .levels-row {
@@ -589,9 +590,9 @@
   }
   .closing .glow { z-index:0; }
   .closing .glow.cg-1 { top:-50mm; left:50%; transform:translateX(-50%);
-    width:200mm; height:120mm; background:#DCF1B8; filter:blur(50px); }
+    width:200mm; height:120mm; background:#FFE2E0; filter:blur(50px); }
   .closing .glow.cg-2 { bottom:-50mm; left:50%; transform:translateX(-50%);
-    width:200mm; height:120mm; background:var(--sun-100); filter:blur(50px); }
+    width:200mm; height:120mm; background:#B8DCEB; filter:blur(50px); }
   .closing .badge {
     display:inline-flex; align-items:center; gap:8px;
     background:var(--sun-300); color:var(--plum-900);
@@ -602,19 +603,19 @@
   .closing p { font-size:11pt; max-width:140mm; color:var(--muted); }
   .closing .stamp {
     margin-top:6mm; padding:5mm 8mm; border-radius:18px;
-    background:linear-gradient(135deg,#5D8A3F,#1F3520);
+    background:linear-gradient(135deg,#5BB3D6,#553C7A);
     color:#fff; font-family:"Baloo 2",sans-serif; font-weight:700; font-size:13pt;
-    box-shadow:0 10px 24px rgba(45,92,31,.3);
+    box-shadow:0 10px 24px rgba(85,60,122,.3);
   }
 
   /* ---------- Activity title color rotation per day ---------- */
-  .day-1 .activity h3 { color:#2D5C1F; }
-  .day-2 .activity h3 { color:var(--teal-700); }
-  .day-3 .activity h3 { color:#5D5048; }
-  .day-4 .activity h3 { color:#A87000; }
-  .day-5 .activity h3 { color:#8B6F47; }
+  .day-1 .activity h3 { color:var(--coral-700); }
+  .day-2 .activity h3 { color:var(--plum-700); }
+  .day-3 .activity h3 { color:#A87000; }
+  .day-4 .activity h3 { color:#2C5F7A; }
+  .day-5 .activity h3 { color:#2D5C1F; }
   .day-6 .activity h3 { color:var(--coral-700); }
-  .day-7 .activity h3 { color:#2C5F7A; }
+  .day-7 .activity h3 { color:var(--plum-700); }
 </style>
 </head>
 <body>
@@ -626,7 +627,7 @@
     <span class="box" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg>
     </span>
-    Bez pozadinskih boja
+    No background colors
   </label>
   <button class="print-btn" id="download-btn" type="button" onclick="downloadPDF()">
     ⬇ Download
@@ -642,14 +643,12 @@
         if (page.querySelector('.page-num')) return;
         const num = document.createElement('span');
         num.className = 'page-num';
-        num.textContent = `str. ${i + 1} / ${total}`;
+        num.textContent = `p. ${i + 1} / ${total}`;
         page.appendChild(num);
 
         const wm = document.createElement('span');
         wm.className = 'watermark';
-        wm.textContent = page.classList.contains('closing')
-          ? 'PROTECTED CONTENT'
-          : 'ZAŠTIĆENI SADRŽAJ';
+        wm.textContent = 'PROTECTED CONTENT';
         page.appendChild(wm);
       });
     };
@@ -683,46 +682,46 @@
     <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FFD93D" opacity=".85"/>
   </svg>
   <svg class="confetti c-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" fill="#8BC34A" opacity=".8"/>
+    <circle cx="12" cy="12" r="10" fill="#5BB3D6" opacity=".75"/>
   </svg>
   <svg class="confetti c-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FFFFFF" opacity=".55"/>
   </svg>
   <svg class="confetti c-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" fill="#FFD93D" opacity=".9"/>
+    <circle cx="12" cy="12" r="10" fill="#FFA39E" opacity=".85"/>
   </svg>
   <svg class="confetti c-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#5D8A3F" opacity=".7"/>
+    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#B591D2" opacity=".75"/>
   </svg>
 
   <div class="cover-top">
-    <span class="logo-pill" aria-label="BezEkrana">
+    <span class="logo-pill" aria-label="ScreenFree">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FF6B6B"/>
         <circle cx="18" cy="5" r="2" fill="#FFD93D"/>
         <circle cx="6" cy="18" r="1.5" fill="#4ECDC4"/>
       </svg>
-      BezEkrana
+      ScreenFree
     </span>
-    <div class="meta"><span class="dot"></span> 2–4 godine</div>
+    <div class="meta"><span class="dot"></span> ages 2–4</div>
   </div>
 
   <div class="cover-hero">
-    <h1 class="wordmark">BEZ<br/>EKRANA</h1>
-    <div class="week-number">★ Sedmični sistem #5</div>
-    <h2 class="theme-name">Priroda<br/>unutra</h2>
-    <p class="subtitle">7 dana jednostavnih aktivnosti za djecu od 2 do 4 godine.</p>
+    <h1 class="wordmark">SCREEN<br/>FREE</h1>
+    <div class="week-number">★ Weekly System #6</div>
+    <h2 class="theme-name">Words grow<br/>through play</h2>
+    <p class="subtitle">7 days of simple activities for children ages 2 to 4.</p>
   </div>
 
   <div class="cover-bottom">
     <div class="pitch">
-      <strong style="color:var(--sun-300);">Sedam dana s prirodom u stanu</strong>
-      — listovi, voda, kamenčići, sjeme, trava i mali svjetovi koje sakupljate i pravite zajedno.
-      Igre koje grade pažnju, govor i strpljenje, s materijalima koje sakupiš u jednoj kratkoj šetnji.
+      <strong style="color:var(--sun-300);">Seven days of conversation</strong>
+      — naming the world, dialogic reading, rhythm, a string telephone, and telling the day.
+      Games that build vocabulary, narrative, and connection through language — no screens, no complicated prep.
     </div>
     <div class="url-tag">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      bezekrana.com
+      getscreenfree.com
     </div>
     <div class="cover-copy">© 2026 Prime Vector Solutions LLC</div>
   </div>
@@ -731,34 +730,34 @@
 <!-- ================================================================ INTRO -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Uvod</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Intro</span>
   </div>
 
-  <p class="h-eyebrow">Dobro došli</p>
-  <h1 class="h-display">Sedmični sistem #5</h1>
+  <p class="h-eyebrow">Welcome</p>
+  <h1 class="h-display">Weekly System #6</h1>
 
-  <p style="font-size:12pt; max-width:155mm;">Ova sedmica donosi <strong>prirodu unutra</strong>. Listovi, kamenčići, voda, sjeme, grančice i zemlja — materijali koji su djeci od 2 do 4 godine prirodno bliži od plastike, ali koje stan u gradu često uskraćuje. Sedmica gradi:</p>
+  <p style="font-size:12pt; max-width:155mm;">This week is devoted to <strong>speech and conversation</strong>. Seven days, seven different ways to build vocabulary, rhythm, and narrative — through games that look like cuddling, laughter, or ordinary daily life:</p>
 
-  <ul style="font-size:12pt; margin:5mm 0 7mm; columns:2; column-gap:8mm;">
-    <li>senzorna istraživanja kroz prirodne materijale</li>
-    <li>govor i priču kroz sakupljeno blago</li>
-    <li>posmatranje i predviđanje</li>
-    <li>strpljenje (sjeme koje raste danima)</li>
-    <li>bosa stopala i kontakt sa zemljom</li>
-    <li>kreativnost bez „krivih poteza"</li>
+  <ul style="font-size:12pt; margin:5mm 0 6mm; columns:2; column-gap:8mm;">
+    <li>naming the world and the &ldquo;+1&rdquo; technique</li>
+    <li>dialogic reading (CROWD prompts)</li>
+    <li>rhythm, song, and pause</li>
+    <li>conversation through a real &ldquo;telephone&rdquo;</li>
+    <li>animal sounds and laughing at mistakes</li>
+    <li>adjectives through touch</li>
+    <li>telling the day in three little pictures</li>
   </ul>
 
-  <div class="callout-forest" style="border-radius:18px; padding:6mm 8mm; margin-bottom:6mm;">
-    <p style="font-size:11pt; line-height:1.5; margin:0;">
-      <strong>Praktična napomena za roditelja:</strong> ova sedmica zahtijeva <strong>jednu kratku šetnju (10–15 min)</strong> prije ili tokom sedmice za sakupljanje materijala — listovi, kamenčići, grančice, žirovi. To je jedina priprema različita od prethodnih sedmica. I sama ta šetnja postaje aktivnost (Dan 7).
+  <div class="callout-warm" style="border-radius:18px; padding:6mm 8mm; margin-bottom:5mm;">
+    <p style="font-size:11pt; line-height:1.55; margin:0;">
+      <strong>A note for the parent:</strong> this week is different from the others. Less &ldquo;<strong>what to do</strong>,&rdquo; more &ldquo;<strong>how to be</strong>.&rdquo; Success isn't measured by whether your child gives the &ldquo;right answer&rdquo; — it's measured by how much conversation happened. One word from your child after your question is a win. Five words is a luxury. <strong>Silence isn't failure — silence listens too.</strong>
     </p>
   </div>
 
   <div class="callout callout-plum">
-    <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Prva sedmica sa <strong>dugoročnim elementom</strong>:<br/>
-      sjeme klija danima poslije, slika ostaje na zidu, vrećica blaga se vraća. Igra ne mora biti potrošna — može graditi nešto što ostaje.
+    <p style="font-size:12pt; font-weight:600; line-height:1.45; margin:0;">
+      Each day leans on concrete research from developmental psychology — from the <strong>Hart &amp; Risley</strong> study on early vocabulary, through <strong>Whitehurst's dialogic reading</strong>, to <strong>Reese &amp; Fivush</strong> on autobiographical memory. You don't need to know these names — the week works without them.
     </p>
   </div>
 </section>
@@ -766,40 +765,40 @@
 <!-- ============================================================ HOW TO USE -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Kako koristiti</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>How to use</span>
   </div>
 
-  <p class="h-eyebrow">Vodič</p>
-  <h1 class="h-display">Kako koristiti<br/>ovaj sistem</h1>
+  <p class="h-eyebrow">Guide</p>
+  <h1 class="h-display">How to use<br/>this system</h1>
 
   <div class="steps">
     <div class="step">
       <div class="num">01</div>
-      <h3>Sakupite materijal</h3>
-      <p>Jedna kratka šetnja (10–15 min) — <strong>listovi, kamenčići, grančice, žirovi</strong>. Sve ostalo je već u kući.</p>
+      <h3>Less hurry</h3>
+      <p>This week isn't a <em>do-it-and-move-on</em>. An activity can last 5 or 25 minutes — as long as your child stays in the conversation.</p>
     </div>
     <div class="step">
       <div class="num">02</div>
-      <h3>Otvorite dan</h3>
-      <p>Svaki dan donosi <strong>3 jednostavne aktivnosti</strong> oko jednog prirodnog elementa.</p>
+      <h3>The pause is magic</h3>
+      <p>After a question — <strong>wait</strong>. Kids ages 2–4 need 5–10 seconds to form an answer. Silence is part of the conversation.</p>
     </div>
     <div class="step">
       <div class="num">03</div>
-      <h3>Pratite dijete</h3>
-      <p>Igra traje koliko dijete pokazuje interes. Skratite, ponovite kasnije ili proširite ako uživa.</p>
+      <h3>The +1 technique</h3>
+      <p>Whatever your child says, repeat it and <strong>add one word</strong>. &ldquo;Car&rdquo; → &ldquo;Red car.&rdquo; &ldquo;Dog&rdquo; → &ldquo;Dog runs.&rdquo;</p>
     </div>
     <div class="step">
       <div class="num">04</div>
-      <h3>Bez pritiska</h3>
-      <p>Ako dijete taj dan nije raspoloženo — preskočite. Sjeme strpljivo čeka, šetnja se uvijek može odgoditi.</p>
+      <h3>No corrections</h3>
+      <p>If your child says &ldquo;me want water&rdquo; instead of &ldquo;I want water&rdquo; — don't correct them. Just repeat it correctly: &ldquo;Yes, here's some water.&rdquo; That's enough.</p>
     </div>
   </div>
 
   <div class="callout" style="margin-top:9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Najvažnije nije da sve bude savršeno.<br/>
-      <span style="color:var(--coral-700);">Najvažnije je da dijete dobije prostor za igru, kretanje, bliskost i istraživanje — bez ekrana.</span>
+      The most important thing isn't that everything be perfect.<br/>
+      <span style="color:var(--coral-700);">What matters is that your child feels — my words matter, someone is listening to what I say.</span>
     </p>
   </div>
 </section>
@@ -807,88 +806,88 @@
 <!-- =============================================================== LEGEND -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Legenda</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Legend</span>
   </div>
 
-  <p class="h-eyebrow">Šta razvijamo</p>
-  <h1 class="h-display">Šta razvijamo<br/>kroz igru</h1>
+  <p class="h-eyebrow">What we develop</p>
+  <h1 class="h-display">What we develop<br/>through play</h1>
 
   <div class="legend">
     <div class="legend-item">
       <span class="legend-icon f-pokret">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M11 22l1-5-3-3 1-5 4 1 4 4"/></svg>
       </span>
-      <div><h4>Pokret</h4><p>Cijelo tijelo, koordinacija</p></div>
+      <div><h4>Movement</h4><p>Whole body, coordination</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-fine">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 1 1 4 0v6"/><path d="M13 11V4a2 2 0 1 1 4 0v9"/><path d="M17 13V7a2 2 0 1 1 4 0v8a7 7 0 0 1-7 7H9a5 5 0 0 1-5-5l-1-3a2 2 0 0 1 4-1l1 2v-6a2 2 0 1 1 4 0v5"/></svg>
       </span>
-      <div><h4>Fine ruke</h4><p>Šaka, prsti, preciznost</p></div>
+      <div><h4>Fine motor</h4><p>Hand, fingers, precision</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-paznja">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
       </span>
-      <div><h4>Pažnja</h4><p>Fokus, posmatranje</p></div>
+      <div><h4>Focus</h4><p>Attention, observation</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-govor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3a8.5 8.5 0 0 1 8.5 8.5z"/></svg>
       </span>
-      <div><h4>Govor</h4><p>Riječi, slušanje, imitacija</p></div>
+      <div><h4>Speech</h4><p>Words, listening, imitation</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-senzor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19 10l-4.5 3.1L16 19l-4-3-4 3 1.5-5.9L5 10l5.1-1.4z"/></svg>
       </span>
-      <div><h4>Senzorna igra</h4><p>Dodir, tekstura, miris</p></div>
+      <div><h4>Sensory play</h4><p>Touch, texture, smell</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-povezivanje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-.9a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
       </span>
-      <div><h4>Povezivanje</h4><p>Bliskost s roditeljem</p></div>
+      <div><h4>Bonding</h4><p>Closeness with parent</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-rjesavanje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 13c.5.5 1 1 1 2v1h6v-1c0-1 .5-1.5 1-2a7 7 0 0 0-4-13z"/></svg>
       </span>
-      <div><h4>Rješavanje</h4><p>Uzrok-posljedica, mali problemi</p></div>
+      <div><h4>Problem-solving</h4><p>Cause-effect, small puzzles</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-masta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 13l.8 2.2 2.2.8-2.2.8L19 19l-.8-2.2L16 16l2.2-.8z"/><path d="M5 5l.7 2 2 .7-2 .7L5 10l-.7-1.6L2.3 7.7l2-.7z"/></svg>
       </span>
-      <div><h4>Mašta</h4><p>Kreativnost, role-play, ekspresija</p></div>
+      <div><h4>Imagination</h4><p>Creativity, role-play, expression</p></div>
     </div>
   </div>
 
-  <h3 style="margin-top:10mm; font-size:14pt;">Dodatne oznake na svakoj aktivnosti</h3>
-  <div class="meta-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.5mm; margin-top:4mm;">
+  <h3 style="margin-top:10mm; font-size:14pt;">Extra labels on each activity</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.5mm; margin-top:4mm;">
     <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
-      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Priprema</div>
-      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">jedna šetnja</div>
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Prep</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">almost none</div>
     </div>
     <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
-      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Potrebno</div>
-      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">priroda + kuća</div>
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Materials</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">time and attention</div>
     </div>
     <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
-      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Tempo</div>
-      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">prema djetetu</div>
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Pace</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">slow, with pauses</div>
     </div>
     <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
-      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Nadzor</div>
-      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">obavezan</div>
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Supervision</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">required</div>
     </div>
   </div>
 </section>
@@ -896,63 +895,63 @@
 <!-- =========================================================== WEEK OVERVIEW -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Pregled sedmice</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Week overview</span>
   </div>
 
-  <p class="h-eyebrow">Plan u jednom pogledu</p>
-  <h1 class="h-display">Pregled sedmice</h1>
+  <p class="h-eyebrow">The plan at a glance</p>
+  <h1 class="h-display">Week overview</h1>
 
-  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Sedam dana s prirodom u stanu — listovi, voda, kamenčići, sjeme, trava, slika i šetnja. Sedmica počinje „donošenjem prirode unutra" (Dan 1) i završava „vraćanjem u prirodu sa novim očima" (Dan 7) — luk koji povezuje sedmicu.</p>
+  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Seven days of conversation — from whispered naming of objects in the room (Day 1) to telling the whole day through three little pictures (Day 7). The week builds vocabulary, rhythm, narrative, and — most importantly — connection between you and your child through language.</p>
 
   <div class="week-list">
-    <div class="day"><div class="day-num">1</div><div class="day-title">Šuma na stolu</div></div>
-    <div class="day"><div class="day-num">2</div><div class="day-title">Voda i list</div></div>
-    <div class="day"><div class="day-num">3</div><div class="day-title">Kamenčići priča</div></div>
-    <div class="day"><div class="day-num">4</div><div class="day-title">Sjeme u staklu</div></div>
-    <div class="day"><div class="day-num">5</div><div class="day-title">Bosi po travi</div></div>
-    <div class="day"><div class="day-num">6</div><div class="day-title">Slika od prirode</div></div>
-    <div class="day"><div class="day-num">7</div><div class="day-title">Mala šetnja sa zadatkom</div></div>
+    <div class="day"><div class="day-num">1</div><div class="day-title">Name the World</div></div>
+    <div class="day"><div class="day-num">2</div><div class="day-title">Wordless Book</div></div>
+    <div class="day"><div class="day-num">3</div><div class="day-title">Humming and Rhythm</div></div>
+    <div class="day"><div class="day-num">4</div><div class="day-title">String Telephone</div></div>
+    <div class="day"><div class="day-num">5</div><div class="day-title">Animal Sounds</div></div>
+    <div class="day"><div class="day-num">6</div><div class="day-title">Treasure Bag</div></div>
+    <div class="day"><div class="day-num">7</div><div class="day-title">Our Day in Three Pictures</div></div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 1 -->
 <section class="page day day-1">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 1 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 1 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">1</div>
     <div class="day-title-block">
-      <h2>Šuma na stolu</h2>
-      <p>Donosimo prirodu unutra.</p>
+      <h2>Name the World</h2>
+      <p>Slow looking — and one extra word.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Donijeli smo šumu u sobu.</p>
+    <p>Your child points. You name. And add one.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Šuma na stolu</h3>
-    <div class="needs"><strong>Potrebno:</strong> 5–6 listova različitih oblika, 2–3 grančice, par kamenčića, žirovi ili kestenovi (ako je sezona); pleh ili veliki tanjir, plastične životinje.</div>
-    <h4>Kako se igra</h4>
-    <p>U kratkoj šetnji sakupiš sa djetetom listove, grančice, kamenčiće, žirove. Kod kuće na pleh ili veliki tanjir slažete „šumu". Dodaj plastične životinje. Dijete priča šta se dešava: „Ovdje živi medo. Ovdje zec spava. Tu je rijeka." Pomaži pitanjima: „Ko stiže u šumu? Gdje će spavati? Koja životinja se sakrila?" 15 minuta šetnje + sat igre — dijete vidi prirodu drugačije, kao građevinski materijal koji odlučuje sam.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Slow Looking (+1)</h3>
+    <div class="needs"><strong>Materials:</strong> just your child in your lap and the room around you.</div>
+    <h4>How to play</h4>
+    <p>Take your child in your lap and slowly, in a whisper, point to objects in the room. &ldquo;See the lamp? The lamp is shining. It's warm.&rdquo; Pause. &ldquo;And this? A book. Your book.&rdquo; No rush, no test. Your child points, you name — and <strong>add one extra word</strong> beyond what they say. If they say &ldquo;car,&rdquo; you say &ldquo;red car&rdquo; or &ldquo;car drives.&rdquo; It doesn't look like an activity, it looks like cuddling — yet it's the most powerful teaching of the week. The &ldquo;+1&rdquo; technique: kids whose parents consistently add one word more develop a significantly larger vocabulary by age three.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Sortiranje šumskog blaga</h3>
-      <p>Stavi sve sakupljeno na pod. „Stavi sve listove ovdje. Sve kamenčiće ovdje. Sve grančice ovdje." Dijete sortira po vrsti, pa po veličini: „Veliki list ovdje, mali tu." Vježba pažnje, fine motorike i pojmova.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>What I See, What I Hear</h3>
+      <p>Walk through the house. Name what you see and hear: &ldquo;I see a red apple. I hear water in the bathroom.&rdquo; Your child follows and tries to repeat or add their own. &ldquo;What do you see? What do you hear?&rdquo; Practices attention, speech, and linking the visual with the auditory.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Šta to imamo?</h3>
-      <p>Bez sortiranja ili igre — samo dodirivanje i imenovanje. „Ovo je list — šuška. Ovo je kamen — težak je. Ovo je grančica." Dovoljno za mlađu djecu — uvodi prirodu kroz dodir i govor.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>One Word</h3>
+      <p>No walking. Sit together, look out the window or around the room. Name one object and wait: &ldquo;Bird.&rdquo; Your child repeats or points to something else. You name that one. Slow, calm, no pressure — perfect before bedtime.</p>
     </div>
   </div>
 </section>
@@ -960,40 +959,40 @@
 <!-- ================================================================ DAY 2 -->
 <section class="page day day-2">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 2 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 2 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">2</div>
     <div class="day-title-block">
-      <h2>Voda i list</h2>
-      <p>Šta pluta? Šta tone?</p>
+      <h2>Wordless Book</h2>
+      <p>The picture book becomes a conversation.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Pluta ili tone?</p>
+    <p>The picture asks the question. You listen for the answer.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Pluta ili tone?</h3>
-    <div class="needs"><strong>Potrebno:</strong> velika prozirna posuda s vodom; list, mali kamen, kockica leda, kora od narandže, plastična igračka, papir, kašika.</div>
-    <h4>Kako se igra</h4>
-    <p>Posudu s vodom postaviš na sto. Dijete jedno po jedno spušta predmete unutra. <strong>Prije</strong> nego baci, pitaš: „Šta misliš za ovaj? Pluta ili tone?" Dijete pogađa, pa testira. Reakcija: „Pluta!" ili „Otišao je dole!" Govori jezik nauke: „Lebdi", „potone", „pliva", „tone polako, tone brzo". Ovo je prava nauka pakovana u 5 minuta — dijete uči predviđanje, posmatranje i nove riječi. Roditelji ostanu u čudu koliko dijete pamti.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Dialogic Reading</h3>
+    <div class="needs"><strong>Materials:</strong> any picture book from home.</div>
+    <h4>How to play</h4>
+    <p>Instead of reading the text, ask <strong>CROWD prompts</strong> — five evidence-based types of dialogic reading: <strong>C</strong>ompletion (let them finish: &ldquo;The bear is...&rdquo;), <strong>R</strong>ecall (&ldquo;What was the bear doing on the last page?&rdquo;), <strong>O</strong>pen (&ldquo;What's happening here?&rdquo;), <strong>W</strong>h-questions (&ldquo;Where? Who? What?&rdquo;), <strong>D</strong>istancing (&ldquo;Have you ever...?&rdquo;). With younger kids just C and Wh; older ones, all five. Studies show measurable vocabulary gains after just 4 weeks of this kind of reading.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Pravi grupe</h3>
-      <p>Poslije testiranja, sortiraj predmete: ovi su plivali, ovi su potonuli. „Šta je drugačije kod ovih? Šta su lakše, šta teže?" Dijete povezuje rezultat s osobinom predmeta — početak naučnog razmišljanja.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Page = One Scene</h3>
+      <p>Go page by page. One question on each: &ldquo;What do you see? Who's there? What do you think is happening?&rdquo; Don't rush to finish the book — two pages in twenty minutes of conversation is plenty.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Voda i ruka</h3>
-      <p>Bez igre predviđanja — dijete samo stavlja ruku, pere, pljuska. „Hladno? Toplo? Šuška li voda?" Senzorno istraživanje vode, idealno za mlađu djecu ili kraj dana.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Point and Name</h3>
+      <p>No questions. You point and name: &ldquo;This is the bear. The bear is sleeping.&rdquo; Your child listens and points. For younger kids, pointing with a finger is enough — that's their speech.</p>
     </div>
   </div>
 </section>
@@ -1001,40 +1000,40 @@
 <!-- ================================================================ DAY 3 -->
 <section class="page day day-3">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 3 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 3 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">3</div>
     <div class="day-title-block">
-      <h2>Kamenčići priča</h2>
-      <p>Svaki kamenčić zna jednu riječ.</p>
+      <h2>Humming and Rhythm</h2>
+      <p>The body follows the sound.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Svaki kamenčić zna jednu riječ.</p>
+    <p>Sound enters the hands. Hands tap the rhythm.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Priča iz kamenčića</h3>
-    <div class="needs"><strong>Potrebno:</strong> 6–8 glatkih kamenčića (iz parka ili iz kupljenog cvjetnog šljunka), trajni flomaster.</div>
-    <h4>Kako se igra</h4>
-    <p>Na svakom kamenčiću nacrtaš nešto jednostavno: sunce, kuća, srce, drvo, zvjezdica, životinja, val, oblak. Dijete vuče po jedan i zajedno pravite priču: „Bilo jednom sunce... onda kuća... onda zec..." Slijedi šta dijete pokaže — ne ispravlja se. Pričanje priča iz nule, bez knjige. Razvija govor i maštu na način kojem nijedna aplikacija ne može prići. Kamenčiće čuvaš u kesici i koristiš sedmicama.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Song With a Pause</h3>
+    <div class="needs"><strong>Materials:</strong> a familiar song you both know (Twinkle Twinkle, Itsy Bitsy Spider, Wheels on the Bus).</div>
+    <h4>How to play</h4>
+    <p>Sit face to face. Clap hands, tap knees, &ldquo;tap-tap&rdquo; on the table — hum a familiar song while you tap the rhythm. Vary the tempo: fast, slow, quiet, loud. Then <strong>stop in the middle of the song</strong> — your child finishes it: &ldquo;Twinkle twinkle little...?&rdquo; → &ldquo;Star!&rdquo; They'll laugh until they cry when you &ldquo;forget&rdquo; the word. You'll discover your child remembers songs you didn't think they knew. Rhythmic awareness is a precursor to phonological awareness — the strongest early predictor of later reading success.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Pogodi koji nedostaje</h3>
-      <p>Postavi 4 kamenčića. Dijete ih vidi. Onda zatvori oči, ti skloniš jedan: „Koji je nestao?" Pamćenje, vizuelna pažnja. Mlađem 3 kamenčića, starijem 5–6.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Tap for an Answer</h3>
+      <p>You tap a rhythm (3 fast, pause, 1 long). Your child copies it. Then switch — your child leads, you follow. Practices listening, sequence memory, and motor control.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Imenuj sliku</h3>
-      <p>Bez priče. Dijete vuče kamenčić i kaže šta vidi: „Sunce. Kuća. Zvijezda." Najlakša verzija — vježba prepoznavanja simbola i rječnika.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Tap-Tap Together</h3>
+      <p>No song. Just tap together on the table or knees in rhythm. Your child copies your tempo. If they can't — do it together, hand over hand. A small but important rhythm the body remembers.</p>
     </div>
   </div>
 </section>
@@ -1042,40 +1041,40 @@
 <!-- ================================================================ DAY 4 -->
 <section class="page day day-4">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 4 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 4 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">4</div>
     <div class="day-title-block">
-      <h2>Sjeme u staklu</h2>
-      <p>Život koji raste polako.</p>
+      <h2>String Telephone</h2>
+      <p>The voice travels through the string.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Nešto raste polako, dan po dan.</p>
+    <p>Hello? Can you hear me?</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Život koji raste</h3>
-    <div class="needs"><strong>Potrebno:</strong> prozirna teglica ili čaša, vata ili papirni ubrus, voda, par zrna graha / leblebije / sočiva.</div>
-    <h4>Kako se igra</h4>
-    <p>Na dno teglice staviš vatu (ili papirni ubrus), zaliješ vodom da bude vlažno. Dijete uz staklo postavi 2–3 zrna — tako da se vide. Stavi teglicu na prozor. Svaki dan dijete posmatra i opisuje: „Mokro je. Nešto se dešava. Pukla je ljuska!" U narednim danima nastaje korijen, pa stabljika. <strong>Aktivnost koja „živi" 2–3 sedmice nakon ove.</strong> Prvi put dijete vidi šta znači „raste polako".</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>A Real Telephone</h3>
+    <div class="needs"><strong>Materials:</strong> two plastic cups, thin sturdy string (about 6 ft), a knot at each end.</div>
+    <h4>How to play</h4>
+    <p>Poke a small hole in the bottom of each cup, thread the string through both, and tie a knot on the inside of each. Stretch the string tight — now it's a &ldquo;telephone.&rdquo; Talk from opposite ends of the room. &ldquo;Hello, Mom!&rdquo; &ldquo;Yes, I can hear you!&rdquo; &ldquo;Goodbye!&rdquo; An old trick kids haven't seen — the vibration really does carry sound. <strong>The medium itself is the reward</strong> — your child chooses words more carefully because they're &ldquo;sending&rdquo; a message. A small jump in motivation to talk that you don't get from ordinary conversation.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Dnevnik klijanja</h3>
-      <p>Roditelj ima papir. Svaki dan crtaju ono što vide: dan 1 zrno, dan 3 prva linija, dan 5 stabljika, dan 7 list. Dijete vodi: „Šta vidiš danas?" Razvija strpljenje, posmatranje i osjećaj za vrijeme.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Send a Message</h3>
+      <p>Don't talk freely — give your child a &ldquo;mission&rdquo;: &ldquo;Tell me what you ate for breakfast.&rdquo; Your child calls and tells. &ldquo;Tell me your favorite toy.&rdquo; Practices short, focused speech and choosing words.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Pij vodu</h3>
-      <p>Bez crtanja, samo dnevni ritual: „Hajde da provjerimo sjeme. Treba li mu vode?" Dijete sipa pažljivo malo vode. Mali, ali bitan ritual koji se ponavlja danima.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Hello and Goodbye</h3>
+      <p>Younger kids use the telephone as a toy — they don't need a real conversation. &ldquo;Hello!&rdquo; then &ldquo;Goodbye!&rdquo; then &ldquo;Hello!&rdquo; again. Repeating social phrases is gold for a 2-year-old.</p>
     </div>
   </div>
 </section>
@@ -1083,40 +1082,40 @@
 <!-- ================================================================ DAY 5 -->
 <section class="page day day-5">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 5 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 5 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">5</div>
     <div class="day-title-block">
-      <h2>Bosi po travi</h2>
-      <p>Stopala otkrivaju zemlju.</p>
+      <h2>Animal Sounds</h2>
+      <p>The cow says... meow? Laughter, then a correction.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Stopala znaju razliku.</p>
+    <p>Mom got it wrong. The kid knows better.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Stopala otkrivaju</h3>
-    <div class="needs"><strong>Potrebno:</strong> ako vrijeme dozvoljava — vani; ako ne — 4 tanjira: jedan s travom (ili peršunom), jedan s vodom, jedan s grizom ili pijeskom, jedan s kamenčićima.</div>
-    <h4>Kako se igra</h4>
-    <p>Vani: par minuta bosih nogu po travi, zemlji, kamenu, asfaltu. Imenuj senzaciju: „Trava škaklja. Asfalt je tvrd. Pijesak ulazi između prstiju." Ako ne može vani, donesi unutra — dijete prelazi po četiri tanjira i opisuje. <strong>Dijete koje cijeli dan nosi cipele odjednom otkrije svijet stopalima.</strong> Prizemljujuće u doslovnom smislu — smiruje senzorno preopterećenu djecu.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Deliberate Mistakes</h3>
+    <div class="needs"><strong>Materials:</strong> any animals (toys, books, or just from memory).</div>
+    <h4>How to play</h4>
+    <p>&ldquo;What does the cow say? The dog? The duck? The cat?&rdquo; Your child makes the sounds. Then build on it: how they move, where they live, what they eat. Then <strong>get it wrong on purpose</strong>: &ldquo;The cow says meow!&rdquo; Your child laughs and corrects you. &ldquo;The dog flies!&rdquo; — &ldquo;No, the dog runs!&rdquo; A parent's mistakes activate <strong>metalinguistic awareness</strong> — your child notices for the first time that there is a &ldquo;right&rdquo; and &ldquo;wrong&rdquo; in language. Plus, correcting an adult gives them a sense of competence and boosts their motivation to talk.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Pogodi gdje stojiš</h3>
-      <p>Dijete zatvori oči (ili gleda gore). Ti pomjeri stopalo na drugi tanjir. „Gdje su sad noge?" Dijete pogađa po dodiru. Vježba taktilne pažnje i prostorne svijesti.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Movement + Sound</h3>
+      <p>Imitate animals — move like a cow (slow, heavy), like a duck (waddle), like a frog (hop). Add the sound. &ldquo;Now we're a bunny!&rdquo; &ldquo;Now we're a bear!&rdquo; Combines language, movement, and imitation in one game.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Samo trava</h3>
-      <p>Bez staze. Jedan tanjir, jedna senzacija (trava ili pijesak). Dijete dodiruje rukom ili stopalom. Mlađim djecima dovoljno je jedno čulo dodira po sesiji.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Who Says What?</h3>
+      <p>No movement, no mistakes. You show an animal (toy or picture) and ask: &ldquo;Who is this? What do they say?&rdquo; Your child imitates the sound. Younger kids adore this simple game — and repeat it on their own long after.</p>
     </div>
   </div>
 </section>
@@ -1124,40 +1123,40 @@
 <!-- ================================================================ DAY 6 -->
 <section class="page day day-6">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 6 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 6 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">6</div>
     <div class="day-title-block">
-      <h2>Slika od prirode</h2>
-      <p>Sve što sakupiš ostaje.</p>
+      <h2>Treasure Bag</h2>
+      <p>Ohhh, soft! Try it — soft.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Sve što sakupiš ostaje.</p>
+    <p>What's in the bag? The hand finds out first.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Slika koja ostaje</h3>
-    <div class="needs"><strong>Potrebno:</strong> komad kartona ili papira, malo ljepila u tanjiriću (ili dvostrana ljepljiva traka), sakupljeno: listovi, latice, sjeme, malo pijeska, grančica, perce.</div>
-    <h4>Kako se igra</h4>
-    <p>Dijete lijepi šta želi: listove, latice, sjeme, grančicu, perce. Pravi „sliku" bez ikakvih pravila — <strong>nema „krivog poteza"</strong> jer se sve može zalijepiti. Možeš dodati flomaster za „okvir" ili potpis. Slika se okači u sobu i dijete je nedjeljama pokazuje gostima — kreativnost bez frustracije.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Words Through Touch</h3>
+    <div class="needs"><strong>Materials:</strong> a bag or box; 5–6 everyday objects with different qualities: a hard block, a soft stuffed animal, a cold spoon, a rough sponge, a light feather, a smooth cup.</div>
+    <h4>How to play</h4>
+    <p>Your child pulls one object out at a time. Don't ask &ldquo;what's it like&rdquo; (too abstract for a 2-year-old) — instead, <strong>model it</strong>: &ldquo;Ohhh, soft! Try it — soft.&rdquo; Your child feels it and repeats the word. Gradually, through repetition over weeks, your child starts describing on their own. Adjectives are the hardest category of words for little kids — but exposure through <strong>touch + word + repetition</strong> is the most effective way to absorb them (multisensory learning).</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Sve od jedne stvari</h3>
-      <p>Slika napravljena samo od jedne vrste materijala: samo listovi, samo sjemenke. Dijete bira raspored, gustinu, smjer. „Gdje će ići ovaj? Tu ili tu?" Vježba kompozicije i izbora.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Find Something Soft</h3>
+      <p>Hunt for an object by description: &ldquo;Find something soft. Find something cold. Something heavy.&rdquo; Your child picks. Practices linking adjectives to objects — and the other way around, associating qualities with things in the house.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Tepih od listova</h3>
-      <p>Bez ljepila. Dijete na pod ili stol slaže listove kako želi — kao tepih, kao hrpu, kao stazu. „Šta praviš? Gdje vodi tvoja staza?" Slobodno, bez pripreme.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Just Touch</h3>
+      <p>No adjectives. Your child pulls out an object and explores it with their hands — you just name the object: &ldquo;Spoon. Sponge. Feather.&rdquo; That's enough for very young kids — the word for the object is already a lot.</p>
     </div>
   </div>
 </section>
@@ -1165,40 +1164,40 @@
 <!-- ================================================================ DAY 7 -->
 <section class="page day day-7">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>Dan 7 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>Day 7 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">7</div>
     <div class="day-title-block">
-      <h2>Mala šetnja sa zadatkom</h2>
-      <p>Lov na blago u prirodi.</p>
+      <h2>Our Day in Three Pictures</h2>
+      <p>Remember? What did we do?</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Donesi mi blago iz šetnje.</p>
+    <p>Three little pictures. The whole day.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Lov na blago</h3>
-    <div class="needs"><strong>Potrebno:</strong> papirna kesica ili manja vrećica, kratka šetnja (haustor, dvorište, do dućana ili park).</div>
-    <h4>Kako se igra</h4>
-    <p>Daješ djetetu „misiju" — donese ti: nešto okruglo, nešto žuto, nešto što šuška, nešto malo, nešto glatko. Sve stavlja u vrećicu. Kod kuće — vadite jedno po jedno i komentarišete: „Šta si našao okruglo? Kesten! Šta je glatko? Kamen!" <strong>Obična šetnja postaje misija.</strong> Dijete primjećuje 10× više nego inače. Vrećica blaga čuva se i razgleda danima.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Drawings of Today</h3>
+    <div class="needs"><strong>Materials:</strong> paper, a pencil or marker.</div>
+    <h4>How to play</h4>
+    <p>Toward the end of the day, sit with your child: &ldquo;Let's remember what we did today.&rdquo; Draw three things that happened, very simply (breakfast, a walk, bath time — stick figures are plenty). Show them one at a time: &ldquo;Remember? What did we do?&rdquo; Your child adds a word or two. You expand: &ldquo;Yes, we ate bread and cheese. The cheese was yellow.&rdquo; This is <strong>narrative practice</strong> — telling the story of what was experienced — proven to be linked to later literacy and emotional regulation. The moment autobiographical memory is born.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Koliko boja?</h3>
-      <p>Šetnja sa pitanjem: „Koliko različitih boja možemo naći?" Imenuj svaku: „Žuta — vidiš tamo cvijet. Zelena — list. Smeđa — kora drveta." Vježba pažnje i imenovanja boja.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Five Pictures + Order</h3>
+      <p>Draw five things, then mix them up on the table. Your child puts them in the order they happened: morning, lunch, afternoon, dinner, bath. &ldquo;What was first? What came after?&rdquo; Practices sequence and memory.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Slušaj šta vani priča</h3>
-      <p>Bez sakupljanja. Šetate i slušate: „Šta čuješ? Auto? Pticu? Vjetar?" Dijete usporava, slušajući. Idealno za umorne dane ili kraj sedmice.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>One Thing Today</h3>
+      <p>No drawing. Ask your child: &ldquo;What did we do today that you liked best?&rdquo; Your child says one word — &ldquo;bath,&rdquo; &ldquo;dog,&rdquo; &ldquo;cookie.&rdquo; You expand: &ldquo;Yes, we saw a dog at the park. He was big.&rdquo; Simplest version, perfect before bed.</p>
     </div>
   </div>
 </section>
@@ -1206,30 +1205,30 @@
 <!-- =================================================================== SOS -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #5 · bezekrana.com</span>
-    <span>SOS ideje</span>
+    <span class="brand">SCREENFREE · Weekly System #6 · getscreenfree.com</span>
+    <span>SOS ideas</span>
   </div>
 
-  <p class="h-eyebrow">Spremne za hitne trenutke</p>
-  <h1 class="h-display small">SOS ideje<br/>kada dijete traži ekran</h1>
+  <p class="h-eyebrow">Ready for in-the-moment</p>
+  <h1 class="h-display small">SOS ideas<br/>when your child asks for a screen</h1>
 
-  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">Kada dijete traži ekran iz dosade ili navike, pokušaj brzo skrenuti pažnju na <strong>nešto živo i prirodno</strong>. Pogled kroz prozor, dodir kamena, šuškanje lista — to vraća dijete u trenutak:</p>
+  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">When your child asks for a screen out of boredom or habit, try quickly starting <strong>a short conversation</strong>. One question that calls for attention, memory, or imitation brings your child back into contact with you:</p>
 
   <div class="sos-list">
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Pogledaj kroz prozor — koje boje vidiš?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da napravimo šumu na stolu."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Pluta li ova kockica leda?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Koji kamen je najtopliji?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Daj sjemenu malo vode."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Slušaj — čuješ pticu?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Donesi mi list iz vrećice blaga."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde bos na minut."</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;See this? Can you tell me what it is?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;What do you think is happening in this picture?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Hum with me — twinkle, twinkle…&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;What does the duck say? And the dog?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Touch it — what's it like? Soft? Hard?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Remember — what did we eat this morning?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Tell me something about the bear.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;The cow says meow? (Laugh.)&rdquo;</p></div>
   </div>
 
-  <div class="callout-forest" style="margin-top:8mm; border-radius:18px; padding:7mm 9mm;">
+  <div class="callout-warm" style="margin-top:8mm; border-radius:18px; padding:7mm 9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Priroda nikad ne mora biti šuma.<br/>
-      <strong>Jedan list u ruci, jedan kamen u džepu</strong> — često je dovoljno da dijete „dođe nazad u tijelo".
+      A conversation doesn't have to be long.<br/>
+      <strong>One question, one answer, one bit of praise</strong> — and your child is somewhere else.
     </p>
   </div>
 </section>
@@ -1241,34 +1240,34 @@
     <div class="glow cg-2"></div>
 
     <div class="body">
-      <div class="badge">⭐ Završili ste sedmicu</div>
-      <h2>Bravo za još jednu sedmicu bez ekrana</h2>
-      <p>Ako niste stigli uraditi sve aktivnosti — to je potpuno u redu. Ovaj sistem nije tu da vas optereti, nego da vam olakša svakodnevicu i ponudi gotove ideje za igru.</p>
-      <p style="margin-top:4mm;">Sjeme i dalje raste, slika ostaje na zidu, vrećica blaga se vraća. <strong>Priroda koju ste donijeli unutra ne odlazi sa krajem sedmice.</strong></p>
-      <p style="margin-top:4mm;">Možete ponoviti omiljene aktivnosti, sačuvati ovu sedmicu za kasnije, ili preći na <strong>naredni sedmični sistem</strong>.</p>
+      <div class="badge">⭐ You finished the week</div>
+      <h2>Bravo for another screen-free week</h2>
+      <p>If you didn't get to every activity — that's completely fine. This system isn't here to weigh you down; it's here to make your day easier and give you ready-made play ideas.</p>
+      <p style="margin-top:4mm;">This week wasn't about activities — it was about <strong>conversation</strong>. The &ldquo;+1&rdquo; technique, the pauses, humming with a pause, deliberate mistakes, three little pictures of the day — you can repeat all of it whenever you want. You don't need special materials. You just need your child and you.</p>
+      <p style="margin-top:4mm;">Repeat the favorites, save this week for later, or move on to the <strong>next weekly system</strong>.</p>
 
       <div class="stamp">
-        Malo manje ekrana. Malo više igre. Malo više bliskosti.
+        A little less screen. A little more play. A little more closeness.
       </div>
     </div>
 
     <div class="legal-notice">
       <p class="legal-safety">
-        <strong>Sigurnost prije svega.</strong> Sav sadržaj je informativnog i edukativnog karaktera. Sve aktivnosti zahtijevaju aktivan nadzor odrasle osobe; roditelj/staratelj je u potpunosti odgovoran za sigurnost djeteta tokom igre. Aktivnosti sa prirodnim materijalima (kamenčići, sjeme, listovi, zemlja) provoditi isključivo uz neprekidan nadzor — paziti na sitne predmete rizične za gušenje, alergije i higijenu (oprati ruke nakon igre).
+        <strong>Safety first.</strong> All content is informational and educational. Every activity requires active adult supervision; the parent or guardian is fully responsible for the child's safety during play. Activities involving string (string telephone), small objects, and book pages must be carried out under continuous supervision — watch for choking hazards and keep string short and out of reach when not in use.
       </p>
 
       <div class="legal-cols">
         <div>
-          <h4>Pravna napomena</h4>
-          <p>Ovaj materijal je zaštićen autorskim pravima i predstavlja vlasništvo kompanije <strong>Prime Vector Solutions LLC, USA</strong>. Svako neovlašteno kopiranje, dijeljenje, distribuiranje ili prodaja ovog sadržaja — djelimično ili u cijelosti — strogo je zabranjeno bez prethodnog pismenog odobrenja. Kršenje ovih prava može rezultirati pravnim postupkom, uključujući novčane kazne i zahtjeve za naknadu štete, u skladu sa zakonima Sjedinjenih Američkih Država i međunarodnim propisima. Ovaj materijal se aktivno prati u cilju sprječavanja neovlaštene distribucije.</p>
-        </div>
-        <div>
           <h4>Legal Notice</h4>
           <p>This material is protected by copyright and is the intellectual property of <strong>Prime Vector Solutions LLC, USA</strong>. Any unauthorized copying, sharing, distribution, or resale of this content — in whole or in part — is strictly prohibited without prior written consent. Violation of these terms may result in legal action, including financial penalties and claims for damages, in accordance with United States and international intellectual property laws. This material is actively monitored for unauthorized distribution.</p>
         </div>
+        <div>
+          <h4>Personal Use Only</h4>
+          <p>The PDF you are reading is licensed to a single household for personal, non-commercial use. Sharing the file with other families, posting it online, uploading it to file-sharing services, or using any part of it commercially without our written permission is prohibited. Each PDF may be watermarked and tracked. To request commercial use, school/daycare licensing, or republication rights, contact us at <strong>support@getscreenfree.com</strong>.</p>
+        </div>
       </div>
 
-      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. Sva prava zadržana. · All rights reserved.</p>
+      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. All rights reserved.</p>
     </div>
   </div>
 </section>

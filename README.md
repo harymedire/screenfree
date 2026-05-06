@@ -1,29 +1,35 @@
-# BezEkrana
+# ScreenFree
 
-SaaS platforma za roditelje djece 2–4 godine. Sedmični paketi aktivnosti (PDF) sa per-user drip pristupom — svaki novi pretplatnik kreće od paketa #1 bez obzira kada se pridruži.
+US-market SaaS platform for parents of toddlers (ages 2–4). Weekly screen-free
+activity packs (PDF) with per-user drip access — every new subscriber starts at
+Pack #1 regardless of when they join.
+
+The BCS-region (Bosnia / Croatia / Serbia) sister site lives in a separate repo
+under the "BezEkrana" brand, sharing the same PDF templates but with its own
+auth/dashboard/admin.
 
 ## Stack
 
 - **Next.js 15** (App Router, RSC, TypeScript)
 - **Supabase** — Postgres + Auth + Storage + RLS
-- **Stripe** — Payment Element (inline, bez redirect-a) za pretplatu i jednokratne kupovine
-- **Dodo Payments** — paralelna integracija (scaffold)
-- **Tailwind CSS** + custom paleta (koral / sun / teal / plum)
-- **next-intl** — bs / sr / hr / en / de + scaffolds za sl / pl
-- **Railway** za deploy
+- **Stripe** — Payment Element (inline, no redirect) for subscriptions and one-time purchases
+- **Dodo Payments** — parallel integration (scaffold, currently disabled)
+- **Tailwind CSS** + custom palette (coral / sun / teal / plum)
+- **next-intl** — locale: en (US market)
+- **Railway** for deploy
 
 ---
 
-## Lokalno pokretanje
+## Local setup
 
 ```bash
 npm install
-cp .env.example .env.local
-# popuni .env.local (vidi sekciju ispod)
+copy .env.example .env.local      # Windows; on macOS/Linux: cp
+# fill in .env.local (see section below)
 npm run dev
 ```
 
-Aplikacija ide na `http://localhost:3000` → preusmjerava na `http://localhost:3000/bs`.
+App runs on `http://localhost:3001` → redirects to `http://localhost:3001/en`.
 
 ---
 

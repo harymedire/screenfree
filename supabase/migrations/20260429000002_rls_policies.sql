@@ -1,5 +1,5 @@
 -- ============================================================================
--- BezEkrana — Row Level Security policies
+-- ScreenFree — Row Level Security policies
 -- ============================================================================
 -- Notes:
 --   • Server routes that need to mutate everything (e.g. webhook handlers)

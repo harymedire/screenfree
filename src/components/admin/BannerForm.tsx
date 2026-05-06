@@ -7,9 +7,7 @@ import { Save, Trash2, Image as ImageIcon } from "lucide-react";
 import type { Banner } from "@/types/db";
 
 const LOCALES = [
-  { code: "bs", label: "Bosanski" },
-  { code: "sr", label: "Srpski" },
-  { code: "hr", label: "Hrvatski" },
+  { code: "en", label: "English" },
 ] as const;
 
 export function BannerForm({ initial }: { initial?: Banner }) {
@@ -18,7 +16,7 @@ export function BannerForm({ initial }: { initial?: Banner }) {
   const [error, setError] = useState<string | null>(null);
 
   const [title, setTitle] = useState(initial?.title ?? "");
-  const [locale, setLocale] = useState(initial?.locale ?? "bs");
+  const [locale, setLocale] = useState(initial?.locale ?? "en");
   const [linkUrl, setLinkUrl] = useState(initial?.link_url ?? "");
   const [isActive, setIsActive] = useState(initial?.is_active ?? true);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -39,11 +37,11 @@ export function BannerForm({ initial }: { initial?: Banner }) {
     e.preventDefault();
     setError(null);
     if (!initial && !imageFile) {
-      setError("Odaberi sliku bannera.");
+      setError("Pick a banner image.");
       return;
     }
     if (!linkUrl.startsWith("http")) {
-      setError("Link mora počinjati sa http:// ili https://");
+      setError("Link must start with http:// or https://");
       return;
     }
     setSaving(true);
@@ -69,7 +67,7 @@ export function BannerForm({ initial }: { initial?: Banner }) {
 
   async function onDelete() {
     if (!initial) return;
-    if (!confirm("Obrisati banner?")) return;
+    if (!confirm("Delete this banner?")) return;
     const res = await fetch(`/api/admin/banners?id=${initial.id}`, { method: "DELETE" });
     if (res.ok) {
       router.push("/admin/banners");
@@ -80,7 +78,7 @@ export function BannerForm({ initial }: { initial?: Banner }) {
   return (
     <form onSubmit={onSubmit} className="card max-w-2xl space-y-5">
       <div>
-        <label className="label">Slika bannera (336 × 288 px)</label>
+        <label className="label">Banner image (336 × 288 px)</label>
         <input
           type="file"
           accept="image/*"
@@ -90,7 +88,7 @@ export function BannerForm({ initial }: { initial?: Banner }) {
         />
         {imagePreview && (
           <div className="mt-3 flex flex-col items-start gap-2">
-            <span className="text-xs text-plum-500">Pregled:</span>
+            <span className="text-xs text-plum-500">Preview:</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imagePreview}
@@ -109,17 +107,17 @@ export function BannerForm({ initial }: { initial?: Banner }) {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="label">Naslov (interna oznaka)</label>
+          <label className="label">Title (internal label)</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="npr. Mama market — letnja kampanja"
+            placeholder="e.g. Mom market — summer campaign"
             className="input"
           />
         </div>
         <div>
-          <label className="label">Jezik</label>
+          <label className="label">Language</label>
           <select value={locale} onChange={(e) => setLocale(e.target.value as typeof locale)} className="input">
             {LOCALES.map((l) => (
               <option key={l.code} value={l.code}>{l.label}</option>
@@ -129,12 +127,12 @@ export function BannerForm({ initial }: { initial?: Banner }) {
       </div>
 
       <div>
-        <label className="label">Link (kuda vodi klik)</label>
+        <label className="label">Link (where the click goes)</label>
         <input
           type="url"
           value={linkUrl}
           onChange={(e) => setLinkUrl(e.target.value)}
-          placeholder="https://primjer.com/proizvod"
+          placeholder="https://example.com/product"
           className="input"
           required
         />
@@ -147,18 +145,18 @@ export function BannerForm({ initial }: { initial?: Banner }) {
           onChange={(e) => setIsActive(e.target.checked)}
           className="h-5 w-5 accent-coral-500"
         />
-        <span className="font-bold text-plum-800">Aktivno (prikazuje se korisnicima)</span>
+        <span className="font-bold text-plum-800">Active (visible to users)</span>
       </label>
 
       {error && <p className="text-sm text-coral-700 bg-coral-100 rounded-xl px-3 py-2">{error}</p>}
 
       <div className="flex items-center gap-3">
         <Button type="submit" disabled={saving}>
-          <Save className="h-4 w-4" /> {saving ? "…" : "Spasi"}
+          <Save className="h-4 w-4" /> {saving ? "…" : "Save"}
         </Button>
         {initial && (
           <Button type="button" variant="ghost" onClick={onDelete} className="!text-coral-700">
-            <Trash2 className="h-4 w-4" /> Obriši
+            <Trash2 className="h-4 w-4" /> Delete
           </Button>
         )}
       </div>

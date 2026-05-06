@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     const { error } = await service.from("content_packs").update(update).eq("id", id);
     if (error) {
       const friendly = error.message.includes("content_packs_sequence_number_locale_key")
-        ? `Već postoji paket sa rednim brojem ${sequence_number} za jezik "${locale}". Promijeni redni broj ili uredi taj postojeći paket.`
+        ? `A pack with sequence number ${sequence_number} already exists for language "${locale}". Change the sequence number or edit that existing pack.`
         : error.message;
       return NextResponse.json({ error: friendly }, { status: 500 });
     }
@@ -117,7 +117,7 @@ export async function POST(request: Request) {
     // Translate the (sequence_number, locale) unique-constraint violation into
     // a concrete admin-facing message instead of leaking the raw Postgres text.
     const friendly = error.message.includes("content_packs_sequence_number_locale_key")
-      ? `Već postoji paket sa rednim brojem ${sequence_number} za jezik "${locale}". Promijeni redni broj ili uredi postojeći paket.`
+      ? `A pack with sequence number ${sequence_number} already exists for language "${locale}". Change the sequence number or edit the existing pack.`
       : error.message;
     return NextResponse.json({ error: friendly }, { status: 500 });
   }

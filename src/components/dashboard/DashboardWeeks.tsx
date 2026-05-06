@@ -6,7 +6,7 @@ import type { ContentPack } from "@/types/db";
 import { UnlockedCarousel } from "./UnlockedCarousel";
 import { ArchiveScroller } from "./ArchiveScroller";
 
-// Wraps the "Tvoja sedmica" carousel and the "Arhiva" scroller together so
+// Wraps the "Your week" carousel and the "Archive" scroller together so
 // they can share carousel-index state. Clicking an unlocked pack in the
 // archive promotes it into the carousel up top (and scrolls there).
 export function DashboardWeeks({

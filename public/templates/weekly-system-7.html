@@ -1,39 +1,23 @@
 <!doctype html>
-<html lang="bs">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BEZ EKRANA — Sedmični sistem #2</title>
+<title>SCREENFREE — Weekly System #7</title>
 
 <!--
   HOW TO USE THIS FILE
   ====================
-  1. Open in a browser (e.g. open in Chrome / Edge / Firefox).
-  2. Click the floating "Spasi kao PDF" button in the top-right corner.
+  1. Open in a browser (Chrome / Edge / Firefox).
+  2. Click the floating "Save as PDF" button in the top-right corner.
   3. In the print dialog: Destination → "Save as PDF" → A4, portrait,
      margins: None (or Default), Background graphics: ON. Save.
-  4. Upload the resulting PDF in /admin → Paketi → Novi paket.
-
-  CLONING FOR FUTURE WEEKS
-  ========================
-  Copy this file as sedmicni-sistem-2.html and only change:
-    • the title in <title>
-    • the cover .week-number / .theme-name / .subtitle
-    • each .day section (title + 3 activity cards)
-    • optional: --accent (root variable) for a different cover gradient
-
-  PRINT NOTES
-  ===========
-  Background colours print only when "Background graphics" is enabled in
-  the dialog. We also force it via -webkit-print-color-adjust to maximise
-  the chance of correct rendering across browsers.
+  4. Upload the resulting PDF in /admin → Packs → New pack.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- (Removed html2canvas + jsPDF — we now use the browser's native print
-     engine for a true vector PDF; no third-party JS needed.) -->
 
 <style>
   /* ---------- Brand tokens ---------- */
@@ -61,11 +45,7 @@
   strong { font-weight:700; color:var(--plum-800); }
   em { font-style:italic; }
 
-  /* ---------- Page (A4 portrait) ----------
-     EVERY page is exactly 210×297mm. height (not min-height) + overflow:hidden
-     means each section renders as exactly one A4 page in the PDF — no risk
-     of a "tall" page silently spilling onto a second sheet. If something
-     gets clipped, that's a content sizing bug to fix on that specific page. */
+  /* ---------- Page (A4 portrait) ---------- */
   @page { size:A4 portrait; margin:0; }
   .page {
     width:210mm; height:297mm;
@@ -74,7 +54,7 @@
     padding:18mm 16mm; position:relative; overflow:hidden;
     page-break-after:always;
   }
-  .page.bleed { padding:0; }                  /* full-bleed pages (cover) */
+  .page.bleed { padding:0; }
   .page:last-of-type { page-break-after:auto; }
 
   /* ---------- Print ---------- */
@@ -100,7 +80,6 @@
     font-size:13px; color:var(--plum-800); user-select:none; cursor:pointer;
     font-weight:600;
   }
-  /* Visually hide the native input but keep it accessible/clickable via the label. */
   .controls .toggle input { position:absolute; opacity:0; width:0; height:0; }
   .controls .toggle .box {
     width:18px; height:18px; border-radius:6px;
@@ -126,11 +105,11 @@
   .print-btn:hover { transform:translateY(-2px); }
   .print-btn:active { transform:translateY(0); }
 
-  /* ---------- INK-SAVE MODE — strips colour backgrounds for B&W printing ---------- */
+  /* ---------- INK-SAVE MODE ---------- */
   body.ink-save .page { background:#fff !important; }
   body.ink-save .blob { display:none !important; }
   body.ink-save .confetti { display:none !important; }
-  body.ink-save .glow { display:none !important; }   /* hides cover + closing glows */
+  body.ink-save .glow { display:none !important; }
   body.ink-save .cover::before { display:none !important; }
   body.ink-save .cover {
     background:#fff !important; color:var(--ink) !important;
@@ -151,13 +130,15 @@
   body.ink-save .cover .logo-pill { background:transparent !important; border:1px solid var(--plum-200) !important; }
   body.ink-save .callout,
   body.ink-save .callout-plum,
-  body.ink-save .callout-teal {
+  body.ink-save .callout-teal,
+  body.ink-save .callout-heart {
     background:#fff !important; color:var(--ink) !important;
     border:1px solid var(--plum-100);
   }
   body.ink-save .callout strong,
   body.ink-save .callout-plum strong,
-  body.ink-save .callout-teal strong { color:var(--coral-700) !important; }
+  body.ink-save .callout-teal strong,
+  body.ink-save .callout-heart strong { color:var(--coral-700) !important; }
   body.ink-save .day-stamp { background:#fff !important; color:var(--plum-900) !important; border:2px solid var(--plum-300); }
   body.ink-save .week-list .day-num { background:#fff !important; color:var(--plum-900) !important; border:2px solid var(--plum-300); }
   body.ink-save .chip { background:transparent !important; border:1px solid currentColor; }
@@ -170,7 +151,6 @@
   body.ink-save .closing { background:#fff !important; }
   body.ink-save .closing .badge { background:transparent !important; border:1px solid var(--plum-300); color:var(--plum-900) !important; }
   body.ink-save .closing .stamp { background:#fff !important; color:var(--plum-900) !important; border:2px solid var(--plum-300); box-shadow:none !important; }
-  /* Story + WOW: drop colour fills, switch to dark text on white with border */
   body.ink-save .story {
     background:#fff !important;
     border:1px solid var(--plum-200) !important;
@@ -197,30 +177,27 @@
   .blob { position:absolute; border-radius:50%; filter:blur(70px);
     opacity:.55; pointer-events:none; z-index:0; }
 
-  /* ---------- COVER ---------- */
-  /* Specificity-bump (.page.cover) so padding wins over .page.bleed { padding:0 } */
+  /* ---------- COVER ----------
+     Week 7 mood: emotions held in deep night. Soft pink → crimson →
+     mulberry → midnight navy. "Heart at night" feel — warm but with depth
+     and weight, fitting the gravitas of emotional literacy. Distinct from
+     week 1 (coral-purple sunset) and week 4 (pink-magenta-plum) by the
+     crimson middle and navy ending. */
   .page.cover {
     color:#fff; position:relative;
-    /* Single linear-gradient — html2canvas can't reliably parse multi-stacked
-       backgrounds with mixed radial+linear. The colour interest is provided
-       by the floating .glow blobs further down. */
-    background:linear-gradient(155deg, #4ECDC4 0%, #268B83 35%, #6B4E9B 75%, #3F2C5A 100%);
+    background:linear-gradient(155deg, #FFC0CB 0%, #DC143C 32%, #6B2D5C 65%, #0D1B3D 100%);
     display:flex; flex-direction:column;
     padding:24mm 20mm 20mm;
     overflow:hidden;
   }
-  /* Glow blobs replace the radial-gradient stops we removed from the bg */
   .glow {
     position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none;
   }
-  .glow.g-1 { top:-30mm; left:-20mm; width:120mm; height:120mm; background:rgba(255,107,107,.5); }
-  .glow.g-2 { top:0; right:-20mm; width:100mm; height:100mm; background:rgba(255,217,61,.5); }
-  .glow.g-3 { bottom:-30mm; left:20mm; width:120mm; height:120mm; background:rgba(127,93,210,.55); }
-  .glow.g-4 { bottom:-10mm; right:-20mm; width:120mm; height:120mm; background:rgba(78,205,196,.55); }
-  /* (Removed: noise overlay used mix-blend-mode + complex bg shorthand which
-     html2canvas cannot parse. The 4-stop radial gradient on .cover already
-     gives plenty of depth without it.) */
-  /* Decorative confetti (positioned absolute) */
+  .glow.g-1 { top:-30mm; left:-20mm; width:120mm; height:120mm; background:rgba(255,192,203,.65); }
+  .glow.g-2 { top:0; right:-20mm; width:100mm; height:100mm; background:rgba(220,20,60,.55); }
+  .glow.g-3 { bottom:-30mm; left:20mm; width:120mm; height:120mm; background:rgba(107,45,92,.6); }
+  .glow.g-4 { bottom:-10mm; right:-20mm; width:120mm; height:120mm; background:rgba(85,60,122,.55); }
+
   .confetti { position:absolute; pointer-events:none; }
   .confetti.c-1 { top:18mm; right:30mm; width:14mm; height:14mm; transform:rotate(20deg); }
   .confetti.c-2 { top:70mm; right:14mm; width:8mm;  height:8mm;  transform:rotate(-15deg); }
@@ -228,7 +205,6 @@
   .confetti.c-4 { top:40mm; right:55mm; width:6mm; height:6mm; }
   .confetti.c-5 { bottom:120mm; right:26mm; width:10mm; height:10mm; transform:rotate(-22deg); }
 
-  /* Top bar: brand mark + meta tag */
   .cover-top {
     display:flex; justify-content:space-between; align-items:center;
     position:relative; z-index:2;
@@ -249,13 +225,12 @@
   }
   .cover .meta .dot { width:8px; height:8px; border-radius:50%; background:var(--sun-500); }
 
-  /* Hero block */
   .cover-hero { margin-top:18mm; position:relative; z-index:2; }
   .cover .wordmark {
     font-family:"Baloo 2",sans-serif; font-weight:800;
     font-size:96pt; line-height:.9; letter-spacing:-0.025em; margin:0;
     color:#fff;
-    text-shadow:0 2px 12px rgba(63,44,90,.35);
+    text-shadow:0 2px 12px rgba(13,27,61,.55);
   }
   .cover .week-number {
     margin-top:8mm;
@@ -267,7 +242,7 @@
   }
   .cover .theme-name {
     margin-top:14mm; font-family:"Baloo 2",sans-serif; font-weight:700;
-    font-size:38pt; line-height:1.02; color:#fff; max-width:160mm;
+    font-size:36pt; line-height:1.02; color:#fff; max-width:160mm;
     letter-spacing:-0.01em;
   }
   .cover .subtitle {
@@ -275,7 +250,6 @@
     font-weight:500;
   }
 
-  /* Bottom block */
   .cover-bottom {
     margin-top:auto; position:relative; z-index:2;
     padding-top:10mm;
@@ -291,14 +265,11 @@
   }
   .url-tag svg { width:14px; height:14px; }
 
-  /* Tiny copyright at very bottom of cover */
   .cover-copy {
     margin-top:4mm; font-size:7.5pt; letter-spacing:.06em;
     color:rgba(255,255,255,.55); font-weight:500;
   }
 
-  /* Watermark + page-number — injected via JS as <span> elements so html2canvas
-     handles them as plain text content (more reliable than ::before/::after). */
   .watermark, .page-num {
     position:absolute; bottom:4mm;
     font-family:"Plus Jakarta Sans",sans-serif;
@@ -315,7 +286,6 @@
   body.ink-save .watermark,
   body.ink-save .page-num { color:rgba(63,44,90,.4) !important; }
 
-  /* Closing legal notice block (replaces the simple disclaimer) */
   .legal-notice {
     margin-top:auto; padding-top:5mm;
     width:100%; max-width:178mm;
@@ -352,7 +322,7 @@
     white-space:nowrap;
   }
 
-  /* ---------- Page header (small "BEZ EKRANA" mark + page label) ---------- */
+  /* ---------- Page header ---------- */
   .page-header {
     display:flex; justify-content:space-between; align-items:center;
     margin-bottom:10mm; font-size:9pt; letter-spacing:.18em;
@@ -360,7 +330,6 @@
   }
   .page-header .brand { color:var(--plum-700); }
 
-  /* ---------- Big section heading ---------- */
   .h-eyebrow { font-size:9pt; font-weight:700; letter-spacing:.18em;
     text-transform:uppercase; color:var(--coral-700); margin-bottom:4mm; }
   .h-display { font-size:30pt; line-height:1.05; margin-bottom:6mm; }
@@ -382,6 +351,14 @@
     background:linear-gradient(135deg,var(--teal-100),var(--teal-300));
     color:var(--plum-900);
   }
+  /* Heart variant — for the parent "how to measure" note. Soft warm gradient
+     that mirrors the cover but lighter. */
+  .callout-heart {
+    background:linear-gradient(135deg, #FFE2E0, #FFC0CB 50%, #E0CCEB);
+    color:var(--plum-900);
+    border-left:4px solid #DC143C;
+  }
+  .callout-heart strong { color:#7A1A2E; }
 
   /* ---------- "How to use" steps ---------- */
   .steps { display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-top:6mm; }
@@ -412,7 +389,6 @@
     font-size:14pt; color:var(--plum-900); margin-bottom:1mm; }
   .legend-item p { font-size:11pt; color:var(--muted); margin:0; line-height:1.4; }
 
-  /* Focus colors (also used on activity chips) */
   .f-pokret      { background:var(--coral-100); color:var(--coral-700); }
   .f-fine        { background:var(--sun-100);   color:var(--sun-700); }
   .f-paznja      { background:var(--plum-100);  color:var(--plum-700); }
@@ -435,20 +411,16 @@
     font-weight:800; font-size:13pt;
   }
   .week-list .day:nth-child(7n+1) .day-num { background:var(--coral-500); }
-  .week-list .day:nth-child(7n+2) .day-num { background:var(--sun-700); }
-  .week-list .day:nth-child(7n+3) .day-num { background:var(--teal-700); }
-  .week-list .day:nth-child(7n+4) .day-num { background:var(--plum-700); }
-  .week-list .day:nth-child(7n+5) .day-num { background:var(--coral-700); }
-  .week-list .day:nth-child(7n+6) .day-num { background:var(--sun-700); }
-  .week-list .day:nth-child(7n+7) .day-num { background:var(--teal-700); }
+  .week-list .day:nth-child(7n+2) .day-num { background:var(--plum-700); }
+  .week-list .day:nth-child(7n+3) .day-num { background:#2C5F7A; }
+  .week-list .day:nth-child(7n+4) .day-num { background:#7A1D1D; }
+  .week-list .day:nth-child(7n+5) .day-num { background:var(--sun-700); }
+  .week-list .day:nth-child(7n+6) .day-num { background:#114641; }
+  .week-list .day:nth-child(7n+7) .day-num { background:var(--plum-800); }
   .week-list .day-title { font-family:"Baloo 2",sans-serif; font-weight:700;
     font-size:14pt; color:var(--plum-900); }
 
   /* ---------- DAY page ---------- */
-  /* Each day spans 2 A4 pages (1+2 split): page A has the full day header
-     + activity 1 (hero feel); page B has a compact "(nastavak)" header
-     + activities 2 & 3. Sections keep min-height 297mm so PDF pages
-     are proper A4. */
   .day-header {
     display:flex; align-items:flex-end; gap:5mm; margin-bottom:7mm;
     padding-bottom:5mm; border-bottom:2px solid var(--plum-100);
@@ -458,50 +430,21 @@
     color:#fff; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:20pt;
     line-height:1; flex-shrink:0;
   }
-  .day-stamp .small { font-size:8pt; letter-spacing:.18em; opacity:.85; margin-bottom:2mm; }
 
-  /* Compact "Day N (nastavak)" strip for the 2nd page of each day */
-  .day-header.compact {
-    display:flex; align-items:center; gap:4mm; margin-bottom:6mm;
-    padding-bottom:4mm; border-bottom:1px dashed var(--plum-200);
-  }
-  .day-header.compact .day-mini-stamp {
-    width:11mm; height:11mm; border-radius:8px; display:grid; place-items:center;
-    color:#fff; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:11pt;
-    line-height:1; flex-shrink:0;
-  }
-  .day-header.compact .label-cont {
-    font-size:8.5pt; font-weight:700; letter-spacing:.15em;
-    text-transform:uppercase; color:var(--coral-700);
-  }
-  .day-header.compact h2 {
-    font-size:14pt; line-height:1.1; margin:0;
-  }
-  /* Mini stamp colours mirror the day-stamp rotation */
-  .day-1 .day-mini-stamp { background:var(--coral-500); }
-  .day-2 .day-mini-stamp { background:var(--sun-700); }
-  .day-3 .day-mini-stamp { background:var(--teal-500); }
-  .day-4 .day-mini-stamp { background:var(--plum-700); }
-  .day-5 .day-mini-stamp { background:var(--coral-700); }
-  .day-6 .day-mini-stamp { background:var(--sun-500); color:var(--plum-900); }
-  .day-7 .day-mini-stamp { background:var(--teal-700); }
-
-  /* ---------- STORY HOOK + 3-LEVEL ACTIVITY (WOW / Srednje / Lagano) ----- */
-  /* Each day now has a narrative "Priča" hook and three difficulty levels:
-     ⚡ WOW (main misison), 🔧 Srednje (variation), 🌿 Lagano (easy fallback). */
+  /* ---------- STORY HOOK + 3-LEVEL ACTIVITY ---------- */
   .story {
     position:relative;
-    background:#E6D9F0;
-    background:linear-gradient(135deg, #E6D9F0 0%, #FFE2E0 100%);
+    background:#FFE2E0;
+    background:linear-gradient(135deg, #FFE2E0 0%, #E0CCEB 100%);
     border-radius:18px; padding:7mm 9mm 7mm 14mm;
     margin:0 0 6mm;
-    border-left:4px solid #FF6B6B;
+    border-left:4px solid #DC143C;
   }
   .story::before {
     content:"\201C";
     position:absolute; top:-2mm; left:5mm;
     font-family:"Baloo 2",sans-serif; font-weight:800;
-    font-size:60pt; line-height:1; color:#FFA39E;
+    font-size:60pt; line-height:1; color:#DC143C;
   }
   .story p {
     font-family:"Baloo 2",sans-serif; font-style:italic;
@@ -537,9 +480,6 @@
   }
   .level p { font-size:10pt; line-height:1.5; margin:0; }
 
-  /* ⚡ WOW — base styling. Day-specific colour gradient is set further below
-     under "Per-day theme". Literal hex (not CSS var) so html2canvas renders
-     identically across engines. */
   .level.wow {
     background:#FF6B6B !important;
     background:linear-gradient(135deg, #FF6B6B 0%, #E84F4F 100%) !important;
@@ -556,66 +496,58 @@
   .level.wow .needs strong { color:#fff !important; }
   .level.wow p { color:#fff !important; font-size:10.5pt; opacity:.95; }
 
-  /* ---------- Per-day theme ----------
-     Each day gets a distinct colour family. The day-stamp + the WOW gradient
-     share the same hue so the page feels like ONE coordinated set, not three
-     unrelated blocks. Stamp number is white (or plum-900 on the lightest
-     theme) for contrast. */
-
-  /* Day 1 — Teal medium (cool fresh start) */
-  .day-1 .day-stamp { background:#1B6660; color:#fff; }
+  /* ---------- Per-day theme — bound to the emotional tool of the day ---------- */
+  /* Day 1 — Coral (faces, immediate warmth) */
+  .day-1 .day-stamp { background:#C73838; color:#fff; }
   .day-1 .level.wow {
-    background:linear-gradient(135deg, #33B0A6 0%, #1B6660 100%) !important;
-    box-shadow:0 6px 16px rgba(27,102,96,.3);
-  }
-
-  /* Day 2 — Lavender / Plum */
-  .day-2 .day-stamp { background:#6B4E9B; color:#fff; }
-  .day-2 .level.wow {
-    background:linear-gradient(135deg, #B591D2 0%, #6B4E9B 100%) !important;
-    box-shadow:0 6px 16px rgba(107,78,155,.32);
-  }
-
-  /* Day 3 — Coral */
-  .day-3 .day-stamp { background:#C73838; color:#fff; }
-  .day-3 .level.wow {
     background:linear-gradient(135deg, #FF837C 0%, #C73838 100%) !important;
     box-shadow:0 6px 16px rgba(199,56,56,.3);
   }
 
-  /* Day 4 — Gold */
-  .day-4 .day-stamp { background:#8C6F08; color:#fff; }
+  /* Day 2 — Plum (book, contemplation, theory of mind) */
+  .day-2 .day-stamp { background:#553C7A; color:#fff; }
+  .day-2 .level.wow {
+    background:linear-gradient(135deg, #B591D2 0%, #553C7A 100%) !important;
+    box-shadow:0 6px 16px rgba(85,60,122,.32);
+  }
+
+  /* Day 3 — Sky (breath, calm, parasympathetic) */
+  .day-3 .day-stamp { background:#2C5F7A; color:#fff; }
+  .day-3 .level.wow {
+    background:linear-gradient(135deg, #5BB3D6 0%, #2C5F7A 100%) !important;
+    box-shadow:0 6px 16px rgba(44,95,122,.32);
+  }
+
+  /* Day 4 — Crimson (thermometer, intensity, the "red" zone) */
+  .day-4 .day-stamp { background:#7A1D1D; color:#fff; }
   .day-4 .level.wow {
-    background:linear-gradient(135deg, #E5BD1F 0%, #8C6F08 100%) !important;
-    box-shadow:0 6px 16px rgba(140,111,8,.3);
-  }
-  .day-4 .level.wow .level-tag { background:#CFF3EE !important; color:#268B83 !important; }
-  .day-4 .level.wow h4 { color:#FFF6BF !important; }
-
-  /* Day 5 — Forest Teal (deep, mysterious) */
-  .day-5 .day-stamp { background:#114641; color:#fff; }
-  .day-5 .level.wow {
-    background:linear-gradient(135deg, #268B83 0%, #114641 100%) !important;
-    box-shadow:0 6px 16px rgba(17,70,65,.35);
-  }
-
-  /* Day 6 — Crimson (deep red passion) */
-  .day-6 .day-stamp { background:#7A1D1D; color:#fff; }
-  .day-6 .level.wow {
     background:linear-gradient(135deg, #C73838 0%, #7A1D1D 100%) !important;
     box-shadow:0 6px 16px rgba(122,29,29,.32);
   }
 
-  /* Day 7 — Royal Plum (deep purple finish) */
+  /* Day 5 — Sun gold (silly dance, joy, energy) */
+  .day-5 .day-stamp { background:#8C6F08; color:#fff; }
+  .day-5 .level.wow {
+    background:linear-gradient(135deg, #E5BD1F 0%, #8C6F08 100%) !important;
+    box-shadow:0 6px 16px rgba(140,111,8,.3);
+  }
+  .day-5 .level.wow .level-tag { background:#CFF3EE !important; color:#268B83 !important; }
+  .day-5 .level.wow h4 { color:#FFF6BF !important; }
+
+  /* Day 6 — Forest teal (calm jar, settling, focus) */
+  .day-6 .day-stamp { background:#114641; color:#fff; }
+  .day-6 .level.wow {
+    background:linear-gradient(135deg, #268B83 0%, #114641 100%) !important;
+    box-shadow:0 6px 16px rgba(17,70,65,.35);
+  }
+
+  /* Day 7 — Royal Plum (heart, deep close) */
   .day-7 .day-stamp { background:#3F2C5A; color:#fff; }
   .day-7 .level.wow {
     background:linear-gradient(135deg, #6B4E9B 0%, #291D3B 100%) !important;
     box-shadow:0 6px 16px rgba(41,29,59,.35);
   }
 
-  /* Activity title tint per day (legacy, still useful in non-WOW contexts) */
-
-  /* 🔧 Srednje + 🌿 Lagano sit side-by-side beneath WOW */
   .levels-row {
     display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:4mm;
   }
@@ -628,63 +560,8 @@
   }
   .level.light { border-color:var(--teal-300); }
 
-  /* Day-specific accent on the day-stamp keeps WOW visually rooted in day theme */
-  /* (legacy day-stamp colours overridden by the Per-day theme block below) */
-
   .day-title-block h2 { font-size:20pt; line-height:1.05; margin-bottom:1.5mm; }
   .day-title-block p { color:var(--muted); font-size:10pt; margin:0; }
-
-  /* ---------- Activity card (compact — designed so 3 fit on A4 day page) ---------- */
-  .activity {
-    background:#fff; border:1px solid var(--plum-100); border-radius:16px;
-    padding:4.5mm 5.5mm; margin-bottom:3.5mm;
-    box-shadow:0 1px 4px rgba(63,44,90,.04);
-    page-break-inside:avoid; break-inside:avoid;
-  }
-  .activity h3 {
-    font-size:13pt; line-height:1.15; margin-bottom:2mm;
-  }
-  .chips { display:flex; flex-wrap:wrap; gap:1.5mm; margin-bottom:2mm; }
-  .chip {
-    display:inline-block; font-size:8pt; font-weight:700;
-    padding:1.5px 8px; border-radius:999px; letter-spacing:.02em;
-  }
-
-  .meta-grid {
-    display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.5mm;
-    margin-bottom:2.5mm;
-  }
-  .meta-cell {
-    background:var(--cream); border:1px dashed var(--plum-100);
-    border-radius:8px; padding:1.5mm 2.5mm;
-  }
-  .meta-cell .label { font-size:6.5pt; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--muted); font-weight:700; }
-  .meta-cell .value { font-size:9pt; font-weight:600; color:var(--plum-900); }
-
-  .activity h4 {
-    font-family:"Plus Jakarta Sans",sans-serif; font-weight:700;
-    font-size:9pt; color:var(--coral-700); margin:2mm 0 .5mm;
-    text-transform:uppercase; letter-spacing:.06em;
-  }
-  .activity p { font-size:9.5pt; line-height:1.45; margin-bottom:0; }
-
-  .versions { display:grid; grid-template-columns:1fr 1fr; gap:2mm; margin-top:2.5mm; }
-  .version {
-    border-radius:10px; padding:2mm 3mm; font-size:9pt; line-height:1.4;
-  }
-  .version.lighter { background:var(--teal-100); }
-  .version.harder  { background:var(--sun-100); }
-  .version .label { font-weight:700; font-size:7.5pt;
-    letter-spacing:.08em; text-transform:uppercase; margin-bottom:.5mm; display:block; }
-  .version.lighter .label { color:var(--teal-700); }
-  .version.harder .label { color:var(--sun-700); }
-
-  .note-parent {
-    margin-top:2.5mm; padding:2mm 3mm; background:var(--plum-100);
-    border-left:2px solid var(--plum-700); border-radius:6px;
-    color:var(--plum-900); font-size:9pt; font-style:italic; line-height:1.4;
-  }
 
   /* ---------- SOS page ---------- */
   .sos-list { display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:4mm; }
@@ -699,39 +576,28 @@
   .sos-bullet svg { width:14px; height:14px; }
   .sos-item p { margin:0; font-size:10.5pt; }
 
-  /* ---------- Closing page ----------
-     The closing section IS the page (uses .page.bleed so padding:0).
-     This guarantees the cream background fills all the way to A4 edges
-     instead of the negative-margin trick that left white slivers. */
+  /* ---------- Closing page ---------- */
   .page.closing {
     padding:0 !important;
     background:var(--cream);
   }
   .closing-inner {
     height:100%;
-    padding:18mm 18mm 14mm;
+    padding:14mm 16mm 10mm;
     display:flex; flex-direction:column; align-items:center;
     text-align:center;
     position:relative; overflow:hidden;
   }
   .closing-inner .body {
     flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;
-    position:relative; z-index:2;          /* sit above the glows */
+    position:relative; z-index:2;
+    padding-bottom:4mm;
   }
-  .closing-disclaimer {
-    margin-top:auto; padding-top:14mm;
-    max-width:170mm;
-    font-size:8pt; line-height:1.5;
-    color:var(--muted); text-align:center;
-    position:relative; z-index:2;          /* sit above the glows */
-  }
-  .closing-disclaimer strong { color:var(--plum-700); font-weight:700; }
-  /* Glow blobs are decorative — push behind everything else. */
   .closing .glow { z-index:0; }
   .closing .glow.cg-1 { top:-50mm; left:50%; transform:translateX(-50%);
-    width:200mm; height:120mm; background:var(--sun-100); filter:blur(50px); }
+    width:200mm; height:120mm; background:#FFE2E0; filter:blur(50px); }
   .closing .glow.cg-2 { bottom:-50mm; left:50%; transform:translateX(-50%);
-    width:200mm; height:120mm; background:var(--coral-100); filter:blur(50px); }
+    width:200mm; height:120mm; background:#E0CCEB; filter:blur(50px); }
   .closing .badge {
     display:inline-flex; align-items:center; gap:8px;
     background:var(--sun-300); color:var(--plum-900);
@@ -742,19 +608,19 @@
   .closing p { font-size:11pt; max-width:140mm; color:var(--muted); }
   .closing .stamp {
     margin-top:6mm; padding:5mm 8mm; border-radius:18px;
-    background:linear-gradient(135deg,var(--coral-500),var(--plum-700));
+    background:linear-gradient(135deg,#DC143C,#3F2C5A);
     color:#fff; font-family:"Baloo 2",sans-serif; font-weight:700; font-size:13pt;
-    box-shadow:0 10px 24px rgba(255,107,107,.25);
+    box-shadow:0 10px 24px rgba(220,20,60,.3);
   }
 
   /* ---------- Activity title color rotation per day ---------- */
   .day-1 .activity h3 { color:var(--coral-700); }
-  .day-2 .activity h3 { color:var(--sun-700); }
-  .day-3 .activity h3 { color:var(--teal-700); }
-  .day-4 .activity h3 { color:var(--plum-700); }
-  .day-5 .activity h3 { color:var(--coral-700); }
-  .day-6 .activity h3 { color:#A87000; }
-  .day-7 .activity h3 { color:var(--teal-700); }
+  .day-2 .activity h3 { color:var(--plum-700); }
+  .day-3 .activity h3 { color:#2C5F7A; }
+  .day-4 .activity h3 { color:#7A1D1D; }
+  .day-5 .activity h3 { color:#A87000; }
+  .day-6 .activity h3 { color:var(--teal-700); }
+  .day-7 .activity h3 { color:var(--plum-700); }
 </style>
 </head>
 <body>
@@ -766,33 +632,28 @@
     <span class="box" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg>
     </span>
-    Bez pozadinskih boja
+    No background colors
   </label>
   <button class="print-btn" id="download-btn" type="button" onclick="downloadPDF()">
-    ⬇ Download
+    ⬇ Save as PDF
   </button>
 </div>
 
 <script>
-  // Inject page numbers + "Zaštićeni sadržaj" watermark on every page.
-  // Last page (.closing) keeps the English variant — feels more weighty
-  // next to the bilingual legal notice block.
   (function injectMeta() {
     const run = () => {
       const pages = document.querySelectorAll('section.page');
       const total = pages.length;
       pages.forEach((page, i) => {
-        if (page.querySelector('.page-num')) return;     // idempotent
+        if (page.querySelector('.page-num')) return;
         const num = document.createElement('span');
         num.className = 'page-num';
-        num.textContent = `str. ${i + 1} / ${total}`;
+        num.textContent = `p. ${i + 1} / ${total}`;
         page.appendChild(num);
 
         const wm = document.createElement('span');
         wm.className = 'watermark';
-        wm.textContent = page.classList.contains('closing')
-          ? 'PROTECTED CONTENT'
-          : 'ZAŠTIĆENI SADRŽAJ';
+        wm.textContent = 'PROTECTED CONTENT';
         page.appendChild(wm);
       });
     };
@@ -805,12 +666,6 @@
 </script>
 
 <script>
-  // Switched from html2canvas (raster) to the browser's native print engine,
-  // which produces a TRUE vector PDF: text stays crisp at any zoom, file
-  // size drops from ~5 MB to ~500 KB, and the text becomes searchable.
-  //
-  // Trade-off: user picks "Save as PDF" as destination in the print dialog
-  // (one extra step) — but the quality jump is worth it.
   function downloadPDF() {
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => window.print());
@@ -823,60 +678,56 @@
 <!-- ============================================================== COVER -->
 <section class="page bleed cover">
 
-  <!-- Soft colour glows (replace the 4 radial-gradient stops on .cover) -->
   <div class="glow g-1"></div>
   <div class="glow g-2"></div>
   <div class="glow g-3"></div>
   <div class="glow g-4"></div>
 
-  <!-- Decorative confetti shapes (the brand logo motif scattered) -->
   <svg class="confetti c-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FFD93D" opacity=".8"/>
+    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FFD93D" opacity=".85"/>
   </svg>
   <svg class="confetti c-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" fill="#4ECDC4" opacity=".75"/>
+    <circle cx="12" cy="12" r="10" fill="#FFC0CB" opacity=".85"/>
   </svg>
   <svg class="confetti c-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FFFFFF" opacity=".55"/>
   </svg>
   <svg class="confetti c-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" fill="#FFD93D" opacity=".9"/>
+    <circle cx="12" cy="12" r="10" fill="#FF6B6B" opacity=".75"/>
   </svg>
   <svg class="confetti c-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FF6B6B" opacity=".55"/>
+    <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#B591D2" opacity=".75"/>
   </svg>
 
-  <!-- Top: brand mark + meta -->
   <div class="cover-top">
-    <span class="logo-pill" aria-label="BezEkrana">
+    <span class="logo-pill" aria-label="ScreenFree">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FF6B6B"/>
         <circle cx="18" cy="5" r="2" fill="#FFD93D"/>
         <circle cx="6" cy="18" r="1.5" fill="#4ECDC4"/>
       </svg>
-      BezEkrana
+      ScreenFree
     </span>
-    <div class="meta"><span class="dot"></span> 2–4 godine</div>
+    <div class="meta"><span class="dot"></span> ages 2–4</div>
   </div>
 
-  <!-- Hero -->
   <div class="cover-hero">
-    <h1 class="wordmark">BEZ<br/>EKRANA</h1>
-    <div class="week-number">★ Sedmični sistem #2</div>
-    <h2 class="theme-name">Tajne i<br/>otkrića</h2>
-    <p class="subtitle">7 dana jednostavnih aktivnosti za djecu od 2 do 4 godine.</p>
+    <h1 class="wordmark">SCREEN<br/>FREE</h1>
+    <div class="week-number">★ Weekly System #7</div>
+    <h2 class="theme-name">Big Feelings<br/>in a Little Body</h2>
+    <p class="subtitle">7 days of simple activities for children ages 2 to 4.</p>
   </div>
 
-  <!-- Bottom: pitch + url -->
   <div class="cover-bottom">
     <div class="pitch">
-      <strong style="color:var(--sun-300);">Sedam dana otkrivanja</strong>
-      — male tajne, sjenke, pjena i tragovi koje dijete otkriva svojim čulima.
-      Igre koje grade pažnju, finu motoriku i znatiželju, bez ekrana i bez komplikovane pripreme.
+      <strong style="color:var(--sun-300);">Seven tools for emotions</strong>
+      — from naming feelings on a face and breathing with a teddy, through a feelings
+      thermometer and a calm-down jar, to three things from the heart at bedtime.
+      Games that help your child notice, name, and regulate what they already feel.
     </div>
     <div class="url-tag">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      bezekrana.com
+      getscreenfree.com
     </div>
     <div class="cover-copy">© 2026 Prime Vector Solutions LLC</div>
   </div>
@@ -885,30 +736,31 @@
 <!-- ================================================================ INTRO -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Uvod</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Intro</span>
   </div>
 
-  <p class="h-eyebrow">Dobro došli</p>
-  <h1 class="h-display">Sedmični sistem #2</h1>
+  <p class="h-eyebrow">Welcome</p>
+  <h1 class="h-display">Weekly System #7</h1>
 
-  <p style="font-size:12pt; max-width:155mm;">Ova sedmica je posvećena otkrivanju. Kroz male tajne, sjenke, pjenu i tragove dijete uči ono što se ne nauči preko ekrana — kako da <strong>posmatra, dodiruje, sluša i zaista vidi</strong> svijet oko sebe. Svaka aktivnost je mali poziv u igru znatiželjom:</p>
+  <p style="font-size:12pt; max-width:155mm;">This week is dedicated to <strong>emotional literacy and self-regulation</strong>. The 2–4 age window is exactly when the amygdala is firing at full strength, the prefrontal cortex is just coming online, and your child has huge feelings they can't yet understand. <strong>Without tools</strong>, that looks like tantrums, biting, withdrawing. <strong>With tools</strong> — it becomes growth.</p>
 
-  <ul style="font-size:12pt; margin:5mm 0 8mm; columns:2; column-gap:8mm;">
-    <li>senzorno istraživanje</li>
-    <li>posmatranje i pažnju</li>
-    <li>finu motoriku</li>
-    <li>maštu i izražavanje</li>
-    <li>znatiželju i hrabrost</li>
-    <li>bliskost kroz zajedničko otkrivanje</li>
+  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted); margin-top:4mm;">Seven days that distill what's scattered across hundreds of academic studies — from &ldquo;<em>Name it to tame it</em>&rdquo; (Dan Siegel), through emotion coaching (Gottman) and polyvagal theory (Porges), to the gratitude practice from positive psychology. You don't need to know any of these names — the week works without them.</p>
+
+  <ul style="font-size:11.5pt; margin:5mm 0 5mm; columns:2; column-gap:8mm;">
+    <li>noticing feelings on a face</li>
+    <li>naming emotions (vocabulary)</li>
+    <li>regulation through the body (breath, movement)</li>
+    <li>awareness of intensity (thermometer)</li>
+    <li>focus and settling (the jar)</li>
+    <li>positive memory and attachment</li>
+    <li>theory of mind (others have feelings)</li>
+    <li>releasing energy + freezing</li>
   </ul>
 
-  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">Ne trebaju vam skupi materijali ni posebne pripreme. Dovoljna je čarapa, malo vode sa pjenom, par predmeta iz kuhinje — i odjednom svakodnevni trenuci postaju male avanture. Idealno za kupanje, popodne, ili svaki put kad dijete poseže za ekranom „iz dosade“.</p>
-
-  <div class="callout callout-plum" style="margin-top:14mm;">
-    <p style="font-size:14pt; font-weight:700; line-height:1.35; margin:0;">
-      Ovo nije lista zadataka.<br/>
-      Ovo je <strong>7 dana malih otkrića</strong> — gdje obična kašika postaje tajna, sjenka na zidu postaje igra, a pjena u kadi postaje misija.
+  <div class="callout-heart" style="border-radius:18px; padding:6mm 8mm; margin-top:3mm;">
+    <p style="font-size:11.5pt; line-height:1.55; margin:0;">
+      <strong>A note for the parent:</strong> this week isn't about making your child &ldquo;calm&rdquo; or &ldquo;in a good mood.&rdquo; <strong>All feelings are welcome</strong> — anger, sadness, fear too. The goal is to give your child the words and tools for what they already feel. Don't push for results — the seed is planted now, the harvest comes years later. What you measure across these seven days <strong>isn't a change in behavior, but moments of connection</strong>.
     </p>
   </div>
 </section>
@@ -916,40 +768,40 @@
 <!-- ============================================================ HOW TO USE -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Kako koristiti</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>How to use</span>
   </div>
 
-  <p class="h-eyebrow">Vodič</p>
-  <h1 class="h-display">Kako koristiti<br/>ovaj sistem</h1>
+  <p class="h-eyebrow">Guide</p>
+  <h1 class="h-display">How to use<br/>this system</h1>
 
   <div class="steps">
     <div class="step">
       <div class="num">01</div>
-      <h3>Otvorite dan</h3>
-      <p>Svaki dan donosi <strong>3 jednostavne aktivnosti</strong>.</p>
+      <h3>Tools build up</h3>
+      <p>The week moves in order: first vocabulary (1, 2), then settling (3), then awareness of intensity (4), then release (5), then focus (6), and finally connection (7).</p>
     </div>
     <div class="step">
       <div class="num">02</div>
-      <h3>Birajte prema trenutku</h3>
-      <p>Ne morate uraditi sve odjednom. Možete izabrati jednu, dvije ili sve tri — onda kada vam odgovara.</p>
+      <h3>Name it, don't shut it down</h3>
+      <p>When your child cries: &ldquo;I see you're sad.&rdquo; Then the tool. <strong>Name it before you fix it.</strong></p>
     </div>
     <div class="step">
       <div class="num">03</div>
-      <h3>Pratite dijete</h3>
-      <p>Igra traje koliko dijete pokazuje interes. Skratite, ponovite kasnije ili proširite ako uživa.</p>
+      <h3>Body first</h3>
+      <p>At ages 2–4, regulation moves through <strong>the body</strong> (breath, movement, touch), not through logic. Talking calms only later.</p>
     </div>
     <div class="step">
       <div class="num">04</div>
-      <h3>Bez pritiska</h3>
-      <p>Ako dijete taj dan nije raspoloženo — preskočite. Sistem služi da olakša dan, ne da stvara dodatni pritisak.</p>
+      <h3>A tantrum is practice</h3>
+      <p>Not every day works? That's a sign the week is <em>needed</em>, not that it failed. Come back tomorrow.</p>
     </div>
   </div>
 
   <div class="callout" style="margin-top:9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Najvažnije nije da sve bude savršeno.<br/>
-      <span style="color:var(--coral-700);">Najvažnije je da dijete dobije prostor za igru, kretanje, bliskost i istraživanje — bez ekrana.</span>
+      What matters most isn't a perfect performance.<br/>
+      <span style="color:var(--coral-700);">What matters is that your child feels — when things are hard, someone breathes with me, holds my tears, hears my heart.</span>
     </p>
   </div>
 </section>
@@ -957,140 +809,152 @@
 <!-- =============================================================== LEGEND -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Legenda</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Legend</span>
   </div>
 
-  <p class="h-eyebrow">Šta razvijamo</p>
-  <h1 class="h-display">Šta razvijamo<br/>kroz igru</h1>
+  <p class="h-eyebrow">What we develop</p>
+  <h1 class="h-display">What we develop<br/>through play</h1>
 
   <div class="legend">
     <div class="legend-item">
       <span class="legend-icon f-pokret">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M11 22l1-5-3-3 1-5 4 1 4 4"/></svg>
       </span>
-      <div><h4>Pokret</h4><p>Cijelo tijelo, koordinacija</p></div>
+      <div><h4>Movement</h4><p>Whole body, coordination</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-fine">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 1 1 4 0v6"/><path d="M13 11V4a2 2 0 1 1 4 0v9"/><path d="M17 13V7a2 2 0 1 1 4 0v8a7 7 0 0 1-7 7H9a5 5 0 0 1-5-5l-1-3a2 2 0 0 1 4-1l1 2v-6a2 2 0 1 1 4 0v5"/></svg>
       </span>
-      <div><h4>Fine ruke</h4><p>Šaka, prsti, preciznost</p></div>
+      <div><h4>Fine motor</h4><p>Hand, fingers, precision</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-paznja">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
       </span>
-      <div><h4>Pažnja</h4><p>Fokus, posmatranje</p></div>
+      <div><h4>Focus</h4><p>Attention, observation</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-govor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3a8.5 8.5 0 0 1 8.5 8.5z"/></svg>
       </span>
-      <div><h4>Govor</h4><p>Riječi, slušanje, imitacija</p></div>
+      <div><h4>Speech</h4><p>Words, listening, imitation</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-senzor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19 10l-4.5 3.1L16 19l-4-3-4 3 1.5-5.9L5 10l5.1-1.4z"/></svg>
       </span>
-      <div><h4>Senzorna igra</h4><p>Dodir, tekstura, miris</p></div>
+      <div><h4>Sensory play</h4><p>Touch, texture, smell</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-povezivanje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-.9a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
       </span>
-      <div><h4>Povezivanje</h4><p>Bliskost s roditeljem</p></div>
+      <div><h4>Bonding</h4><p>Closeness with parent</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-rjesavanje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 13c.5.5 1 1 1 2v1h6v-1c0-1 .5-1.5 1-2a7 7 0 0 0-4-13z"/></svg>
       </span>
-      <div><h4>Rješavanje</h4><p>Uzrok-posljedica, mali problemi</p></div>
+      <div><h4>Problem-solving</h4><p>Cause-effect, small puzzles</p></div>
     </div>
 
     <div class="legend-item">
       <span class="legend-icon f-masta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 13l.8 2.2 2.2.8-2.2.8L19 19l-.8-2.2L16 16l2.2-.8z"/><path d="M5 5l.7 2 2 .7-2 .7L5 10l-.7-1.6L2.3 7.7l2-.7z"/></svg>
       </span>
-      <div><h4>Mašta</h4><p>Kreativnost, role-play, ekspresija</p></div>
+      <div><h4>Imagination</h4><p>Creativity, role-play, expression</p></div>
     </div>
   </div>
 
-  <h3 style="margin-top:10mm; font-size:14pt;">Dodatne oznake na svakoj aktivnosti</h3>
-  <div class="meta-grid" style="margin-top:4mm;">
-    <div class="meta-cell"><div class="label">Priprema</div><div class="value">jednostavna</div></div>
-    <div class="meta-cell"><div class="label">Potrebno</div><div class="value">stvari iz kuće</div></div>
-    <div class="meta-cell"><div class="label">Tempo</div><div class="value">prema djetetu</div></div>
-    <div class="meta-cell"><div class="label">Nadzor</div><div class="value">obavezan</div></div>
+  <h3 style="margin-top:10mm; font-size:14pt;">Extra labels on each activity</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.5mm; margin-top:4mm;">
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Prep</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">simple</div>
+    </div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Materials</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">household items</div>
+    </div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Pace</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">child-led</div>
+    </div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;">
+      <div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Supervision</div>
+      <div style="font-size:9pt; font-weight:600; color:var(--plum-900);">required</div>
+    </div>
   </div>
 </section>
 
 <!-- =========================================================== WEEK OVERVIEW -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Pregled sedmice</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Week overview</span>
   </div>
 
-  <p class="h-eyebrow">Plan u jednom pogledu</p>
-  <h1 class="h-display">Pregled sedmice</h1>
+  <p class="h-eyebrow">The plan at a glance</p>
+  <h1 class="h-display">Week overview</h1>
 
-  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Sedam malih svjetova istraživanja — od tajnih predmeta u čarapi do sjenki na zidu. Svaki dan otvara po jedna nova „avantura otkrivanja“ kroz koju dijete istovremeno razvija pažnju, senzornu osjetljivost, finu motoriku, maštu i govor.</p>
+  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Seven tools for big feelings in a little body — from spotting them on a face (Day 1) to three things from the heart at bedtime (Day 7). The week builds tools <strong>cumulatively</strong>: first vocabulary, then settling through the body, then awareness of intensity, then releasing energy, then focus, and finally connection through the positive — an order that follows the clinical protocol for emotional education in young children.</p>
 
   <div class="week-list">
-    <div class="day"><div class="day-num">1</div><div class="day-title">Tajni paket</div></div>
-    <div class="day"><div class="day-num">2</div><div class="day-title">Pjena planina</div></div>
-    <div class="day"><div class="day-num">3</div><div class="day-title">Veliko preslagivanje</div></div>
-    <div class="day"><div class="day-num">4</div><div class="day-title">Tragovi stopala</div></div>
-    <div class="day"><div class="day-num">5</div><div class="day-title">Lov na sjenku</div></div>
-    <div class="day"><div class="day-num">6</div><div class="day-title">Kotrljajuća staza</div></div>
-    <div class="day"><div class="day-num">7</div><div class="day-title">Mala pozornica</div></div>
+    <div class="day"><div class="day-num">1</div><div class="day-title">Three Faces in the Mirror</div></div>
+    <div class="day"><div class="day-num">2</div><div class="day-title">Feelings Storybook</div></div>
+    <div class="day"><div class="day-num">3</div><div class="day-title">Breathing with Teddy</div></div>
+    <div class="day"><div class="day-num">4</div><div class="day-title">Feelings Thermometer</div></div>
+    <div class="day"><div class="day-num">5</div><div class="day-title">Silly Dance</div></div>
+    <div class="day"><div class="day-num">6</div><div class="day-title">Calm-Down Jar</div></div>
+    <div class="day"><div class="day-num">7</div><div class="day-title">Three Things from the Heart</div></div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 1 -->
 <section class="page day day-1">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 1 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 1 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">1</div>
     <div class="day-title-block">
-      <h2>Tajni paket</h2>
-      <p>Nešto je unutra — moraš otkriti samo dodirom.</p>
+      <h2>Three Faces in the Mirror</h2>
+      <p>Happy, sad, angry — 3 minutes, 50 years.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Nešto je unutra. Ne vidi se. Moraš otkriti.</p>
+    <p>The face shows what we feel first. The word comes after.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Tajna u ruci</h3>
-    <div class="needs"><strong>Potrebno:</strong> čarapa ili mala vrećica, 3–5 poznatih predmeta iz kuće.</div>
-    <h4>Kako se igra</h4>
-    <p>Unutra je skriven predmet koji se ne smije gledati. Dijete ubacuje ruku i istražuje polako. Pomaži pitanjima: „Šta osjećaš?“ „Je li tvrdo ili mekano?“ „Ima li nešto što se pomjera?“ „Da li si ovo već koristio?“ Kad pogodi: „Bravo! Otkrio si tajnu!“</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Three Faces in the Mirror</h3>
+    <div class="needs"><strong>Materials:</strong> a mirror (or just face to face), 5 minutes.</div>
+    <h4>How to play</h4>
+    <p>Stand in front of a mirror (or sit face to face). Say: &ldquo;Let's make a happy face.&rdquo; Make it big — wide smile, bright eyes. Your child copies. Then: &ldquo;Now a sad face.&rdquo; Drooping corners, slumped shoulders. Then: &ldquo;Now an angry face.&rdquo; Furrowed brow, clenched teeth. No explanation, no story — <strong>just face + word</strong>. You can add surprised, tired, scared. Keep it short, 5 minutes — repeat throughout the day. Imitating expressions activates mirror neurons — for a moment your child actually feels that emotion as a safe, controlled exposure. Three minutes today → words they'll use for the next 50 years.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Nađi ono što tražim</h3>
-      <p>Stavi 2–3 predmeta unutra. „Nađi kašiku.“ „Gdje je auto?“ Ako pogriješi — vrati i pokušaj ponovo, bez ispravljanja, samo igra.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Guess Which Face</h3>
+      <p>You make a face without speaking. Your child guesses: &ldquo;Happy? Sad? Angry?&rdquo; Then switch — your child makes a face, you guess. Practice in reading other people's feelings on their face — the foundation of empathy.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Izvadi i imenuj</h3>
-      <p>Dijete jednostavno izvadi predmet i kaže šta je. „Šta si našao?“ „Gdje to koristimo?“ Razgovor o predmetima.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Face Like Mama</h3>
+      <p>Just two faces: happy and sad. You make it, your child copies. No guessing, no talking — just imitation. For younger children, copying one of your expressions is enough to feel what it means.</p>
     </div>
   </div>
 </section>
@@ -1098,40 +962,40 @@
 <!-- ================================================================ DAY 2 -->
 <section class="page day day-2">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 2 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 2 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">2</div>
     <div class="day-title-block">
-      <h2>Pjena planina</h2>
-      <p>Igračke su nestale — sakrivene su u oblacima pjene.</p>
+      <h2>Feelings Storybook</h2>
+      <p>The picture has a face too — not just an action.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Igračke su nestale. Sakrivene su u pjeni.</p>
+    <p>How is she feeling in this picture?</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Spašavanje iz pjene</h3>
-    <div class="needs"><strong>Potrebno:</strong> voda, malo šampona ili sapuna, činija ili kada, par igračaka.</div>
-    <h4>Kako se igra</h4>
-    <p>Napravite gustu pjenu mućkanjem vode i šampona. Sakrij igračke u pjenu. Dijete ih traži rukama. Pomaži glasovima: „Gdje je zeko?“ „Možeš li ga pronaći?“ „Osjeti rukom… nešto je tu!“ Kad pronađe: „Bravo! Spasio si ga!“</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>What Is the Character Feeling?</h3>
+    <div class="needs"><strong>Materials:</strong> any picture book from your house.</div>
+    <h4>How to play</h4>
+    <p>Instead of following the plot, on each page ask one question: &ldquo;How is she feeling in this picture?&rdquo; Your child answers (or points to their own face if they don't have the word). You name it and stretch it out: &ldquo;Yes, she looks sad. See, she has tears. Why do you think?&rdquo; If your child doesn't know — you offer: &ldquo;Maybe because she lost her toy.&rdquo; This is dialogic reading focused on the <strong>emotional category</strong>. Studies show that children whose parents often talk about characters' feelings develop significantly better <strong>theory of mind</strong> by age 4 — the ability to understand that other people have thoughts and feelings different from their own. The same book you've read 50 times reveals an entirely new layer.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Pronađi i razdvoji</h3>
-      <p>Nađene igračke slaže u drugu posudu po pravilu. „Prvo sve male.“ „Sad samo auta.“ „Sad sve crveno.“ Vježba sortiranja kroz osjećaj uspjeha.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>What Now? What Next?</h3>
+      <p>Follow one character across a few pages. Ask: &ldquo;How did she feel at the start? What changed? How does she feel now?&rdquo; Practice tracking an emotion through time.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Igra u pjeni</h3>
-      <p>Dijete samo miješa, pere ruke i posmatra pjenu. Bez igračaka — samo senzorno istraživanje. Pričajte o tome kako je pjena meka, lagana, kako se topi.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Happy or Sad?</h3>
+      <p>Two categories, nothing more. You show a page: &ldquo;Happy or sad?&rdquo; Your child points. For a younger child this is enough — the foundation you build on later.</p>
     </div>
   </div>
 </section>
@@ -1139,40 +1003,40 @@
 <!-- ================================================================ DAY 3 -->
 <section class="page day day-3">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 3 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 3 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">3</div>
     <div class="day-title-block">
-      <h2>Veliko preslagivanje</h2>
-      <p>Sve ide iz jednog mjesta na drugo — iznova i iznova.</p>
+      <h2>Breathing with Teddy</h2>
+      <p>Teddy rides up and down.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Sve ide iz jednog mjesta na drugo.</p>
+    <p>Belly lifts teddy up. Then sets him down. Slowly.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Premještanje</h3>
-    <div class="needs"><strong>Potrebno:</strong> 2–3 posude, šolja ili kašika, voda ili veći predmeti (krupna tjestenina, kocke, čepovi).</div>
-    <h4>Kako se igra</h4>
-    <p>Dijete presipa ili prebacuje sadržaj iz jedne posude u drugu — pa nazad. Ritam i ponavljanje su moć. Pomaži glasom: „Punimo… sad praznimo… opet!“ „Je li puna ili prazna?“ „Gdje ide sad?“ Mogu se mijenjati posude i alati za beskonačnu varijaciju.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Teddy on the Belly</h3>
+    <div class="needs"><strong>Materials:</strong> a small teddy bear (or any soft stuffed animal), a place to lie on your back (bed, floor, blanket).</div>
+    <h4>How to play</h4>
+    <p>Your child lies on their back. Place a small teddy on their belly. &ldquo;See teddy? He loves to ride up and down on your belly. Breathe in deep — up. Now slowly let it out — down.&rdquo; Take 5–6 breaths together. You can sing slowly: &ldquo;Uuup... dooown...&rdquo; Then switch — teddy rides on your belly while your child watches. <strong>A slow exhale activates the parasympathetic nervous system</strong> — it physiologically calms. The most powerful part: the word <strong>&ldquo;teddy&rdquo;</strong> becomes a tool for future moments of meltdown. Months later, when your child is in a tantrum, that name calls up the learned settling response.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Tačno prebacivanje</h3>
-      <p>„Prebaci sve u ovu posudu.“ „Pazi da ne prospemo.“ Možeš dodati ritam: sporo, brzo, pauza. Vježba precizne motorike i samokontrole.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Counting Breaths</h3>
+      <p>Your child holds teddy on their belly. You count: &ldquo;One... two... three...&rdquo; Then your child counts their own breaths — how many can they take quietly to the goal? Practice in attention and breath control at the same time.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Rukama</h3>
-      <p>Bez kašike ili šolje — samo prebacivanje rukama. Mlađe dijete istražuje teksturu i koordinaciju ruku. Imenujte šta dolazi u ruke.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Teddy Sleeps</h3>
+      <p>No technique. Your child lies down, teddy on the belly, you watch together as he rises and falls. Don't try to do anything — just notice. Plenty for very young children to feel connected to their breath.</p>
     </div>
   </div>
 </section>
@@ -1180,40 +1044,40 @@
 <!-- ================================================================ DAY 4 -->
 <section class="page day day-4">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 4 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 4 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">4</div>
     <div class="day-title-block">
-      <h2>Tragovi stopala</h2>
-      <p>Neko je prošao ovuda. Slijedi trag i otkrij gdje vodi.</p>
+      <h2>Feelings Thermometer</h2>
+      <p>A little angry. Big angry. All angry.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Neko je prošao ovuda. Prati ga.</p>
+    <p>A feeling can be small. A feeling can be big.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Putanja kroz kuću</h3>
-    <div class="needs"><strong>Potrebno:</strong> papiri ili kartončići za stopala, ljepljiva traka, malo iznenađenje na kraju.</div>
-    <h4>Kako se igra</h4>
-    <p>Iscrtaj ili izrezi stopa od papira i zalijepi tragove kroz stan — od dnevne sobe ka kuhinji, oko stola, do hodnika. Dijete prati. Glasi: „Gdje vode?“ „Idemo dalje… još jedan!“ „Šta nas čeka na kraju?“ Na kraju ga čeka mala nagrada — nalepnica, voćka, omiljena igračka.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Draw the Thermometer</h3>
+    <div class="needs"><strong>Materials:</strong> paper; markers (blue, yellow, orange, red).</div>
+    <h4>How to play</h4>
+    <p>On a piece of paper draw a simple vertical thermometer — bottom to top, three or four levels. Bottom: <strong>calm</strong> (blue, a flat line). Middle: <strong>a little upset</strong> (yellow, a small wave). Higher: <strong>very upset</strong> (orange, zigzag). Top: <strong>explosion</strong> (red, a star). First show it on yourself: &ldquo;Right now I'm here (at the bottom). I'm calm.&rdquo; Then improvise situations: &ldquo;Where do you think I am when somebody knocks down my block tower?&rdquo; Your child points. &ldquo;And you? Where are you right now?&rdquo; This gives your child a visual language for <strong>intensity</strong> of feeling — which is harder than naming the emotion itself. A 2-year-old experiences everything as 100%; the thermometer introduces nuance. You also get a tool for future moments: &ldquo;Where are you on the thermometer right now?&rdquo;</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Različiti pokreti</h3>
-      <p>Na pojedinim tragovima dodaj zadatak: „Ovdje skoči.“ „Ovdje puzi.“ „Ovdje idi sporo.“ „Ovdje se okreni!“ Mijenjaj ritam pa staza postaje izazov.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>When Is Mama on Red?</h3>
+      <p>Talk through situations from your day: &ldquo;This morning when the phone rang a bunch of times — I think I was on orange.&rdquo; &ldquo;And you, when daddy took the shovel?&rdquo; Your child links a memory to a level. Practice in reflection.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Kratka ruta</h3>
-      <p>Samo 4–5 tragova u jednoj sobi koji vode do skrivene igračke. Manje koraka, više pohvala usput.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Show the Color</h3>
+      <p>No drawing. Three pieces of paper: blue, yellow, red. You ask: &ldquo;How are you feeling right now?&rdquo; Your child points to a color. Simpler for younger children when there's no complex scale.</p>
     </div>
   </div>
 </section>
@@ -1221,40 +1085,40 @@
 <!-- ================================================================ DAY 5 -->
 <section class="page day day-5">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 5 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 5 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">5</div>
     <div class="day-title-block">
-      <h2>Lov na sjenku</h2>
-      <p>Na zidu nešto se pomjera — pokušaj je uhvatiti.</p>
+      <h2>Silly Dance</h2>
+      <p>Then freeze! Don't move!</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Na zidu se nešto pomjera.</p>
+    <p>The body comes out — then stops. Then again.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Sjenke koje bježe</h3>
-    <div class="needs"><strong>Potrebno:</strong> baterijska lampa (ili lampa telefona), zamračena soba, ruka ili igračka za sjenke.</div>
-    <h4>Kako se igra</h4>
-    <p>Zatamni sobu i upali lampu. Pravi sjenke rukom (zec, ptica, pas) ili igračkom i pomjeraj ih po zidu. Dijete pokušava da ih uhvati. „Uhvatit ćeš je?“ „Gdje je pobjegla?“ „Brzo, ide gore!“ Mijenjaj brzinu i smjer da bude izazov.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Dance and Freeze</h3>
+    <div class="needs"><strong>Materials:</strong> any fast, happy music.</div>
+    <h4>How to play</h4>
+    <p>Turn on the music. &ldquo;Let's do a silly dance!&rdquo; Wave your arms, legs, head, tongue, all at once. No rules, no style. Your child copies you or makes their own. Then <strong>stop the music</strong> — &ldquo;FREEZE!&rdquo; Stand like statues 3–5 seconds. Then move again. Then freeze again. Ending: lie on the floor and &ldquo;melt.&rdquo; The combo of physical activation and intentional deactivation (&ldquo;freeze&rdquo;) is practice in <strong>interoception</strong> — the ability to feel your own body. Interoception is the foundation of self-regulation. Each &ldquo;freeze&rdquo; teaches your child to notice the difference between movement and stillness, which is the precursor to noticing the difference between &ldquo;I'm angry&rdquo; and &ldquo;I'm calm.&rdquo; It looks like pure laughter, and it's actually a technique used by child therapists.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Prati sjenku</h3>
-      <p>Dijete prati sjenku rukom ili tijelom. „Ako sjenka ide lijevo, ti ideš lijevo.“ Vježba praćenja, koordinacije i reakcije.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Freeze-Game Rules</h3>
+      <p>Add rules: &ldquo;Freeze like a frog!&rdquo; &ldquo;Freeze with your hands up!&rdquo; &ldquo;Freeze on one foot!&rdquo; Your child plans the move before stopping — practice in self-control.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Gledaj i prati</h3>
-      <p>Mlađa djeca samo posmatraju i prate pokret očima. Imenuj: „Sjenka ide!“ „Sjenka stoji.“ „Mala sjenka, velika sjenka.“</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Fast–Slow</h3>
+      <p>No music, no freeze. Just &ldquo;fast!&rdquo; then &ldquo;slow!&rdquo; Run, then walk like a snail. Your child learns that movement can be fast or slow — the precursor to pacing themselves.</p>
     </div>
   </div>
 </section>
@@ -1262,40 +1126,40 @@
 <!-- ================================================================ DAY 6 -->
 <section class="page day day-6">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 6 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 6 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">6</div>
     <div class="day-title-block">
-      <h2>Kotrljajuća staza</h2>
-      <p>Nešto ide dolje. Šta će se desiti? Hajde da vidimo.</p>
+      <h2>Calm-Down Jar</h2>
+      <p>The glitter settles. And so do I.</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Nešto ide dole. Šta će se desiti?</p>
+    <p>It swirls. Then slowly settles.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Pusti i gledaj</h3>
-    <div class="needs"><strong>Potrebno:</strong> knjige ili kutije za podlogu, karton ili daska kao tobogan, autići i loptice.</div>
-    <h4>Kako se igra</h4>
-    <p>Napravite stazu — položite karton na 2–3 knjige da napravite nagib, ili oslonite na stolicu. Dijete pušta autiće, lopte i predmete niz stazu. Glasi: „Hoće li ići brzo ili sporo?“ „Ko je brži?“ „Pokušaj opet!“ Dva auta u utrku — „Ko je pobijedio?“</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Calm-Down Jar</h3>
+    <div class="needs"><strong>Materials:</strong> a clear jar or screw-top plastic bottle; warm water; 1 spoonful of liquid glue or glycerin; a few drops of food coloring (blue or purple); a handful of fine glitter or paper confetti.</div>
+    <h4>How to play</h4>
+    <p>Fill the jar 2/3 full with warm water. Add a spoonful of liquid glue (or glycerin), a few drops of color (blue/purple — calming), a handful of glitter. Close it and <strong>seal the lid shut</strong> (safety first). Shake — the glitter swirls and settles over 1–2 minutes. Your child watches, holds the jar, focuses on the settling. Visual focus on slow settling activates outward attention — which interrupts the inner emotional whirl. Plus, settling is a metaphor your child <strong>physically understands</strong>: &ldquo;When I'm upset, my feelings swirl. If I wait, they settle.&rdquo; An abstract idea a 3-year-old can literally see. <strong>The jar stays in the house for months as a tool</strong> — your child reaches for it themselves when they feel like it's too much.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Promijeni stazu</h3>
-      <p>Mijenjajte nagib (više knjiga = strmije) i visinu. Pričajte o tome šta se mijenja: „Sad ide sporije.“ „Sad pravo leti!“ Učenje uzroka i posljedice.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Watch Until It Settles</h3>
+      <p>You shake the jar. Your child waits and says &ldquo;Stop!&rdquo; when all the glitter has settled to the bottom. Patience + visual return of attention. You can add: &ldquo;How do you feel now?&rdquo; — your child often answers &ldquo;calm.&rdquo;</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Jedna linija</h3>
-      <p>Jednostavna staza, jedna lopta ili autić, ponavljanje. Mlađa djeca obožavaju ritam puštaj-pa-vrati. „Opet?“ „Hajde!“</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Hold the Jar</h3>
+      <p>No shaking. Your child holds the jar in their lap and just looks at it. A quiet, calming moment — perfect before bed or after a hard situation.</p>
     </div>
   </div>
 </section>
@@ -1303,40 +1167,40 @@
 <!-- ================================================================ DAY 7 -->
 <section class="page day day-7">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>Dan 7 / 7</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>Day 7 / 7</span>
   </div>
 
   <div class="day-header">
     <div class="day-stamp">7</div>
     <div class="day-title-block">
-      <h2>Mala pozornica</h2>
-      <p>Svi gledaju. Tvoj je red — pokaži šta znaš.</p>
+      <h2>Three Things from the Heart</h2>
+      <p>It made me happy when...</p>
     </div>
   </div>
 
   <div class="story">
-    <p>Svi gledaju. Tvoj je red.</p>
+    <p>Three small joys. The whole day.</p>
   </div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Moj nastup</h3>
-    <div class="needs"><strong>Potrebno:</strong> ćebe ili tepih kao „bina“, jastuk umjesto stolice, par igračaka u publici.</div>
-    <h4>Kako se igra</h4>
-    <p>Napravite scenu: ćebe na podu kao bina, jastuk za sjedenje, plišanci poređani u publiku. Dijete izvodi tačku po izboru — pjeva, pleše, glumi, priča priču. Pitaj: „Šta ćeš danas pokazati?“ „Ko dolazi na predstavu?“ Aplauz na kraju, „Bravo!“ Možeš snimiti telefonom za roditelje da poslije gledaju (samo nakratko, ne ekran tokom igre).</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Three Things in My Lap</h3>
+    <div class="needs"><strong>Materials:</strong> your lap, quiet, 5 minutes before bed.</div>
+    <h4>How to play</h4>
+    <p>Toward the end of the day, sit with your child in your lap or beside you: &ldquo;Let's tell each other three things from the heart.&rdquo; You start: &ldquo;It made me happy when you hugged me this morning.&rdquo; &ldquo;I laughed when you said the dog has a mustache.&rdquo; &ldquo;I'm proud that you put your shoes on by yourself.&rdquo; Then your child: &ldquo;What about you? What's in your heart today?&rdquo; They say as much as they know, as much as they want. If they don't know, you help: &ldquo;Maybe when we ate ice cream?&rdquo; <strong>No pressure, no &ldquo;right answers.&rdquo;</strong> An adaptation of the &ldquo;highs and lows&rdquo; family ritual — proven to be linked to secure attachment. Focus on the positive: at 2–4, positive memories are easier to process before sleep. It becomes a family ritual that survives long after this week.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Kratke uloge</h3>
-      <p>Ti dodjeljuješ uloge na rotaciji: „Sad si pjevač.“ „Sad si učitelj koji uči mečku.“ „Sad si doktor.“ Vježba zamišljanja sebe u različitim ulogama.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>What's in Your Heart?</h3>
+      <p>No list from you. You ask your child first: &ldquo;What was the best part of today?&rdquo; Then you answer the same question. Practice in reciprocity — I hear you, you hear me.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Igra za plišance</h3>
-      <p>Bez očekivanja od roditelja — dijete igra samo za svoje igračke koje je posložio. Tihi nastup za plišanu publiku, bez pritiska.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>One Thing</h3>
+      <p>Just one thing. &ldquo;What was the best part of today?&rdquo; Your child says a word or two. You expand: &ldquo;Yes, I remember how you laughed at the park.&rdquo; The simplest version, perfect for very tired or younger children.</p>
     </div>
   </div>
 </section>
@@ -1344,30 +1208,30 @@
 <!-- =================================================================== SOS -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #2 · bezekrana.com</span>
-    <span>SOS ideje</span>
+    <span class="brand">SCREENFREE · Weekly System #7 · getscreenfree.com</span>
+    <span>SOS ideas</span>
   </div>
 
-  <p class="h-eyebrow">Spremne za hitne trenutke</p>
-  <h1 class="h-display small">SOS ideje<br/>kada dijete traži ekran</h1>
+  <p class="h-eyebrow">Ready for in-the-moment</p>
+  <h1 class="h-display small">SOS ideas<br/>when your child asks for a screen</h1>
 
-  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">Kada osjetite da dijete traži ekran iz dosade, navike ili potrebe za usmjerenjem, pokušajte brzo prebaciti pažnju na neku od ovih mini ideja:</p>
+  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">When your child is on the <strong>orange or red</strong> thermometer — a screen doesn't calm, it just switches the channel. These tools bring your child back into their body and back to you. Name it before you fix it:</p>
 
   <div class="sos-list">
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da nađemo nešto plavo.“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Možeš li mi donijeti loptu?“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Da li ćemo hodati kao medo?“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da napravimo tunel.“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Možeš li ubaciti ove predmete u kutiju?“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Da li želiš da zajedno čitamo?“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da sakrijemo medu i nađemo ga.“</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Da li ćeš mi pomoći da složim peškire?“</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;I see you're angry. Show me how big.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Put teddy on your belly — breathe.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Shake the jar — let's watch together.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Show me a happy face.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Let's do a silly dance!&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Freeze! Three seconds.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;What's in your heart right now?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Breathe with me — up, down.&rdquo;</p></div>
   </div>
 
-  <div class="callout callout-teal" style="margin-top:8mm;">
+  <div class="callout-heart" style="margin-top:8mm; border-radius:18px; padding:7mm 9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Ne morate svaki put „savršeno zamijeniti ekran“.<br/>
-      Dovoljno je da imate <strong>spremnu ideju</strong> koja preusmjerava trenutak.
+      Tantrums aren't a failure of the week — they're the reason the week exists.<br/>
+      <strong>Name it before you fix it.</strong>
     </p>
   </div>
 </section>
@@ -1379,33 +1243,33 @@
     <div class="glow cg-2"></div>
 
     <div class="body">
-      <div class="badge">⭐ Završili ste sedmicu</div>
-      <h2>Bravo za još jednu sedmicu bez ekrana</h2>
-      <p>Ako niste stigli uraditi sve aktivnosti — to je potpuno u redu. Ovaj sistem nije tu da vas optereti, nego da vam olakša svakodnevicu i ponudi gotove ideje za igru.</p>
-      <p style="margin-top:6mm;">Možete ponoviti omiljene aktivnosti, sačuvati ovu sedmicu za kasnije, ili preći na <strong>naredni sedmični sistem</strong>.</p>
+      <div class="badge">⭐ You finished the week</div>
+      <h2>Bravo for another screen-free week</h2>
+      <p>If you didn't get to every activity — that's completely fine. This week left <strong>tools</strong> in your house: a teddy for breathing, a thermometer on the wall, a calm-down jar on the shelf, the three-things-from-the-heart ritual at bedtime.</p>
+      <p style="margin-top:3mm;">They aren't going anywhere. You come back to them when you need to — today, tomorrow, a year from now. Or move on to the <strong>next weekly system</strong>.</p>
 
       <div class="stamp">
-        Malo manje ekrana. Malo više igre. Malo više bliskosti.
+        Name it before you fix it. Breathe before you speak.
       </div>
     </div>
 
     <div class="legal-notice">
       <p class="legal-safety">
-        <strong>Sigurnost prije svega.</strong> Sav sadržaj je informativnog i edukativnog karaktera. Sve aktivnosti zahtijevaju aktivan nadzor odrasle osobe; roditelj/staratelj je u potpunosti odgovoran za sigurnost djeteta tokom igre. Aktivnosti sa vodom, ledom, kanapom ili sitnim predmetima provoditi isključivo uz neprekidan nadzor.
+        <strong>Safety first.</strong> All content is informational and educational. Every activity requires active adult supervision; the parent or guardian is fully responsible for the child's safety during play. The calm-down jar must have a <strong>tightly sealed lid</strong> — glitter and glue are not safe in the mouth. For ongoing emotional dysregulation outside typical developmental ranges, consult a child psychologist.
       </p>
 
       <div class="legal-cols">
         <div>
-          <h4>Pravna napomena</h4>
-          <p>Ovaj materijal je zaštićen autorskim pravima i predstavlja vlasništvo kompanije <strong>Prime Vector Solutions LLC, USA</strong>. Svako neovlašteno kopiranje, dijeljenje, distribuiranje ili prodaja ovog sadržaja — djelimično ili u cijelosti — strogo je zabranjeno bez prethodnog pismenog odobrenja. Kršenje ovih prava može rezultirati pravnim postupkom, uključujući novčane kazne i zahtjeve za naknadu štete, u skladu sa zakonima Sjedinjenih Američkih Država i međunarodnim propisima. Ovaj materijal se aktivno prati u cilju sprječavanja neovlaštene distribucije.</p>
-        </div>
-        <div>
           <h4>Legal Notice</h4>
           <p>This material is protected by copyright and is the intellectual property of <strong>Prime Vector Solutions LLC, USA</strong>. Any unauthorized copying, sharing, distribution, or resale of this content — in whole or in part — is strictly prohibited without prior written consent. Violation of these terms may result in legal action, including financial penalties and claims for damages, in accordance with United States and international intellectual property laws. This material is actively monitored for unauthorized distribution.</p>
         </div>
+        <div>
+          <h4>Personal Use Only</h4>
+          <p>The PDF you are reading is licensed to a single household for personal, non-commercial use. Sharing the file with other families, posting it online, uploading it to file-sharing services, or using any part of it commercially without our written permission is prohibited. Each PDF may be watermarked and tracked. To request commercial use, school/daycare licensing, or republication rights, contact us at <strong>support@getscreenfree.com</strong>.</p>
+        </div>
       </div>
 
-      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. Sva prava zadržana. · All rights reserved.</p>
+      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. All rights reserved.</p>
     </div>
   </div>
 </section>

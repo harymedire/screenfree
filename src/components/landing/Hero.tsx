@@ -51,18 +51,18 @@ export function Hero() {
           <div className="relative animate-float">
             <div className="rounded-bubble bg-white shadow-soft p-6 rotate-[-3deg]">
               <div className="rounded-2xl bg-gradient-to-br from-coral-100 to-sun-100 p-6 mb-4">
-                <div className="text-xs font-bold uppercase tracking-wide text-coral-700">Sedmični sistem #1</div>
-                <h3 className="font-display text-2xl text-plum-900 mt-1">Moć običnih stvari</h3>
+                <div className="text-xs font-bold uppercase tracking-wide text-coral-700">Weekly System #1</div>
+                <h3 className="font-display text-2xl text-plum-900 mt-1">The power of ordinary things</h3>
                 <p className="text-sm text-plum-700 mt-2">
-                  7 dana u kojima dijete zaboravi na ekran.
+                  7 days where the screen never crosses their mind.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { day: "Pon", title: "Tajna misija: Boje" },
-                  { day: "Uto", title: "Tunel za spašavanje" },
-                  { day: "Sri", title: "Riječ dana (tajna riječ)" },
-                  { day: "Čet", title: "Mini kuhar" },
+                  { day: "Mon", title: "Secret mission: Colors" },
+                  { day: "Tue", title: "Rescue tunnel" },
+                  { day: "Wed", title: "Word of the day (the secret word)" },
+                  { day: "Thu", title: "Mini chef" },
                 ].map((d, i) => (
                   <div key={i} className="rounded-xl bg-cream border-2 border-plum-100 p-3">
                     <div className="text-xs font-bold text-plum-500">{d.day}</div>
@@ -74,7 +74,7 @@ export function Hero() {
               </div>
             </div>
             <div className="absolute -bottom-6 -right-4 rounded-2xl bg-teal-500 text-white px-4 py-2 shadow-playful font-bold rotate-[6deg] animate-wiggle">
-              7 dana aktivnosti
+              7 days of activities
             </div>
           </div>
         </div>

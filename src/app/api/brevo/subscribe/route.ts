@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { subscribeNewUser } from "@/lib/brevo";
 
-// Adds a newly-registered user to the Brevo "bezekrana" free list (#29).
+// Adds a newly-registered user to the Brevo "ScreenFree free" list (#29).
 // Called from RegisterForm right after a successful supabase.auth.signUp().
 // Idempotent and silently swallows Brevo errors so a marketing-list hiccup
 // never blocks signup.

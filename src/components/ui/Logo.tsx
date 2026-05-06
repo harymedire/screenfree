@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/cn";
 
 // Brand mark: coral star with sun + teal accents.
 // Sized via className (e.g. "h-9 w-9"). Background must be set by the parent if needed.
-export function Logo({ className, title = "BezEkrana" }: { className?: string; title?: string }) {
+export function Logo({ className, title = "ScreenFree" }: { className?: string; title?: string }) {
   return (
     <svg
       width="40"

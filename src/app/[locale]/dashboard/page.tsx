@@ -35,7 +35,7 @@ export default async function DashboardHome({
   const typedPurchases = (purchases ?? []) as Pick<OneTimePurchase, "pack_id">[];
 
   // "Real" recurring subscription requires a provider-side subscription_id —
-  // status alone isn't enough because admin's "Dodaj sedmicu" flips a one-time
+  // status alone isn't enough because admin's "Add week" action flips a one-time
   // user to status="active" without creating an actual recurring billing
   // relationship. We use subscription_id as the authoritative signal so those
   // users still see the upgrade CTA. "canceled" status also shows the CTA so
@@ -66,7 +66,7 @@ export default async function DashboardHome({
       {noSubAndNoPurchases && (
         <div className="rounded-bubble bg-gradient-to-br from-coral-500 to-coral-400 text-white p-6 md:p-8 shadow-soft">
           <h2 className="font-display text-2xl mb-2">{t("noSubscription")}</h2>
-          <p className="text-white/90 mb-5">Pretplati se i otključaj prvi paket odmah.</p>
+          <p className="text-white/90 mb-5">Subscribe and unlock your first pack right now.</p>
           <Link href="/pricing">
             <Button variant="yellow">{t("subscribeCta")}</Button>
           </Link>
@@ -80,7 +80,7 @@ export default async function DashboardHome({
         hasActiveSub={hasRecurringSub}
         currentWeekLabel={t("currentWeek")}
         archiveLabel={t("archive")}
-        totalLabel={`Ukupno ${typedPacks.length} sedmica`}
+        totalLabel={`${typedPacks.length} weeks total`}
         noPackYetLabel={t("noPackYet")}
         upgradeCta={
           showSubscribeCta && unlockedPacks.length > 0 ? (

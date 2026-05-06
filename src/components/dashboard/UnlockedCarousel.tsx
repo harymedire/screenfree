@@ -42,7 +42,7 @@ export function UnlockedCarousel({
               "hover:border-plum-300 hover:bg-plum-50",
               "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-plum-200",
             )}
-            aria-label="Prethodna sedmica"
+            aria-label="Previous week"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -58,7 +58,7 @@ export function UnlockedCarousel({
               "hover:border-plum-300 hover:bg-plum-50",
               "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-plum-200",
             )}
-            aria-label="Starija sedmica"
+            aria-label="Older week"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

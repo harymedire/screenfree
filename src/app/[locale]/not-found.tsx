@@ -10,13 +10,13 @@ export default function LocaleNotFound() {
       <div className="text-center max-w-md">
         <h1 className="font-display text-7xl text-coral-500 mb-4">404</h1>
         <p className="text-plum-700 text-lg mb-6">
-          Stranica nije pronađena.
+          Page not found.
         </p>
         <Link
           href="/"
           className="inline-flex items-center font-bold text-coral-600 hover:underline"
         >
-          ← Vrati se na početnu
+          ← Back to home
         </Link>
       </div>
     </main>

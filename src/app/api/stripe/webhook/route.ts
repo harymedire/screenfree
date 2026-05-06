@@ -114,12 +114,12 @@ async function handleInvoicePaid(
     })
     .eq("id", profile.id);
 
-  // Move user from "bezekrana" free list (#29) to "bezekrana paid" (#30).
+  // Move user from "ScreenFree free" list (#29) to "ScreenFree paid" (#30).
   // Fire-and-forget — Brevo failure must not block the webhook.
   promoteToPaid({
     email: profile.email,
     fullName: profile.full_name ?? undefined,
-    locale: profile.locale ?? "bs",
+    locale: profile.locale ?? "en",
   }).catch((err) => console.error("[stripe-webhook] brevo promote failed", err));
 
   // (Optional) — fire transactional email that pack #N is unlocked.

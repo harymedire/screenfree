@@ -1,5 +1,5 @@
 -- ============================================================================
--- BezEkrana — Initial schema
+-- ScreenFree — Initial schema
 -- ============================================================================
 -- Convention:
 --   • Money stored in minor units (cents) as INTEGER + ISO currency code

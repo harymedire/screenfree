@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
 
   const body = (await request.json().catch(() => ({}))) as { locale?: Locale };
-  const locale = body.locale ?? "bs";
+  const locale = body.locale ?? "en";
   const currency = currencyByLocale[locale];
 
   const service = createSupabaseServiceClient();

@@ -61,9 +61,9 @@ export default async function ArchivePage({
                   <a
                     href={`/api/content/download/${p.id}?bw=1`}
                     className="hidden sm:inline-flex items-center gap-1.5 rounded-full border-2 border-plum-100 px-3 py-1.5 text-xs font-bold text-plum-700 hover:border-plum-300 hover:bg-plum-50 transition"
-                    title="Verzija bez pozadinskih boja"
+                    title="Print version (no background colors)"
                   >
-                    <Download className="h-3 w-3" /> Bez pozadina
+                    <Download className="h-3 w-3" /> Print version
                   </a>
                 )}
                 <a href={`/api/content/download/${p.id}`} className="btn-primary">

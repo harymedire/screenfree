@@ -43,7 +43,7 @@ export default async function SosPage({
         ))}
         {list.length === 0 && (
           <p className="col-span-full text-center text-plum-500 py-10">
-            Još nema SOS ideja u ovom jeziku.
+            No SOS ideas available yet.
           </p>
         )}
       </div>

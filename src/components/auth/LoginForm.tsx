@@ -24,7 +24,14 @@ export function LoginForm() {
     const supabase = createSupabaseBrowserClient();
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
-      setError(error.message.includes("Invalid") ? tErr("invalidCredentials") : tErr("generic"));
+      const msg = error.message.toLowerCase();
+      if (msg.includes("not confirmed") || msg.includes("email_not_confirmed")) {
+        setError(tErr("emailNotConfirmed"));
+      } else if (msg.includes("invalid")) {
+        setError(tErr("invalidCredentials"));
+      } else {
+        setError(tErr("generic"));
+      }
       setLoading(false);
       return;
     }

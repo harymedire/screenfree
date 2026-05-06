@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="bs">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BEZ EKRANA — Sedmični sistem #11</title>
+<title>SCREENFREE — Weekly System #11</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,7 +150,7 @@
   body.ink-save .level.wow p { color:var(--plum-900) !important; opacity:1 !important; }
 
   /* ---------- COVER ----------
-     Week 11 mood: kitchen warmth. Butter cream → saffron orange → tomato →
+     Week 11 mood: kitchen warmth. Butter cream -> saffron orange -> tomato ->
      coffee brown. First week ending in BROWN — distinctly "kitchen". */
   .page.cover {
     color:#fff; position:relative;
@@ -566,7 +566,7 @@
     <span class="box" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg>
     </span>
-    Bez pozadinskih boja
+    No background colors
   </label>
   <button class="print-btn" id="download-btn" type="button" onclick="downloadPDF()">⬇ Download</button>
 </div>
@@ -580,11 +580,11 @@
         if (page.querySelector('.page-num')) return;
         const num = document.createElement('span');
         num.className = 'page-num';
-        num.textContent = `str. ${i + 1} / ${total}`;
+        num.textContent = `p. ${i + 1} / ${total}`;
         page.appendChild(num);
         const wm = document.createElement('span');
         wm.className = 'watermark';
-        wm.textContent = page.classList.contains('closing') ? 'PROTECTED CONTENT' : 'ZAŠTIĆENI SADRŽAJ';
+        wm.textContent = 'PROTECTED CONTENT';
         page.appendChild(wm);
       });
     };
@@ -608,30 +608,30 @@
   <svg class="confetti c-5" viewBox="0 0 24 24"><path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#C73838" opacity=".7"/></svg>
 
   <div class="cover-top">
-    <span class="logo-pill" aria-label="BezEkrana">
+    <span class="logo-pill" aria-label="ScreenFree">
       <svg viewBox="0 0 24 24"><path d="M12 3L13.8 8.2H19L14.8 11.4L16.6 16.6L12 13.4L7.4 16.6L9.2 11.4L5 8.2H10.2L12 3Z" fill="#FF6B6B"/><circle cx="18" cy="5" r="2" fill="#FFD93D"/><circle cx="6" cy="18" r="1.5" fill="#4ECDC4"/></svg>
-      BezEkrana
+      ScreenFree
     </span>
-    <div class="meta"><span class="dot"></span> 2–4 godine</div>
+    <div class="meta"><span class="dot"></span> ages 2–4</div>
   </div>
 
   <div class="cover-hero">
-    <h1 class="wordmark">BEZ<br/>EKRANA</h1>
-    <div class="week-number">★ Sedmični sistem #11</div>
-    <h2 class="theme-name">Kuhinjska<br/>avantura</h2>
-    <p class="subtitle">7 dana jednostavnih aktivnosti za djecu od 2 do 4 godine.</p>
+    <h1 class="wordmark">SCREEN<br/>FREE</h1>
+    <div class="week-number">★ Weekly System #11</div>
+    <h2 class="theme-name">Kitchen<br/>Adventure</h2>
+    <p class="subtitle">7 days of simple activities for children ages 2 to 4.</p>
   </div>
 
   <div class="cover-bottom">
     <div class="pitch">
-      <strong style="color:var(--sun-300);">Sedam dana u kuhinji</strong>
-      — pranje povrća, mirisne tegle, slano tijesto, sortiranje testenine, voćni umjetnik,
-      mali konobar i mali kolač. Bez vatre, bez noževa — samo bezbjedan rad sa hranom i posuđem
-      koji vraća kuhinju u srce porodice.
+      <strong style="color:var(--sun-300);">Seven days in the kitchen</strong>
+      — washing veggies, scent jars, salt dough, sorting pasta, fruit-art plate,
+      little server, and our little no-bake treat. No fire, no knives — just safe play
+      with food and bowls that brings the kitchen back to the heart of the family.
     </div>
     <div class="url-tag">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      bezekrana.com
+      getscreenfree.com
     </div>
     <div class="cover-copy">© 2026 Prime Vector Solutions LLC</div>
   </div>
@@ -640,30 +640,30 @@
 <!-- ================================================================ INTRO -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span>
-    <span>Uvod</span>
+    <span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span>
+    <span>Intro</span>
   </div>
 
-  <p class="h-eyebrow">Dobro došli</p>
-  <h1 class="h-display">Sedmični sistem #11</h1>
+  <p class="h-eyebrow">Welcome</p>
+  <h1 class="h-display">Weekly System #11</h1>
 
-  <p style="font-size:12pt; max-width:155mm;">Ova sedmica je posvećena <strong>kuhinji</strong> — najpotcjenjenijem mjestu za učenje u cijeloj kući. Roditelji 2–4-godišnjaka kuhinju često doživljavaju kao zonu opasnosti — vrelo je, oštro je, brzo se prlja. Ali kuhinja je istovremeno <strong>najgušće senzorno mjesto u kući</strong>: mirisi, teksture, temperature, zvukovi, boje, transformacije.</p>
+  <p style="font-size:12pt; max-width:155mm;">This week is dedicated to <strong>the kitchen</strong> — the most underrated learning space in the entire house. Parents of 2- to 4-year-olds often see the kitchen as a danger zone — it's hot, it's sharp, it gets messy fast. But the kitchen is also the <strong>most sensory-rich space in the house</strong>: smells, textures, temperatures, sounds, colors, transformations.</p>
 
-  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted); margin-top:4mm;">Dijete u kuhinji uči više za 20 minuta nego u sat vremena sa edukativnim igračkama. Sedmica koristi kuhinju <strong>bez vatre, bez noževa, bez opasnosti</strong> — samo bezbjedan rad sa hranom i posuđem. Sedmica gradi:</p>
+  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted); margin-top:4mm;">A child learns more in 20 minutes in the kitchen than in an hour with educational toys. This week uses the kitchen <strong>without fire, without knives, without danger</strong> — just safe play with food and bowls. The week builds:</p>
 
   <ul style="font-size:11.5pt; margin:5mm 0 5mm; columns:2; column-gap:8mm;">
-    <li>senzornu igru (dodir, miris, okus)</li>
-    <li>finu motoriku (prsti, šake)</li>
-    <li>sortiranje i kategorizaciju</li>
-    <li>doprinos i odgovornost</li>
-    <li>kreativnost (hrana kao medij)</li>
-    <li>slijeđenje višekoraknih uputa</li>
-    <li>kuhinjski rječnik</li>
+    <li>sensory play (touch, smell, taste)</li>
+    <li>fine motor skills (fingers, hands)</li>
+    <li>sorting and categorization</li>
+    <li>contribution and responsibility</li>
+    <li>creativity (food as a medium)</li>
+    <li>following multi-step directions</li>
+    <li>kitchen vocabulary</li>
   </ul>
 
   <div class="callout-kitchen" style="border-radius:18px; padding:6mm 8mm; margin-top:3mm;">
     <p style="font-size:11.5pt; line-height:1.55; margin:0;">
-      <strong>Napomena za roditelja:</strong> ne brini ako se prospe. Ne brini ako se zaprlja. Ne brini ako vam dijete kaže „ja ću sam!" pa traje pet puta duže. Ova sedmica nije o produktivnosti — ona je o tome da <strong>dijete osjeti da pripada</strong>: i u kuhinji, i u kući, i u porodici. <strong>Vrijeme provedeno ovdje vraća se godinama.</strong>
+      <strong>A note for parents:</strong> don't worry about spills. Don't worry about mess. Don't worry if your child says &ldquo;I'll do it myself!&rdquo; and it takes five times longer. This week isn't about productivity — it's about your child <strong>feeling like they belong</strong>: in the kitchen, in the home, in the family. <strong>Time spent here pays back for years.</strong>
     </p>
   </div>
 </section>
@@ -671,40 +671,40 @@
 <!-- ============================================================ HOW TO USE -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span>
-    <span>Kako koristiti</span>
+    <span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span>
+    <span>How to use</span>
   </div>
 
-  <p class="h-eyebrow">Vodič</p>
-  <h1 class="h-display">Kako koristiti<br/>ovaj sistem</h1>
+  <p class="h-eyebrow">Guide</p>
+  <h1 class="h-display">How to use<br/>this system</h1>
 
   <div class="steps">
     <div class="step">
       <div class="num">01</div>
-      <h3>Sigurnost prvo</h3>
-      <p>Bez vatre, bez oštrih noževa, bez vrelih površina u dometu djeteta. <strong>Aktivan nadzor uvijek.</strong></p>
+      <h3>Safety first</h3>
+      <p>No fire, no sharp knives, no hot surfaces within your child's reach. <strong>Active supervision always.</strong></p>
     </div>
     <div class="step">
       <div class="num">02</div>
-      <h3>Iskreni poslovi</h3>
-      <p>Dijete radi <strong>pravi posao</strong>, ne pretvaranje. Pere stvarno povrće, postavlja stvarni sto, pravi stvarni kolač.</p>
+      <h3>Real jobs</h3>
+      <p>Your child does <strong>real work</strong>, not pretend play. Real veggies to wash, a real table to set, a real treat to make.</p>
     </div>
     <div class="step">
       <div class="num">03</div>
-      <h3>Sporo je u redu</h3>
-      <p>„Ja ću sam!" znači da će trajati duže. <strong>To je dobar znak</strong>, ne smetnja.</p>
+      <h3>Slow is okay</h3>
+      <p>&ldquo;I'll do it myself!&rdquo; means it takes longer. <strong>That's a good sign</strong>, not a problem.</p>
     </div>
     <div class="step">
       <div class="num">04</div>
-      <h3>Hrana se priča</h3>
-      <p>Imenuj boje, oblike, teksture, mirise, okuse uz svaki dan. Kuhinjski rječnik raste sam.</p>
+      <h3>Talk the food</h3>
+      <p>Name the colors, shapes, textures, smells, and tastes each day. Kitchen vocabulary grows on its own.</p>
     </div>
   </div>
 
   <div class="callout" style="margin-top:9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Kuhinja nije zona zabrane.<br/>
-      <span style="color:var(--coral-700);">Kuhinja je prostor saradnje — gdje dijete uči da pripada porodici koja zajedno radi.</span>
+      The kitchen isn't off limits.<br/>
+      <span style="color:var(--coral-700);">The kitchen is a space for teamwork — where your child learns they belong to a family that works together.</span>
     </p>
   </div>
 </section>
@@ -712,269 +712,269 @@
 <!-- =============================================================== LEGEND -->
 <section class="page">
   <div class="page-header">
-    <span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span>
-    <span>Legenda</span>
+    <span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span>
+    <span>Legend</span>
   </div>
 
-  <p class="h-eyebrow">Šta razvijamo</p>
-  <h1 class="h-display">Šta razvijamo<br/>kroz igru</h1>
+  <p class="h-eyebrow">What we develop</p>
+  <h1 class="h-display">What we develop<br/>through play</h1>
 
   <div class="legend">
-    <div class="legend-item"><span class="legend-icon f-pokret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M11 22l1-5-3-3 1-5 4 1 4 4"/></svg></span><div><h4>Pokret</h4><p>Cijelo tijelo, koordinacija</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-fine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 1 1 4 0v6"/><path d="M13 11V4a2 2 0 1 1 4 0v9"/><path d="M17 13V7a2 2 0 1 1 4 0v8a7 7 0 0 1-7 7H9a5 5 0 0 1-5-5l-1-3a2 2 0 0 1 4-1l1 2v-6a2 2 0 1 1 4 0v5"/></svg></span><div><h4>Fine ruke</h4><p>Šaka, prsti, preciznost</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-paznja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><div><h4>Pažnja</h4><p>Fokus, posmatranje</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-govor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3a8.5 8.5 0 0 1 8.5 8.5z"/></svg></span><div><h4>Govor</h4><p>Riječi, slušanje, imitacija</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-senzor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19 10l-4.5 3.1L16 19l-4-3-4 3 1.5-5.9L5 10l5.1-1.4z"/></svg></span><div><h4>Senzorna igra</h4><p>Dodir, tekstura, miris</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-povezivanje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-.9a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span><div><h4>Povezivanje</h4><p>Bliskost s roditeljem</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-rjesavanje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 13c.5.5 1 1 1 2v1h6v-1c0-1 .5-1.5 1-2a7 7 0 0 0-4-13z"/></svg></span><div><h4>Rješavanje</h4><p>Uzrok-posljedica, mali problemi</p></div></div>
-    <div class="legend-item"><span class="legend-icon f-masta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 13l.8 2.2 2.2.8-2.2.8L19 19l-.8-2.2L16 16l2.2-.8z"/><path d="M5 5l.7 2 2 .7-2 .7L5 10l-.7-1.6L2.3 7.7l2-.7z"/></svg></span><div><h4>Mašta</h4><p>Kreativnost, role-play, ekspresija</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-pokret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M11 22l1-5-3-3 1-5 4 1 4 4"/></svg></span><div><h4>Movement</h4><p>Whole body, coordination</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-fine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 1 1 4 0v6"/><path d="M13 11V4a2 2 0 1 1 4 0v9"/><path d="M17 13V7a2 2 0 1 1 4 0v8a7 7 0 0 1-7 7H9a5 5 0 0 1-5-5l-1-3a2 2 0 0 1 4-1l1 2v-6a2 2 0 1 1 4 0v5"/></svg></span><div><h4>Fine motor</h4><p>Hand, fingers, precision</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-paznja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><div><h4>Focus</h4><p>Attention, observation</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-govor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3a8.5 8.5 0 0 1 8.5 8.5z"/></svg></span><div><h4>Speech</h4><p>Words, listening, imitation</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-senzor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19 10l-4.5 3.1L16 19l-4-3-4 3 1.5-5.9L5 10l5.1-1.4z"/></svg></span><div><h4>Sensory play</h4><p>Touch, texture, smell</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-povezivanje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-.9a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span><div><h4>Bonding</h4><p>Closeness with parent</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-rjesavanje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 13c.5.5 1 1 1 2v1h6v-1c0-1 .5-1.5 1-2a7 7 0 0 0-4-13z"/></svg></span><div><h4>Problem-solving</h4><p>Cause-effect, small puzzles</p></div></div>
+    <div class="legend-item"><span class="legend-icon f-masta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 13l.8 2.2 2.2.8-2.2.8L19 19l-.8-2.2L16 16l2.2-.8z"/><path d="M5 5l.7 2 2 .7-2 .7L5 10l-.7-1.6L2.3 7.7l2-.7z"/></svg></span><div><h4>Imagination</h4><p>Creativity, role-play, expression</p></div></div>
   </div>
 
-  <h3 style="margin-top:10mm; font-size:14pt;">Dodatne oznake na svakoj aktivnosti</h3>
+  <h3 style="margin-top:10mm; font-size:14pt;">Extra labels on each activity</h3>
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.5mm; margin-top:4mm;">
-    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Priprema</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">jednostavna</div></div>
-    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Potrebno</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">kuhinjske stvari</div></div>
-    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Tempo</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">prema djetetu</div></div>
-    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Nadzor</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">obavezan</div></div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Prep</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">simple</div></div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Materials</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">kitchen items</div></div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Pace</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">child-led</div></div>
+    <div style="background:var(--cream); border:1px dashed var(--plum-100); border-radius:8px; padding:1.5mm 2.5mm;"><div style="font-size:6.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700;">Supervision</div><div style="font-size:9pt; font-weight:600; color:var(--plum-900);">required</div></div>
   </div>
 </section>
 
 <!-- =========================================================== WEEK OVERVIEW -->
 <section class="page">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Pregled sedmice</span></div>
-  <p class="h-eyebrow">Plan u jednom pogledu</p>
-  <h1 class="h-display">Pregled sedmice</h1>
-  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Sedam dana u kuhinji — od pranja povrća (Dan 1) do pravljenja kolača bez pečenja (Dan 7). Sedmica vraća kuhinju u srce porodice na način koji je za dijete prirodan i siguran.</p>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Week overview</span></div>
+  <p class="h-eyebrow">The plan at a glance</p>
+  <h1 class="h-display">Week overview</h1>
+  <p style="font-size:11.5pt; color:var(--muted); max-width:155mm;">Seven days in the kitchen — from washing veggies (Day 1) to making a no-bake treat (Day 7). The week brings the kitchen back to the heart of the family in a way that's natural and safe for your child.</p>
 
   <div class="week-list">
-    <div class="day"><div class="day-num">1</div><div class="day-title">Pranje povrća</div></div>
-    <div class="day"><div class="day-num">2</div><div class="day-title">Mirisne tegle</div></div>
-    <div class="day"><div class="day-num">3</div><div class="day-title">Slano tijesto</div></div>
-    <div class="day"><div class="day-num">4</div><div class="day-title">Sortiranje testenine</div></div>
-    <div class="day"><div class="day-num">5</div><div class="day-title">Voćni tanjir umjetnika</div></div>
-    <div class="day"><div class="day-num">6</div><div class="day-title">Mali konobar</div></div>
-    <div class="day"><div class="day-num">7</div><div class="day-title">Naš mali kolač</div></div>
+    <div class="day"><div class="day-num">1</div><div class="day-title">Veggie Wash</div></div>
+    <div class="day"><div class="day-num">2</div><div class="day-title">Scent Jars</div></div>
+    <div class="day"><div class="day-num">3</div><div class="day-title">Salt Dough</div></div>
+    <div class="day"><div class="day-num">4</div><div class="day-title">Pasta Sorting</div></div>
+    <div class="day"><div class="day-num">5</div><div class="day-title">Fruit Artist's Plate</div></div>
+    <div class="day"><div class="day-num">6</div><div class="day-title">Little Server</div></div>
+    <div class="day"><div class="day-num">7</div><div class="day-title">Our Little Treat</div></div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 1 -->
 <section class="page day day-1">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 1 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">1</div><div class="day-title-block"><h2>Pranje povrća</h2><p>Dijete pomaže pravim poslom.</p></div></div>
-  <div class="story"><p>Vidi, paradajz je gladak. A šargarepa hrapava.</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 1 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">1</div><div class="day-title-block"><h2>Veggie Wash</h2><p>Your child helps with a real job.</p></div></div>
+  <div class="story"><p>Look — the tomato is smooth. And the carrot is bumpy.</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Mali pomoćnik na pranju</h3>
-    <div class="needs"><strong>Potrebno:</strong> lavor ili veliki tanjir sa hladnom vodom; povrće koje će se ionako prati za ručak (paradajz, krastavac, jabuke, šargarepa); čista četkica (može stara četkica za zube); peškir za sušenje.</div>
-    <h4>Kako se igra</h4>
-    <p>Dijete dobija svoju četkicu i pere svako povrće u lavoru sa hladnom vodom. Pa ih reda na peškir da se „suše". Imenuješ <strong>boje, oblike, teksture</strong>: „Vidi, paradajz je gladak. A šargarepa hrapava." Dijete <strong>radi pravim poslom</strong>. Voda je sigurna, povrće bezopasno, a osjećaj doprinosa porodičnom obroku ogroman. Plus — dijete koje pere paradajz lakše ga kasnije pojede; to je dokazana veza između uključenosti u pripremu hrane i dječije ishrane. Roditelj dobije čisto povrće, dijete je ozbiljno na poslu, kuhinja postaje mjesto saradnje.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Little Helper at the Sink</h3>
+    <div class="needs"><strong>Materials:</strong> a tub or large bowl with cold water; veggies that need washing for lunch anyway (tomato, cucumber, apples, carrots); a clean brush (an old toothbrush works); a towel for drying.</div>
+    <h4>How to play</h4>
+    <p>Your child gets their own brush and washes each piece of produce in the tub of cold water. Then they line them up on the towel to &ldquo;dry.&rdquo; You name the <strong>colors, shapes, textures</strong>: &ldquo;Look — the tomato is smooth. And the carrot is bumpy.&rdquo; Your child is <strong>doing real work</strong>. The water is safe, the produce harmless, and the feeling of contributing to a family meal is huge. Plus — a child who washes the tomato is more likely to eat it later; that's the proven link between being involved in food prep and a child's eating. The parent gets clean produce, the child is seriously on the job, and the kitchen becomes a place of teamwork.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Sortiranje na peškiru</h3>
-      <p>Poslije pranja, dijete reda povrće po vrsti: jabuke u jedan red, paradajz u drugi, šargarepa u treći. Vježba kategorizacije + osjećaj za organizaciju.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Sorting on the Towel</h3>
+      <p>After washing, your child lines up the produce by kind: apples in one row, tomatoes in another, carrots in a third. Categorization practice + a sense of order.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Dvije stvari</h3>
-      <p>Mlađoj djeci dovoljno je dvije-tri stvari za prati. Bez sortiranja, bez izazova — samo pljuskanje vode i pranje. <strong>Voda + povrće = sat zabave.</strong></p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Two Things</h3>
+      <p>For younger toddlers, two or three pieces are plenty. No sorting, no challenge — just splashing and washing. <strong>Water + produce = an hour of fun.</strong></p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 2 -->
 <section class="page day day-2">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 2 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">2</div><div class="day-title-block"><h2>Mirisne tegle</h2><p>Cimet, kafa, vanilija — koji je ovaj?</p></div></div>
-  <div class="story"><p>Zatvori oči. Pomiriši. Šta je to?</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 2 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">2</div><div class="day-title-block"><h2>Scent Jars</h2><p>Cinnamon, coffee, vanilla — which one is this?</p></div></div>
+  <div class="story"><p>Close your eyes. Take a sniff. What is it?</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Mirisni detektiv u kuhinji</h3>
-    <div class="needs"><strong>Potrebno:</strong> različiti začini i mirisne stvari iz ormara — cimet, kafa, korijender, vanilija, sušena menta, kora limuna; nekoliko šolja ili tanjirića.</div>
-    <h4>Kako se igra</h4>
-    <p>Stavljaš malo svakog mirisa u zasebnu šolju. Dijete ide redom i njuška. Imenuješ: „Ovo je cimet. Miriše slatko." Pa zatvori oči — donosiš šolju pod nos: „Koji je ovaj?" Njuh je čulo koje se <strong>najmanje vježba</strong> u urbanom djetinjstvu. Kuhinja ima pravo bogatstvo mirisa koje dijete inače propušta. Plus, dijete koje upozna mirise hrane razvija <strong>bolji apetit i radoznalost prema novim okusima</strong>. Dijete uči 5–6 novih riječi u 10 minuta — roditelji se iznenade koliko brzo pamti razlike.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Kitchen Smell Detective</h3>
+    <div class="needs"><strong>Materials:</strong> different spices and scented things from the pantry — cinnamon, coffee, coriander, vanilla, dried mint, lemon zest; a few small cups or saucers.</div>
+    <h4>How to play</h4>
+    <p>Put a little of each scent in a separate cup. Your child goes one by one and sniffs. You name them: &ldquo;This is cinnamon. It smells sweet.&rdquo; Then close eyes — you bring a cup under their nose: &ldquo;Which one is this?&rdquo; Smell is the sense that gets the <strong>least practice</strong> in modern childhood. The kitchen has a real treasure of scents that children otherwise miss. Plus, a child who learns the smells of food develops <strong>better appetite and curiosity for new tastes</strong>. Your child picks up 5–6 new words in 10 minutes — parents are surprised how fast they remember the differences.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Pogađanje sa zatvorenim očima</h3>
-      <p>Šest mirisa, igra pogađanja — dijete zatvori oči (ili gleda u stranu), ti donosiš šolje, dijete pogađa. Vježba miriznog pamćenja + samokontrole.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Guess With Eyes Closed</h3>
+      <p>Six scents, a guessing game — your child closes their eyes (or looks away), you bring a cup, your child guesses. Practices scent memory + self-control.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Tri jasna mirisa</h3>
-      <p>Mlađoj djeci tri jasna mirisa (cimet, limun, vanilija) — samo njušenje, bez pogađanja. Imenuješ ti: „Ovo je cimet. Miriše slatko." Dovoljno za prvi ulazak u svijet mirisa.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Three Clear Scents</h3>
+      <p>For younger toddlers, three clear scents (cinnamon, lemon, vanilla) — just sniffing, no guessing. You name them: &ldquo;This is cinnamon. It smells sweet.&rdquo; Plenty for a first step into the world of smells.</p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 3 -->
 <section class="page day day-3">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 3 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">3</div><div class="day-title-block"><h2>Slano tijesto</h2><p>Brašno + voda + so = magija u rukama.</p></div></div>
-  <div class="story"><p>Prah i voda. A šta postaje?</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 3 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">3</div><div class="day-title-block"><h2>Salt Dough</h2><p>Flour + water + salt = magic in their hands.</p></div></div>
+  <div class="story"><p>Powder and water. And what does it become?</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Pravo tijesto</h3>
-    <div class="needs"><strong>Potrebno:</strong> 2 šolje brašna + 1 šolja soli + 1 šolja tople vode; činija; opciono — par kapi prehrambene boje ili kašičica cimeta.</div>
-    <h4>Kako se igra</h4>
-    <p>Pomiješaš sastojke u činiji. Dijete sipa, miješa, mijesi. Pravite oblike — kuglice, zmije, palačinke, slova ako dijete prepoznaje. Možeš dodati <strong>boju ili miris</strong> (kapi boje u vodu, kašičica cimeta). Tijesto se čuva u zatvorenoj kesi sedmicama. Tijesto je <strong>najbolji senzorni materijal koji postoji</strong>. Dijete koje gnječi, valja i mijesi razvija šake za buduće pisanje, ali bez ikakvog „učenja". Plus, dijete vidi <strong>transformaciju</strong> — prah i voda postaju nešto sasvim novo. Roditelj dobije alat koji izvuče kad zatreba 30 minuta mira.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Real Dough</h3>
+    <div class="needs"><strong>Materials:</strong> 2 cups flour + 1 cup salt + 1 cup warm water; a bowl; optional — a few drops of food coloring or a teaspoon of cinnamon.</div>
+    <h4>How to play</h4>
+    <p>Combine the ingredients in the bowl. Your child pours, stirs, kneads. Make shapes — balls, snakes, pancakes, letters if your child recognizes them. You can add <strong>color or scent</strong> (drops of coloring in the water, a teaspoon of cinnamon). Dough keeps in a sealed bag for weeks. Dough is <strong>the best sensory material there is</strong>. A child who squishes, rolls, and kneads builds the hand strength they'll later need for writing — without any &ldquo;learning.&rdquo; Plus, your child sees a <strong>transformation</strong> — powder and water becoming something brand new. Parents get a tool to pull out when they need 30 quiet minutes.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Kalupi i forme</h3>
-      <p>„Kolačići" oblikom kalupima (čaše, šolje, pleh za kekse). Dijete pravi „kolače", reda na pleh. Vježba forme i preciznog pokreta.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Molds and Shapes</h3>
+      <p>&ldquo;Cookies&rdquo; with mold shapes (cups, glasses, a cookie sheet). Your child makes &ldquo;cookies,&rdquo; lines them up on the tray. Practices shapes and precise movement.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Gnječenje</h3>
-      <p>Bez formi i ciljeva — samo gnječenje, valjanje, kuglice. <strong>Najumirujuća igra koja postoji</strong> — može trajati dugo i savršena je za umorne ili uznemirene trenutke.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Squishing</h3>
+      <p>No molds, no goals — just squishing, rolling, little balls. <strong>The most calming play there is</strong> — it can last a long time and is perfect for tired or upset moments.</p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 4 -->
 <section class="page day day-4">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 4 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">4</div><div class="day-title-block"><h2>Sortiranje testenine</h2><p>Školjkice, mašnice, pera — sve u svoj red.</p></div></div>
-  <div class="story"><p>Iste stvari, druga pravila.</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 4 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">4</div><div class="day-title-block"><h2>Pasta Sorting</h2><p>Shells, bow-ties, penne — every kind in its row.</p></div></div>
+  <div class="story"><p>Same things, new rules.</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Tri vrste, tri činije</h3>
-    <div class="needs"><strong>Potrebno:</strong> nekoliko vrsta testenine — školjkice, mašnice, pera, slomljeni špageti, kuglice (orzo); 3–4 prazne činije ili pregradne kutije.</div>
-    <h4>Kako se igra</h4>
-    <p>Pomiješaš sve testenine u jednu hrpu. Dijete sortira po vrsti, pa po veličini, pa po obliku. Postavljaš izazove: „Možeš li mi naći sve okrugle? Sve duge? Sve sa rupom u sredini?" Testenina je <strong>sigurna, čista, jeftina i hipnotišuće zanimljiva</strong> za male prste. Dijete koje sortira testeninu radi <strong>istu kognitivnu vježbu</strong> kao dijete koje rješava prve matematičke zadatke — samo što je za njega ovo igra. 30 minuta mira; dijete se vraća igri ponovo, sve dok testenina ne ide u lonac za večeru.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Three Kinds, Three Bowls</h3>
+    <div class="needs"><strong>Materials:</strong> several types of pasta — shells, bow-ties, penne, broken spaghetti, orzo; 3–4 empty bowls or compartment trays.</div>
+    <h4>How to play</h4>
+    <p>Mix all the pasta into one pile. Your child sorts by shape, then by size, then by type. You set little challenges: &ldquo;Can you find all the round ones? All the long ones? All the ones with a hole in the middle?&rdquo; Pasta is <strong>safe, clean, cheap, and hypnotically interesting</strong> for little fingers. A child sorting pasta is doing the <strong>same cognitive exercise</strong> as a child solving their first math problems — only for them, this is play. 30 quiet minutes; your child comes back to the game again and again, until the pasta finally goes in the pot for dinner.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Šta nedostaje?</h3>
-      <p>Stavi 4–5 vrsta testenine pred dijete. Dijete zatvori oči, ti skloniš jednu. „Koja nedostaje?" Pamćenje + vizuelna pažnja.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>What's Missing?</h3>
+      <p>Set 4–5 kinds of pasta in front of your child. Your child closes their eyes; you take one away. &ldquo;Which one is missing?&rdquo; Memory + visual focus.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Dvije vrste, dvije činije</h3>
-      <p>Mlađoj djeci dvije vrste i dvije činije. „Sve okrugle ovamo. Sve duge tamo." Najjednostavnija varijanta sortiranja.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Two Kinds, Two Bowls</h3>
+      <p>For younger toddlers, two kinds and two bowls. &ldquo;All the round ones here. All the long ones there.&rdquo; The simplest version of sorting.</p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 5 -->
 <section class="page day day-5">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 5 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">5</div><div class="day-title-block"><h2>Voćni tanjir umjetnika</h2><p>Hrana koja se prvo pravi, pa jede.</p></div></div>
-  <div class="story"><p>Napravi sliku. Pa je pojedi.</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 5 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">5</div><div class="day-title-block"><h2>Fruit Artist's Plate</h2><p>Food you make first, then eat.</p></div></div>
+  <div class="story"><p>Make a picture. Then eat it.</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Slika od voća</h3>
-    <div class="needs"><strong>Potrebno:</strong> različite voćke <strong>isječene</strong> (banane, jabuke, jagode, grožđe, kruška) — sve sigurno za uzrast i bez krupnih komada za gušenje; prazan tanjir.</div>
-    <h4>Kako se igra</h4>
-    <p>Daješ djetetu prazan tanjir: „Napravi sliku. Koju god želiš." Dijete reda voće — može lice, sunce, cvijet, ili samo šara. Fotografišete <strong>„umjetničko djelo"</strong> prije nego pojedete. Dijete prvi put doživljava hranu kao <strong>medij za stvaranje</strong>, ne samo za jelo. Sliku može pojesti — što je za 2-godišnjaka gotovo magično. Plus, <strong>dijete koje napravi svoj obrok lakše ga pojede</strong>. Foto „instalacije" stavi na frižider — dijete ostatak sedmice ponosno pokazuje gostima.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>A Picture Made of Fruit</h3>
+    <div class="needs"><strong>Materials:</strong> different fruits <strong>pre-cut</strong> (bananas, apples, strawberries, grapes, pear) — all age-safe and free of large choking pieces; an empty plate.</div>
+    <h4>How to play</h4>
+    <p>Hand your child the empty plate: &ldquo;Make a picture. Anything you want.&rdquo; Your child arranges the fruit — it could be a face, a sun, a flower, or just a pattern. You photograph the <strong>&ldquo;artwork&rdquo;</strong> before eating it. For the first time, your child experiences food as a <strong>medium for creating</strong>, not just for eating. They get to eat the picture — which to a 2-year-old feels almost magical. Plus, <strong>a child who makes their own meal is more likely to eat it</strong>. Stick the photo &ldquo;installation&rdquo; on the fridge — your child will proudly show it off to visitors all week.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Lice ili životinja</h3>
-      <p>Konkretan zadatak: „Hajde da napravimo lice. Šta će biti oči? Šta nos?" Dijete bira voće za svaki dio. Vježba prostornog razmišljanja + asocijacije.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Face or Animal</h3>
+      <p>A clear task: &ldquo;Let's make a face. What will the eyes be? What about the nose?&rdquo; Your child picks a fruit for each part. Practices spatial thinking + association.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Reda po boji</h3>
-      <p>Dijete reda voće u redove po boji: jagode i jabuke (crveno), banane (žuto), kruške (zeleno). Bez slike — samo kategorizacija + osjećaj boja.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Lined Up by Color</h3>
+      <p>Your child lines up fruit in rows by color: strawberries and apples (red), bananas (yellow), pears (green). No picture — just categorization + a sense of color.</p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 6 -->
 <section class="page day day-6">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 6 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">6</div><div class="day-title-block"><h2>Mali konobar</h2><p>Tata sjedi ovdje. Treba mu kašika.</p></div></div>
-  <div class="story"><p>Trebam tvoju pomoć. Postavi sto.</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 6 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">6</div><div class="day-title-block"><h2>Little Server</h2><p>Dad sits here. He needs a spoon.</p></div></div>
+  <div class="story"><p>I need your help. Set the table.</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Pravi konobar</h3>
-    <div class="needs"><strong>Potrebno:</strong> stvarne stvari za sto — salvete, kašike, šolje, plastični/melaminski tanjiri (sigurni za uzrast); stvarni obrok ili užina.</div>
-    <h4>Kako se igra</h4>
-    <p>Postavljaš sto za užinu ili obrok i kažeš: „Danas si ti konobar. Trebam tvoju pomoć." Dijete dobija zadatke jedan po jedan: „Tata sjedi ovdje, treba mu kašika i salveta." „Mama tu, šolja." Tokom obroka — „Možeš li donijeti hljeb? Možeš li sipati vodu (iz male bočice)?" Dijete dobija <strong>stvarnu odgovornost u stvarnoj situaciji</strong> — ne pretvaranje, pravi obrok, prava porodica. Osjećaj doprinosa zajednici je ogroman; takođe vježba slijeđenje uputa od više koraka. Dijete sa dvije godine sa ozbiljnim licem nosi salvete.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>Real Server</h3>
+    <div class="needs"><strong>Materials:</strong> real things for the table — napkins, spoons, cups, plastic/melamine plates (age-safe); a real meal or snack.</div>
+    <h4>How to play</h4>
+    <p>You're setting the table for a snack or meal and you say: &ldquo;Today you're the server. I need your help.&rdquo; Your child gets tasks one at a time: &ldquo;Dad sits here, he needs a spoon and a napkin.&rdquo; &ldquo;Mom there, a cup.&rdquo; During the meal — &ldquo;Can you bring the bread? Can you pour water (from a small bottle)?&rdquo; Your child gets <strong>real responsibility in a real situation</strong> — not pretend, a real meal, a real family. The feeling of contributing to the group is huge; it also practices following multi-step directions. A two-year-old carrying napkins with a serious face.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Cijeli sto</h3>
-      <p>Dijete postavlja sto bez tvojih uputa: salvete, tanjire, kašike, šolje. Samostalnost. Ne ispravljaj raspored ako je drugačiji od „pravilnog" — to je djetetov sto.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>The Whole Table</h3>
+      <p>Your child sets the table without your directions: napkins, plates, spoons, cups. Independence. Don't fix the layout if it's different from &ldquo;correct&rdquo; — it's your child's table.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Jedan zadatak</h3>
-      <p>Mlađoj djeci jedan zadatak: „Možeš li staviti salvete?" Velika pohvala kad uspije. <strong>Mala odgovornost, veliko samopouzdanje.</strong></p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>One Job</h3>
+      <p>For younger toddlers, one job: &ldquo;Can you put out the napkins?&rdquo; Big praise when they do. <strong>Small responsibility, big confidence.</strong></p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================ DAY 7 -->
 <section class="page day day-7">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>Dan 7 / 7</span></div>
-  <div class="day-header"><div class="day-stamp">7</div><div class="day-title-block"><h2>Naš mali kolač</h2><p>Ja sam pravio.</p></div></div>
-  <div class="story"><p>Drobi keks. Pa miješa. Pa kuglice. Pa frižider.</p></div>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>Day 7 / 7</span></div>
+  <div class="day-header"><div class="day-stamp">7</div><div class="day-title-block"><h2>Our Little Treat</h2><p>I made it.</p></div></div>
+  <div class="story"><p>Crush the cookies. Then mix. Then balls. Then fridge.</p></div>
 
   <div class="level wow">
-    <span class="level-tag"><span class="ico">⚡</span> WOW Misija</span>
-    <h3>Kolač bez pečenja</h3>
-    <div class="needs"><strong>Potrebno:</strong> drobljeni keks (oko 200 g), 2 kašike mekog putera, 2 kašike meda; tanjir/činija; opciono — kokos ili kakao za valjanje; zatvoriva kesa za drobljenje.</div>
-    <h4>Kako se igra</h4>
-    <p>Dijete drobi keks rukama u zatvorenoj kesi (sigurno, čisto, hipnotišuće). Sastojci se miješaju u činiji. Dijete oblikuje kuglice, valja u kokosu ili kakaou. Kuglice se stavljaju u frižider 30 minuta. Pa porodica jede zajedno i dijete kaže <strong>„ja sam pravio"</strong>. Zaokružuje sedmicu sa <strong>pravim, opipljivim rezultatom</strong>. Dijete jede nešto što je samo napravilo — jedan od najjačih osjećaja autonomije u ovom uzrastu. Plus, kolač se dijeli — gradi se osjećaj davanja. Dijete cijelu sedmicu priča „ja sam pravio kolač" i traži da se ponovi.</p>
+    <span class="level-tag"><span class="ico">⚡</span> WOW Mission</span>
+    <h3>No-Bake Treat</h3>
+    <div class="needs"><strong>Materials:</strong> crushed cookies (about 7 oz / 200 g), 2 tablespoons soft butter, 2 tablespoons honey; plate/bowl; optional — coconut or cocoa for rolling; a sealable bag for crushing.</div>
+    <h4>How to play</h4>
+    <p>Your child crushes cookies by hand inside the sealed bag (safe, clean, hypnotic). Mix the ingredients in the bowl. Your child shapes balls and rolls them in coconut or cocoa. The balls go in the fridge for 30 minutes. Then the family eats together and your child says <strong>&ldquo;I made it&rdquo;</strong>. This caps the week with <strong>a real, tangible result</strong>. Your child eats something they made themselves — one of the strongest feelings of autonomy at this age. Plus, the treat gets shared — building a sense of giving. Your child will say &ldquo;I made the treat&rdquo; all week and ask to do it again.</p>
   </div>
 
   <div class="levels-row">
     <div class="level medium">
-      <span class="level-tag"><span class="ico">🔧</span> Srednje</span>
-      <h3>Recept sa slikama</h3>
-      <p>Prije pravljenja, nacrtaš na papiru 4 koraka slikama (drobi → miješaj → oblikuj → frižider). Dijete prati recept. Vježba slijeđenja višekoraknog uputstva.</p>
+      <span class="level-tag"><span class="ico">🔧</span> Medium</span>
+      <h3>Picture Recipe</h3>
+      <p>Before you start, draw the 4 steps on paper as pictures (crush → mix → shape → fridge). Your child follows the recipe. Practices following multi-step directions.</p>
     </div>
     <div class="level light">
-      <span class="level-tag"><span class="ico">🌿</span> Lagano</span>
-      <h3>Drobi i miješa</h3>
-      <p>Mlađoj djeci dovoljno je drobljenje keksa i miješanje. Ti oblikuješ kuglice. <strong>Dovoljno je da dijete osjeti da je „pomoglo"</strong> — riječ „ja sam pravio" stiže kasnije.</p>
+      <span class="level-tag"><span class="ico">🌿</span> Easy</span>
+      <h3>Crush and Mix</h3>
+      <p>For younger toddlers, crushing the cookies and mixing is plenty. You shape the balls. <strong>It's enough that your child feels they &ldquo;helped&rdquo;</strong> — the words &ldquo;I made it&rdquo; come later.</p>
     </div>
   </div>
 </section>
 
 <!-- =================================================================== SOS -->
 <section class="page">
-  <div class="page-header"><span class="brand">BEZ EKRANA · Sedmični sistem #11 · bezekrana.com</span><span>SOS ideje</span></div>
-  <p class="h-eyebrow">Spremne za hitne trenutke</p>
-  <h1 class="h-display small">SOS ideje<br/>kada dijete traži ekran</h1>
-  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">Kuhinja je <strong>uvijek tu</strong>. Kad dijete traži ekran, odvedi ga u kuhinju — voda, testenina, povrće, brašno čekaju. Pet minuta i ekran je zaboravljen:</p>
+  <div class="page-header"><span class="brand">SCREENFREE · Weekly System #11 · getscreenfree.com</span><span>SOS ideas</span></div>
+  <p class="h-eyebrow">Ready for in-the-moment</p>
+  <h1 class="h-display small">SOS ideas<br/>when your child asks for a screen</h1>
+  <p style="font-size:11.5pt; max-width:155mm; color:var(--muted);">The kitchen is <strong>always there</strong>. When your child asks for a screen, take them into the kitchen — water, pasta, produce, flour are all waiting. Five minutes and the screen is forgotten:</p>
 
   <div class="sos-list">
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hoćeš li mi oprati paradajz?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Pomiriši — šta je ovo?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da gnječimo tijesto."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Sortiraj testeninu — sve mašnice ovamo."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Napravi mi sliku od voća."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Možeš li postaviti sto?"</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Hajde da pravimo kuglice."</p></div>
-    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>„Treba mi konobar — jesi li ti?"</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Will you wash the tomato for me?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Take a sniff — what is this?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Let's squish some dough.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Sort the pasta — all the bow-ties here.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Make me a picture out of fruit.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Can you set the table?&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;Let's make some little balls.&rdquo;</p></div>
+    <div class="sos-item"><span class="sos-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4 4L19 7"/></svg></span><p>&ldquo;I need a server — is that you?&rdquo;</p></div>
   </div>
 
   <div class="callout-kitchen" style="margin-top:8mm; border-radius:18px; padding:7mm 9mm;">
     <p style="font-size:13pt; font-weight:700; line-height:1.4; margin:0;">
-      Kuhinja nije zona zabrane.<br/>
-      <strong>Kuhinja je porodica koja zajedno radi.</strong>
+      The kitchen isn't off limits.<br/>
+      <strong>The kitchen is a family that works together.</strong>
     </p>
   </div>
 </section>
@@ -984,28 +984,28 @@
   <div class="closing-inner">
     <div class="glow cg-1"></div><div class="glow cg-2"></div>
     <div class="body">
-      <div class="badge">⭐ Završili ste sedmicu</div>
-      <h2>Bravo za još jednu sedmicu bez ekrana</h2>
-      <p>Ako niste stigli uraditi sve aktivnosti — to je potpuno u redu. Ova sedmica vam je u kuću ostavila <strong>nove rituale</strong>: pranje povrća, mirisne tegle, slano tijesto u kesi, sortiranje testenine. Ne idu nigdje.</p>
-      <p style="margin-top:3mm;">Kuhinja sad nije zona zabrane — postala je <strong>prostor saradnje</strong>. Možete ponoviti omiljene aktivnosti, sačuvati ovu sedmicu za kasnije, ili preći na <strong>naredni sedmični sistem</strong>.</p>
-      <div class="stamp">Kuhinja je porodica koja zajedno radi.</div>
+      <div class="badge">⭐ You finished the week</div>
+      <h2>Bravo for another screen-free week</h2>
+      <p>If you didn't get to every activity — that's completely fine. This week left <strong>new rituals</strong> in your home: washing produce, scent jars, salt dough in a bag, sorting pasta. They aren't going anywhere.</p>
+      <p style="margin-top:3mm;">The kitchen is no longer off limits — it has become a <strong>space for teamwork</strong>. Repeat the favorites, save this week for later, or move on to the <strong>next weekly system</strong>.</p>
+      <div class="stamp">The kitchen is a family that works together.</div>
     </div>
 
     <div class="legal-notice">
       <p class="legal-safety">
-        <strong>Sigurnost prije svega.</strong> Sav sadržaj je informativnog i edukativnog karaktera; roditelj/staratelj je u potpunosti odgovoran za sigurnost djeteta. Aktivnosti u kuhinji provoditi <strong>bez vatre, bez oštrih noževa i bez vrelih površina u dometu djeteta</strong>; nadzor obavezan. Paziti na alergije, sitne komade rizične za gušenje, sirove sastojke i higijenu (oprati ruke prije i poslije).
+        <strong>Safety first.</strong> All content is informational and educational. Every activity requires active adult supervision; the parent or guardian is fully responsible for the child's safety. Kitchen activities must be carried out <strong>without fire, without sharp knives, and without hot surfaces within the child's reach</strong>; supervision is required. Watch for allergies, small choking-hazard pieces, raw ingredients, and hygiene (wash hands before and after).
       </p>
       <div class="legal-cols">
-        <div>
-          <h4>Pravna napomena</h4>
-          <p>Ovaj materijal je zaštićen autorskim pravima i predstavlja vlasništvo kompanije <strong>Prime Vector Solutions LLC, USA</strong>. Svako neovlašteno kopiranje, dijeljenje, distribuiranje ili prodaja ovog sadržaja — djelimično ili u cijelosti — strogo je zabranjeno bez prethodnog pismenog odobrenja. Kršenje ovih prava može rezultirati pravnim postupkom, uključujući novčane kazne i zahtjeve za naknadu štete, u skladu sa zakonima Sjedinjenih Američkih Država i međunarodnim propisima. Ovaj materijal se aktivno prati u cilju sprječavanja neovlaštene distribucije.</p>
-        </div>
         <div>
           <h4>Legal Notice</h4>
           <p>This material is protected by copyright and is the intellectual property of <strong>Prime Vector Solutions LLC, USA</strong>. Any unauthorized copying, sharing, distribution, or resale of this content — in whole or in part — is strictly prohibited without prior written consent. Violation of these terms may result in legal action, including financial penalties and claims for damages, in accordance with United States and international intellectual property laws. This material is actively monitored for unauthorized distribution.</p>
         </div>
+        <div>
+          <h4>Personal Use Only</h4>
+          <p>The PDF you are reading is licensed to a single household for personal, non-commercial use. Sharing the file with other families, posting it online, uploading it to file-sharing services, or using any part of it commercially without our written permission is prohibited. Each PDF may be watermarked and tracked. To request commercial use, school/daycare licensing, or republication rights, contact us at <strong>support@getscreenfree.com</strong>.</p>
+        </div>
       </div>
-      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. Sva prava zadržana. · All rights reserved.</p>
+      <p class="legal-copyright">© 2026 Prime Vector Solutions LLC. All rights reserved.</p>
     </div>
   </div>
 </section>

@@ -14,7 +14,7 @@ export async function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-2 group">
           <Logo className="h-9 w-9 transition group-hover:rotate-[-12deg] group-hover:scale-110" />
-          <span className="font-display text-xl font-bold text-plum-800">BezEkrana</span>
+          <span className="font-display text-xl font-bold text-plum-800">ScreenFree</span>
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <Link href="/about" className="hidden md:inline text-sm font-bold text-plum-700 hover:text-coral-600">
