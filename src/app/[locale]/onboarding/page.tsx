@@ -18,11 +18,12 @@ export default async function OnboardingPage({
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("subscription_status")
+    .select("role, subscription_status")
     .eq("id", user!.id)
     .single();
 
-  if (profile?.subscription_status === "active") {
+  // Admins and active subscribers go straight to the dashboard.
+  if (profile?.role === "admin" || profile?.subscription_status === "active") {
     redirect({ href: "/dashboard", locale });
   }
 

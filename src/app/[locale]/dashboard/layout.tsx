@@ -35,12 +35,14 @@ export default async function DashboardLayout({
   ]);
 
   // Paywall: anyone hitting /dashboard without any purchase is sent to /pricing.
-  // TEMPORARILY DISABLED in development so we can iterate on the dashboard UI
-  // without needing a real subscription. Re-enables automatically in production.
+  // Admins always bypass the paywall so they can QA the dashboard, manage
+  // banners, etc., without needing a paid subscription.
+  // Disabled in development so the dashboard UI can be iterated on without a sub.
   const everSubscribed = !!profile && profile.subscription_status !== "none";
   const hasOneTime = (oneTimeCount ?? 0) > 0;
+  const isAdmin = profile?.role === "admin";
 
-  if (process.env.NODE_ENV === "production" && !everSubscribed && !hasOneTime) {
+  if (process.env.NODE_ENV === "production" && !isAdmin && !everSubscribed && !hasOneTime) {
     redirect({ href: "/pricing", locale });
   }
 
