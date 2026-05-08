@@ -11,8 +11,8 @@ type Props = { mode: "subscription" | "onetime"; locale: string };
 // recurring weekly fee; one-time uses the platform default. Server-side will
 // pass actual values once we wire up the real Stripe success path — this
 // constant is fine for the conversion-tracking starting point.
-const SUBSCRIPTION_VALUE_USD = 4.99;
-const ONETIME_VALUE_USD = 5.99;
+const SUBSCRIPTION_VALUE_USD = 2.99;
+const ONETIME_VALUE_USD = 6.99;
 
 declare global {
   interface Window {

@@ -49,7 +49,7 @@ export const TERMS: LegalDocument = {
     },
     {
       heading: "2. Subscription, Pricing, and Billing",
-      body: "• Subscriptions renew automatically on a weekly cycle at the price displayed at checkout (currently $4.99/week; we may adjust pricing with 30 days' notice to active subscribers).\n• Payments are processed by Stripe, Inc. We do not store card details on our servers.\n• Each successful weekly invoice unlocks one new pack, in sequence.\n• All amounts are stated in U.S. dollars. Applicable U.S. state sales tax is added at checkout where required.\n• You may cancel at any time from your account dashboard. Cancellation stops future billing immediately; previously paid packs remain in your library.",
+      body: "• Subscriptions renew automatically on a weekly cycle at the price displayed at checkout (currently $2.99/week; we may adjust pricing with 30 days' notice to active subscribers).\n• Payments are processed by Stripe, Inc. We do not store card details on our servers.\n• Each successful weekly invoice unlocks one new pack, in sequence.\n• All amounts are stated in U.S. dollars. Applicable U.S. state sales tax is added at checkout where required.\n• You may cancel at any time from your account dashboard. Cancellation stops future billing immediately; previously paid packs remain in your library.",
     },
     {
       heading: "3. Instant Digital Delivery — Acknowledgment",

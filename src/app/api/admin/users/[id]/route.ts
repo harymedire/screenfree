@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient, createSupabaseServiceClient } from "@/lib/supabase/server";
-import { promoteToPaid, demoteToFree } from "@/lib/brevo";
+import { promoteToPaid, demoteToFree, removeContactFromList, BREVO_LISTS } from "@/lib/brevo";
+import { stripe } from "@/lib/stripe/server";
 import type { SubscriptionStatus } from "@/types/db";
 
 // PATCH /api/admin/users/[id] — admin-only user actions.
@@ -27,7 +28,7 @@ async function ensureAdmin() {
     .eq("id", user.id)
     .single();
   if (profile?.role !== "admin") return { ok: false as const, status: 403, msg: "forbidden" };
-  return { ok: true as const };
+  return { ok: true as const, adminId: user.id };
 }
 
 export async function PATCH(
@@ -117,7 +118,7 @@ export async function PATCH(
           promoteToPaid({
             email: prof.email,
             fullName: prof.full_name ?? undefined,
-            locale: prof.locale ?? "bs",
+            locale: prof.locale ?? "en",
           }).catch((err) => console.error("[admin/users] brevo promote failed", err));
         }
         return NextResponse.json({ ok: true });
@@ -140,7 +141,7 @@ export async function PATCH(
           }).eq("id", userId);
 
           if (row?.email) {
-            demoteToFree({ email: row.email, locale: row.locale ?? "bs" })
+            demoteToFree({ email: row.email, locale: row.locale ?? "en" })
               .catch((err) => console.error("[admin/users] brevo demote failed", err));
           }
         }
@@ -194,6 +195,72 @@ export async function PATCH(
     }
   } catch (err) {
     console.error("[admin/users/PATCH]", body.action, err);
+    return NextResponse.json(
+      { error: (err as Error).message || "server-error" },
+      { status: 500 },
+    );
+  }
+}
+
+// DELETE /api/admin/users/[id] — fully remove a user. Drops the auth row
+// (profiles cascades), best-effort removes them from Brevo lists, and cancels
+// any active Stripe subscription so the user doesn't keep getting charged.
+// Admin cannot delete themselves to prevent locking out the only admin.
+export async function DELETE(
+  _request: Request,
+  ctx: { params: Promise<{ id: string }> },
+) {
+  const auth = await ensureAdmin();
+  if (!auth.ok) return NextResponse.json({ error: auth.msg }, { status: auth.status });
+
+  const { id: userId } = await ctx.params;
+  if (userId === auth.adminId) {
+    return NextResponse.json({ error: "cannot-delete-self" }, { status: 400 });
+  }
+
+  const service = createSupabaseServiceClient();
+
+  try {
+    // Pull email + provider sub IDs first so we can cancel billing & clean up
+    // Brevo. Profile row is dropped by auth.users → profiles ON DELETE CASCADE.
+    const { data: profile } = await service
+      .from("profiles")
+      .select("email, subscription_provider, subscription_id, stripe_customer_id")
+      .eq("id", userId)
+      .single();
+
+    // Cancel Stripe subscription before deleting the auth row, so the user
+    // doesn't continue getting charged. Manual sentinels (subscription_id
+    // starting with "manual:") aren't real Stripe subs — skip those. Customer
+    // object is left in Stripe for invoice history; Stripe doesn't allow
+    // deleting customers with prior charges anyway.
+    const subId = profile?.subscription_id ?? "";
+    const isRealStripeSub =
+      profile?.subscription_provider === "stripe" &&
+      subId.startsWith("sub_");
+    if (isRealStripeSub) {
+      try {
+        await stripe.subscriptions.cancel(subId);
+      } catch (err) {
+        // Already canceled / not found is fine — log and proceed with deletion.
+        console.warn("[admin/users/DELETE] stripe cancel failed (continuing)", err);
+      }
+    }
+
+    const { error: delErr } = await service.auth.admin.deleteUser(userId);
+    if (delErr) throw delErr;
+
+    if (profile?.email) {
+      // Best-effort cleanup from both lists.
+      await Promise.allSettled([
+        removeContactFromList({ email: profile.email, listId: BREVO_LISTS.freeSignup }),
+        removeContactFromList({ email: profile.email, listId: BREVO_LISTS.paid }),
+      ]);
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[admin/users/DELETE]", err);
     return NextResponse.json(
       { error: (err as Error).message || "server-error" },
       { status: 500 },

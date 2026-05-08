@@ -9,13 +9,13 @@ import type { Currency } from "@/types/db";
 export const DEFAULT_SUBSCRIPTION_PRICE_CENTS: Record<Currency, number> = {
   BAM: 499, //  4.99 KM/week
   EUR: 249, //  2.49 €/week
-  USD: 499, //  $4.99/week
+  USD: 299, //  $2.99/week
 };
 
 export const DEFAULT_ONETIME_PRICE_CENTS: Record<Currency, number> = {
   BAM: 1199, // 11.99 KM/plan
   EUR: 599,  //  5.99 €/plan
-  USD: 999,  //  $9.99/plan
+  USD: 699,  //  $6.99/plan
 };
 
 const localeForCurrency: Record<Currency, string> = {

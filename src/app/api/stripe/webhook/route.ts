@@ -83,9 +83,26 @@ async function handleInvoicePaid(
   invoice: Stripe.Invoice,
   service: ReturnType<typeof createSupabaseServiceClient>,
 ) {
-  if (!invoice.subscription || !invoice.customer) return;
-  const subscriptionId = String(invoice.subscription);
+  if (!invoice.customer) return;
   const customerId = String(invoice.customer);
+
+  // Subscription ID — in 2026-04-22.dahlia Stripe moved this off the
+  // top-level invoice.subscription field onto invoice.parent.subscription_details
+  // or invoice.lines.data[].subscription. We try them in order.
+  const invoiceWithParent = invoice as Stripe.Invoice & {
+    parent?: { subscription_details?: { subscription?: string | Stripe.Subscription } };
+  };
+  const subscriptionField =
+    invoice.subscription ??
+    invoiceWithParent.parent?.subscription_details?.subscription ??
+    invoice.lines?.data?.[0]?.subscription ??
+    null;
+  const subscriptionId = subscriptionField ? String(subscriptionField) : null;
+
+  // Subscription invoices have a subscriptionId; one-time invoices don't.
+  // Since we only handle subscriptions through invoice.payment_succeeded, bail
+  // if there's no subscription on this invoice.
+  if (!subscriptionId) return;
 
   const { data: profile } = await service
     .from("profiles")
@@ -99,7 +116,7 @@ async function handleInvoicePaid(
     service,
     profile.id,
     profile.weeks_consumed ?? 0,
-    profile.locale ?? "bs",
+    profile.locale ?? "en",
   );
 
   await service
@@ -114,7 +131,7 @@ async function handleInvoicePaid(
     })
     .eq("id", profile.id);
 
-  // Move user from "ScreenFree free" list (#29) to "ScreenFree paid" (#30).
+  // Move user from "screenfree" free list (#31) to "screenfree paid" (#32).
   // Fire-and-forget — Brevo failure must not block the webhook.
   promoteToPaid({
     email: profile.email,
@@ -157,7 +174,7 @@ async function syncSubscriptionState(
       .eq("stripe_customer_id", customerId)
       .single();
     if (prof?.email) {
-      demoteToFree({ email: prof.email, locale: prof.locale ?? "bs" })
+      demoteToFree({ email: prof.email, locale: prof.locale ?? "en" })
         .catch((err) => console.error("[stripe-webhook] brevo demote failed", err));
     }
   }
@@ -206,7 +223,7 @@ async function handlePaymentIntentSucceeded(
     promoteToPaid({
       email: prof.email,
       fullName: prof.full_name ?? undefined,
-      locale: prof.locale ?? "bs",
+      locale: prof.locale ?? "en",
     }).catch((err) => console.error("[stripe-webhook] brevo promote (one-time) failed", err));
   }
 }

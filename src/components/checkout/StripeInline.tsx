@@ -8,14 +8,15 @@ import { Button } from "@/components/ui/Button";
 import { CheckCircle2 } from "lucide-react";
 
 type Mode = "subscription" | "onetime";
-type Props = { mode: Mode; packId: string | null; locale: string };
+type Billing = { name: string; email: string };
+type Props = { mode: Mode; packId: string | null; locale: string; billing: Billing };
 
 // Minimal Stripe checkout — card only, no billing address fields. We collect
 // the user's name/email at registration; Stripe stores billing data on the
 // customer object internally. Address suppression is allowed for card
 // payments since Stripe asks for postal code automatically inside the card
 // element where the issuing country requires it (e.g. US cards).
-export function StripeInline({ mode, packId, locale }: Props) {
+export function StripeInline({ mode, packId, locale, billing }: Props) {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [alreadyActive, setAlreadyActive] = useState(false);
@@ -86,12 +87,12 @@ export function StripeInline({ mode, packId, locale }: Props) {
         },
       }}
     >
-      <CheckoutForm mode={mode} />
+      <CheckoutForm mode={mode} billing={billing} />
     </Elements>
   );
 }
 
-function CheckoutForm({ mode }: { mode: Mode }) {
+function CheckoutForm({ mode, billing }: { mode: Mode; billing: Billing }) {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -104,23 +105,38 @@ function CheckoutForm({ mode }: { mode: Mode }) {
     setSubmitting(true);
     setErrMsg(null);
 
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/checkout/success?mode=${mode}`,
-      },
-      redirect: "if_required",
-    });
+    // Stripe rule: when we suppress billing fields with fields.billingDetails="never",
+    // we must pass the values here. Name and email come from registration.
+    // Wrap in try/catch — IntegrationError is thrown rather than returned via
+    // result.error, which would otherwise leave the submit button stuck on "Processing…".
+    try {
+      const result = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/checkout/success?mode=${mode}`,
+          payment_method_data: {
+            billing_details: {
+              name: billing.name,
+              email: billing.email,
+            },
+          },
+        },
+        redirect: "if_required",
+      });
 
-    if (result.error) {
-      setErrMsg(result.error.message ?? "Payment failed.");
+      if (result.error) {
+        setErrMsg(result.error.message ?? "Payment failed.");
+        setSubmitting(false);
+        return;
+      }
+
+      // No redirect needed (3DS not required) — payment succeeded inline.
+      router.replace(`/checkout/success?mode=${mode}`);
+      router.refresh();
+    } catch (err) {
+      setErrMsg(err instanceof Error ? err.message : "Payment failed.");
       setSubmitting(false);
-      return;
     }
-
-    // No redirect needed (3DS not required) — payment succeeded inline.
-    router.replace(`/checkout/success?mode=${mode}`);
-    router.refresh();
   }
 
   return (
@@ -130,10 +146,12 @@ function CheckoutForm({ mode }: { mode: Mode }) {
           layout: "tabs",
           fields: {
             billingDetails: {
+              // Suppress name+email from the UI because we already have them
+              // from registration and pass them manually in confirmPayment.
+              // phone and address stay on "auto" — Stripe shows them only when
+              // the card's issuing bank requires it (e.g., postal code for US/UK).
               name: "never",
               email: "never",
-              phone: "never",
-              address: "never",
             },
           },
           wallets: {
